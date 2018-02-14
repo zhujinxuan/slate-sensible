@@ -29,7 +29,9 @@ function compileStringArrays(
         )
     }));
     return (text: string): Array<{ text: string, name: string }> =>
-        formattedMentions.filter(mention => text === mention.text);
+        formattedMentions.filter(
+            mention => text === mention.text.slice(0, text.length)
+        );
 }
 
 function compileMentions(

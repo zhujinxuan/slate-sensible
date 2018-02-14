@@ -7,13 +7,13 @@ import createRenderMark from './createRenderMark';
 import findMentionRange from './util/findMentionRange';
 
 interface PluginImportOption {
-    classNameForDecoration: void | string;
-    beforeMatchRegex: void | RegExp;
-    afterMatchRegex: void | RegExp;
-    beforeFormatMatcherRegex: void | RegExp;
-    afterFormatMatcherRegex: void | RegExp;
-    decorationMarkType: void | string;
-    mentions: Array<{ name: string, [string]: * }>;
+    classNameForDecoration?: string;
+    beforeMatchRegex?: RegExp;
+    afterMatchRegex?: RegExp;
+    beforeFormatMatcherRegex?: RegExp;
+    afterFormatMatcherRegex?: RegExp;
+    decorationMarkType?: string;
+    mentions: Array<{ name: string }>;
 }
 
 function createMentionPlugin(options: PluginImportOption): Object {
