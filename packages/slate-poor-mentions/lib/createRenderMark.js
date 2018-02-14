@@ -13,7 +13,7 @@ function createRenderMark(
 ) {
     return (props: InterfaceProps): ReactNode | void => {
         const { mark }: { mark: Mark } = props;
-        if (mark !== decorationMark) {
+        if (mark.type !== decorationMark.type) {
             return undefined;
         }
         return <span className={classNameForDecoration}>{props.children}</span>;

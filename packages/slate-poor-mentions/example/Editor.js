@@ -28,6 +28,7 @@ type Props = {
     afterMatchRegex: RegExp,
     beforeFormatMatcherRegex: RegExp,
     afterFormatMatcherRegex: RegExp,
+    matchInBetweenRegex: RegExp,
     value: Value
 };
 type Portals = {
@@ -42,21 +43,8 @@ class SlateEditor extends Component<Props, { value: Value }> {
 
     constructor(props: Props) {
         super(props);
-        const {
-            mentions,
-            beforeMatchRegex,
-            afterMatchRegex,
-            beforeFormatMatcherRegex,
-            afterFormatMatcherRegex,
-            value
-        } = props;
-        const mentionPlugin = createMentionPlugin({
-            mentions,
-            beforeMatchRegex,
-            afterMatchRegex,
-            beforeFormatMatcherRegex,
-            afterFormatMatcherRegex
-        });
+        const { value } = props;
+        const mentionPlugin = createMentionPlugin(props);
         this.plugins = [mentionPlugin];
         this.portals = { ...mentionPlugin.portals };
         this.submitChange = x => undefined;

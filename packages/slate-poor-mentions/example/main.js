@@ -11,6 +11,7 @@ const beforeMatchRegex = /{ *\$[^{}\n]*$/;
 const afterMatchRegex = /^[^{}\n]*}/;
 const beforeFormatMatcherRegex = /^ *{ */;
 const afterFormatMatcherRegex = / *} *$/;
+const matchInBetweenRegex = /{\$[^{}$]+}/g;
 const mentions = [
     '{$ User-id }',
     '{$ User-cat }',
@@ -28,6 +29,7 @@ class Example extends Component<*, *> {
                 afterFormatMatcherRegex={afterFormatMatcherRegex}
                 beforeMatchRegex={beforeMatchRegex}
                 afterMatchRegex={afterMatchRegex}
+                matchInBetweenRegex={matchInBetweenRegex}
             />
         );
     }

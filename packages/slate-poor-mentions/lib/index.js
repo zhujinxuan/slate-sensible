@@ -4,6 +4,7 @@ import createMentionBundle from './components/createMentionBundle';
 import createOnKeyDown from './createOnKeyDown';
 import compileMentions from './compileMentions';
 import createRenderMark from './createRenderMark';
+import createDecorateNode from './createDecorateNode';
 import findMentionRange from './util/findMentionRange';
 
 interface PluginImportOption {
@@ -12,6 +13,7 @@ interface PluginImportOption {
     afterMatchRegex?: RegExp;
     beforeFormatMatcherRegex?: RegExp;
     afterFormatMatcherRegex?: RegExp;
+    matchInBetweenRegex?: RegExp;
     decorationMarkType?: string;
     mentions: Array<{ name: string }>;
 }
@@ -25,6 +27,7 @@ function createMentionPlugin(options: PluginImportOption): Object {
     const { afterMatchRegex = /^[^{}\n]*}/ } = options;
     const { beforeFormatMatcherRegex = /^ *{ */ } = options;
     const { afterFormatMatcherRegex = / *} *$/ } = options;
+    const { matchInBetweenRegex = /{\$[^{}$]+}/g } = options;
 
     const getMentions = compileMentions(
         beforeMatchRegex,
@@ -43,6 +46,11 @@ function createMentionPlugin(options: PluginImportOption): Object {
                 afterMatchRegex
             )
         },
+        decorateNode: createDecorateNode(
+            mentions,
+            matchInBetweenRegex,
+            decorationMark
+        ),
         renderMark: createRenderMark(decorationMark, classNameForDecoration)
     };
 }
