@@ -6,19 +6,13 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import INITIAL_VALUE from './value';
 import Editor from './Editor';
+import mentions from './constant-mentions';
 
 const beforeMatchRegex = /{ *\$[^{}\n]*$/;
 const afterMatchRegex = /^[^{}\n]*}/;
 const beforeFormatMatcherRegex = /^ *{ */;
 const afterFormatMatcherRegex = / *} *$/;
 const matchInBetweenRegex = /{\$[^{}$]+}/g;
-const mentions = [
-    '{$ User-id }',
-    '{$ User-cat }',
-    '{$ User-Address }',
-    '{$ User First Name }',
-    '{$ User Last Name}'
-].map(x => ({ name: x }));
 class Example extends Component<*, *> {
     render() {
         return (

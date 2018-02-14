@@ -4,31 +4,38 @@
     margin: 20px auto;
 }
 
-#example table {
-    width: 100%;
-    border-collapse: collapse;
-    border-top: 1px solid black;
+#example .mention-decoration{
+  color: blue;
 }
 
-#example table tr {
-    border: none;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+.RichEditor-mention-menu{
+  position: absolute;
+  z-index: 10;
+  list-style-type: none;
+  /* max-width: 200px; */
+  font-size:110%;
+
+  overflow: hidden;
+
+  color: #575f67;
+  background: #e6f3ff;
+  text-decoration: none;
+  padding:4px 4px;
+  border-radius: 4px;
+  margin: 0px 0px;
+  box-sizing:border-box;
 }
 
-#example table tr:first-child {
-    background: #f5f5f5;
-    font-weight: bold;
+.RichEditor-mention-menu li{
+  /* background-color: #fff; */
+  /* color: #222; */
+  cursor: pointer;
+  padding: 2px 2px;
+  border-radius: 4px;
 }
 
-#example table td {
-    border: 1px solid black;
-    border-top: none;
-   border-bottom: none;
-   border-right: none;
-    flex: 1;
-    word-break: break-all;
+.RichEditor-mention-menu li.selected {
+  background-color: #575f67;
+  color: #e6f3ff;
 }
+
