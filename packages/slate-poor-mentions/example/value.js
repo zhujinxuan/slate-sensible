@@ -9,14 +9,14 @@ const h = createHyperscript({
 });
 
 // eslint-disable-next-line no-template-curly-in-string
-const content = '{$ User-id}, ${ User-cat}, {$ User-something }....';
+const content = '{$ User-id}, {$ User-cat}, {$ User-something }....';
 
 const value = (
     <value>
         <document>
             <paragraph>
                 This page is a basic example of Slate + slate-poor-mentions
-                plugin
+                plugin. Mentions are started with {'{$'} and end with {'}'}
             </paragraph>
             <paragraph>{content}</paragraph>
             <paragraph>Plain Text....</paragraph>
