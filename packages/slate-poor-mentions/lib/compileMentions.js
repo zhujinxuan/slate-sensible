@@ -1,5 +1,5 @@
 // @flow
-import findMentionRangeCreator from './util/findMentionRange';
+import { type Value, type Range } from 'slate';
 import { type GetMentions } from './type';
 
 function formatForMatcher(
@@ -35,8 +35,7 @@ function compileStringArrays(
 }
 
 function compileMentions(
-    beforeMatchRegex: RegExp,
-    afterMatchRegex: RegExp,
+    findMentionRange: Value => null | Range,
     beforeFormatMatcherRegex: RegExp,
     afterFormatMatcherRegex: RegExp,
     mentions: Array<{ name: string }>
@@ -50,10 +49,7 @@ function compileMentions(
         mentionsStringArray
     );
     return value => {
-        const range = findMentionRangeCreator(
-            beforeMatchRegex,
-            afterMatchRegex
-        )(value);
+        const range = findMentionRange(value);
 
         if (!range) {
             return {

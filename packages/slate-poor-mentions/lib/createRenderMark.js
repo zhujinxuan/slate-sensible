@@ -8,15 +8,15 @@ interface InterfaceProps {
 }
 
 function createRenderMark(
-    decorationMark: Mark,
-    classNameForDecoration: string
+    decorationMarks: Array<Mark>,
+    classNamesForDecoration: Array<string>
 ) {
     return (props: InterfaceProps): ReactNode | void => {
         const { mark }: { mark: Mark } = props;
-        if (mark.type !== decorationMark.type) {
-            return undefined;
-        }
-        return <span className={classNameForDecoration}>{props.children}</span>;
+        const index = decorationMarks.findIndex(m => m.type === mark.type);
+        const className = classNamesForDecoration[index];
+        if (!className) return undefined;
+        return <span className={className}>{props.children}</span>;
     };
 }
 export default createRenderMark;

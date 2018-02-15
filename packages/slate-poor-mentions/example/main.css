@@ -4,6 +4,10 @@
     margin: 20px auto;
 }
 
+#example .cursor-mention-decoration{
+  color: darkblue !important;
+}
+
 #example .mention-decoration{
   color: blue;
 }
