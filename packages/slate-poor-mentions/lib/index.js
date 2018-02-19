@@ -16,8 +16,8 @@ interface PluginImportOption {
     beforeFormatMatcherRegex?: RegExp;
     afterFormatMatcherRegex?: RegExp;
     matchInBetweenRegex?: RegExp;
-    decorationMarkType?: string;
-    cursorDecorationMarkType?: string;
+    decorationMarkType?: string | Mark;
+    cursorDecorationMarkType?: string | Mark;
     mentions: Array<{ name: string }>;
 }
 
