@@ -6,6 +6,7 @@ import compileMentions from './compileMentions';
 import createRenderMark from './createRenderMark';
 import createDecorateNode from './createDecorateNode';
 import findMentionRangeCreator from './util/findMentionRange';
+import getExtendedRangeCreator from './util/getExtendedRange';
 import createOnChange from './createOnChangeDecoration';
 
 interface PluginImportOption {
@@ -42,6 +43,11 @@ function createMentionPlugin(options: PluginImportOption): Object {
         beforeMatchRegex,
         afterMatchRegex
     );
+    const getExtendedRange = getExtendedRangeCreator(
+        mentions,
+        beforeMatchRegex,
+        afterMatchRegex
+    );
 
     const getMentions = compileMentions(
         findMentionRange,
@@ -54,7 +60,8 @@ function createMentionPlugin(options: PluginImportOption): Object {
         onKeyDown: createOnKeyDown(updater),
         portals: { MentionMenu },
         utils: {
-            findMentionRange
+            findMentionRange,
+            getExtendedRange
         },
         decorateNode: createDecorateNode(
             mentions,
