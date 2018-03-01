@@ -1,6 +1,6 @@
 {
   "name": "slate-on-select",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Fix Inline Selection of Slate",
   "main": "dist/index.js",
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
@@ -10,7 +10,7 @@
     "get-window": "^1.1.2",
     "is-hotkey": "^0.1.1",
     "slate": "^0.33.0",
-    "slate-react": "^0.11.4"
+    "slate-react": ">0.11.4 < 0.13.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
