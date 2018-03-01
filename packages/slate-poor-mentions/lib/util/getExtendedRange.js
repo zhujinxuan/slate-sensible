@@ -37,8 +37,7 @@ function getExtendedRange(
         if (endRange) {
             const matchingText = endText.text.substring(
                 endRange.startOffset,
-                endRange,
-                endOffset
+                endRange.endOffset
             );
             if (mentions.find(x => x.name === matchingText)) {
                 endOffset = endRange.endOffset;

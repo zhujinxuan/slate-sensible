@@ -61,7 +61,8 @@ function createMentionPlugin(options: PluginImportOption): Object {
         portals: { MentionMenu },
         utils: {
             findMentionRange,
-            getExtendedRange
+            getExtendedRange,
+            isActive: updater.isActive
         },
         decorateNode: createDecorateNode(
             mentions,
