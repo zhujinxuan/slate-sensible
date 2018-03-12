@@ -46,12 +46,10 @@ function getExtendedRange(
 
         if (range.startOffset === startOffset && range.endOffset === endOffset)
             return range;
-        return Range.create({
-            anchorKey: startKey,
-            focusKey: endKey,
-            anchorOffset: startOffset,
-            focusOffset: endOffset
-        });
+        if (range.isBackward) range = range.flip;
+        return range
+            .moveAnchorTo(startKey, startOffset)
+            .moveFocusTo(endKey, endOffset);
     };
 
     return (node: Value | Node, range: Range): Range => {
