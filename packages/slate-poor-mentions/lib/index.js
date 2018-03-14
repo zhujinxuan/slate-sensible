@@ -75,6 +75,7 @@ function createMentionPlugin(options: PluginImportOption): Object {
         ),
         onChange: createOnChange(
             findMentionRange,
+            updater,
             beforeMatchRegex,
             cursorDecorationMark
         )

@@ -1,5 +1,6 @@
 // @flow
 import { type Value, type Range, type Mark, type Change } from 'slate';
+import { InterfaceUpdater } from './type';
 
 function halfClosedFindMention(value, findMentionRange, beforeMatchRegex) {
     if (!value.isFocused) return null;
@@ -24,10 +25,25 @@ function halfClosedFindMention(value, findMentionRange, beforeMatchRegex) {
 
 function createOnChangeDecoration(
     findMentionRange: Value => null | Range,
+    updater: InterfaceUpdater,
     beforeMatchRegex: RegExp,
     decoMark: Mark
 ) {
     return (change: Change): void => {
+        if (!updater.isActive) return;
+        if (!updater.isActive()) {
+            const { decorations } = change.value;
+            if (!decorations) return;
+            const nextDecorations = decorations.filter(
+                x => !x.marks || !x.marks.find(m => m.type === decoMark.type)
+            );
+            if (nextDecorations.size === decorations.size) return;
+            change
+                .setOperationFlag('save', false)
+                .setValue({ decorations: nextDecorations })
+                .setOperationFlag('save', true);
+            return;
+        }
         const { value } = change;
 
         const range = halfClosedFindMention(
