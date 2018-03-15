@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import React, { Component, type ComponentType } from 'react';
 import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
 import Portal from 'react-portal';
@@ -26,7 +26,8 @@ type Props = {
     name: null | string,
     selectMention: Mention => *,
     changeHOF: () => void | (Change => *),
-    submitChange: Change => *
+    submitChange: Change => *,
+    MentionItemChild: ?ComponentType<Mention>
 };
 
 class MentionMenu extends Component<Props> {
@@ -100,7 +101,7 @@ class MentionMenu extends Component<Props> {
     };
 
     render() {
-        const { mentions, name, selectMention } = this.props;
+        const { mentions, name, selectMention, MentionItemChild } = this.props;
         const isOpened = mentions && mentions.length > 0;
 
         return (
@@ -109,10 +110,10 @@ class MentionMenu extends Component<Props> {
                     {mentions.map(mention => (
                         <MentionItem
                             selected={mention.name === name}
-                            mention={mention}
                             key={mention.name}
                             confirmMention={this.confirmMention}
                             selectMention={selectMention}
+                            {...{ mention, MentionItemChild }}
                         />
                     ))}
                 </ul>

@@ -1,5 +1,6 @@
 // @flow
 import { Mark } from 'slate';
+import { type ComponentType } from 'react';
 import createMentionBundle from './components/createMentionBundle';
 import createOnKeyDown from './createOnKeyDown';
 import compileMentions from './compileMentions';
@@ -8,6 +9,7 @@ import createDecorateNode from './createDecorateNode';
 import findMentionRangeCreator from './util/findMentionRange';
 import getExtendedRangeCreator from './util/getExtendedRange';
 import createOnChange from './createOnChangeDecoration';
+import { type Mention as MentionType } from './type';
 
 interface PluginImportOption {
     classNameForDecoration?: string;
@@ -19,6 +21,7 @@ interface PluginImportOption {
     matchInBetweenRegex?: RegExp;
     decorationMarkType?: string | Mark;
     cursorDecorationMarkType?: string | Mark;
+    MentionItemChild?: ComponentType<MentionType>;
     mentions: Array<{ name: string }>;
 }
 
@@ -39,6 +42,7 @@ function createMentionPlugin(options: PluginImportOption): Object {
     const { beforeFormatMatcherRegex = /^ *{ */ } = options;
     const { afterFormatMatcherRegex = / *} *$/ } = options;
     const { matchInBetweenRegex = /{\$[^{}$]+}/g } = options;
+    const { MentionItemChild } = options;
     const findMentionRange = findMentionRangeCreator(
         beforeMatchRegex,
         afterMatchRegex
@@ -55,7 +59,10 @@ function createMentionPlugin(options: PluginImportOption): Object {
         afterFormatMatcherRegex,
         mentions
     );
-    const { MentionMenu, updater } = createMentionBundle(getMentions);
+    const { MentionMenu, updater } = createMentionBundle(
+        getMentions,
+        MentionItemChild
+    );
     return {
         onKeyDown: createOnKeyDown(updater),
         portals: { MentionMenu },

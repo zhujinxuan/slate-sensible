@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, type ComponentType } from 'react';
 import { type Value, type Change, type Range } from 'slate';
 import { InterfaceUpdater, type GetMentions, type Mention } from '../type';
 import MentionMenuAtRange from './MentionMenuAtRange';
@@ -14,7 +14,8 @@ type Props = {
     updater: InterfaceUpdater,
     value: Value,
     submitChange: Change => *,
-    getMentions: GetMentions
+    getMentions: GetMentions,
+    MentionItemChild: ?ComponentType<Mention>
 };
 
 class MentionMenuContainer extends Component<Props, State> {
@@ -108,7 +109,7 @@ class MentionMenuContainer extends Component<Props, State> {
     render() {
         const { mentions, name } = this.state;
         const { selectMention, changeHOF } = this;
-        const { submitChange, value } = this.props;
+        const { submitChange, value, MentionItemChild } = this.props;
         return (
             <MentionMenuAtRange
                 {...{
@@ -117,7 +118,8 @@ class MentionMenuContainer extends Component<Props, State> {
                     value,
                     selectMention,
                     submitChange,
-                    changeHOF
+                    changeHOF,
+                    MentionItemChild
                 }}
             />
         );

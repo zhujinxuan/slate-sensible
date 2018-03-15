@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { Component, type ComponentType } from 'react';
 import { type Value, type Change } from 'slate';
 import { type Mention } from '../type';
 import MentionMenu from './MentionMenu';
@@ -45,7 +45,8 @@ type Props = {
     submitChange: Change => *,
     value: Value,
     changeHOF: () => void | (Change => *),
-    selectMention: Mention => *
+    selectMention: Mention => *,
+    MentionItemChild: ?ComponentType<Mention>
 };
 type State = {
     mentions: Array<Mention>
@@ -77,7 +78,8 @@ class MentionMenuAtRange extends Component<Props, State> {
             name,
             selectMention,
             submitChange,
-            changeHOF
+            changeHOF,
+            MentionItemChild
         } = this.props;
         return (
             <MentionMenu
@@ -87,7 +89,8 @@ class MentionMenuAtRange extends Component<Props, State> {
                     name,
                     selectMention,
                     submitChange,
-                    changeHOF
+                    changeHOF,
+                    MentionItemChild
                 }}
             />
         );

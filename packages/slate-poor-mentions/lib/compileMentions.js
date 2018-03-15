@@ -1,6 +1,6 @@
 // @flow
 import { type Value, type Range } from 'slate';
-import { type GetMentions } from './type';
+import { type GetMentions, type Mention } from './type';
 
 function formatForMatcher(
     beforeFormat: RegExp,
@@ -28,7 +28,7 @@ function compileStringArrays(
             mention.name
         )
     }));
-    return (text: string): Array<{ text: string, name: string }> =>
+    return (text: string): Array<Mention> =>
         formattedMentions.filter(
             mention => text === mention.text.slice(0, text.length)
         );
