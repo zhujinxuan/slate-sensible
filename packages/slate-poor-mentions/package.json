@@ -1,6 +1,6 @@
 {
   "name": "slate-poor-mentions",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A Naive and Poor mention plugin for SlateJS",
   "main": "dist/index.js",
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
