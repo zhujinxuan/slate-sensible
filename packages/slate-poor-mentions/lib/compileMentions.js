@@ -15,12 +15,12 @@ function formatForMatcher(
 
 // edit-distance plugin for future development
 // @return {Function: string=>Array(Object)}
-function compileStringArrays(
+function compileStringArrays<T: { name: string }>(
     beforeFormatMatcherRegex,
     afterFormatMatcherRegex,
-    mentions: Array<{ name: string }>
-) {
-    const formattedMentions = mentions.map(mention => ({
+    mentions: Array<T>
+): string => Array<Mention<T>> {
+    const formattedMentions: Array<Mention<T>> = mentions.map(mention => ({
         ...mention,
         text: formatForMatcher(
             beforeFormatMatcherRegex,
@@ -28,27 +28,24 @@ function compileStringArrays(
             mention.name
         )
     }));
-    return (text: string): Array<Mention> =>
+    return (text: string): Array<Mention<T>> =>
         formattedMentions.filter(
             mention => text === mention.text.slice(0, text.length)
         );
 }
 
-function compileMentions(
+function compileMentions<T: { name: string }>(
     findMentionRange: Value => null | Range,
     beforeFormatMatcherRegex: RegExp,
     afterFormatMatcherRegex: RegExp,
-    mentions: Array<{ name: string }>
-): GetMentions {
-    const mentionsStringArray = mentions.filter(
-        mention => typeof mention.name === 'string'
-    );
+    mentions: Array<T>
+): GetMentions<T> {
     const getMentions = compileStringArrays(
         beforeFormatMatcherRegex,
         afterFormatMatcherRegex,
-        mentionsStringArray
+        mentions
     );
-    return value => {
+    return (value: Value) => {
         const range = findMentionRange(value);
 
         if (!range) {

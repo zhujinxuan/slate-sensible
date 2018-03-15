@@ -1,5 +1,6 @@
 // @flow
 import { type Change, type Range, type Value } from 'slate';
+import { type ComponentType } from 'react';
 
 export interface InterfaceUpdater {
     isActive: () => boolean;
@@ -8,9 +9,15 @@ export interface InterfaceUpdater {
     changeHOF: () => void | (Change => *);
 }
 
-export type Mention = { name: string, text: string };
-export type GetMentions = Value => {
+type Mention<T> = { ...T, text: string };
+export type { Mention };
+
+export type GetMentions<T: { name: string }> = Value => {
     text: null | string,
     range: null | Range,
-    mentions: Array<Mention>
+    mentions: Array<Mention<T>>
 };
+
+export type MentionItemChildType<T: { name: string }> = ComponentType<
+    Mention<T>
+>;

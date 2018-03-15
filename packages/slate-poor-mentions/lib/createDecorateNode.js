@@ -1,8 +1,9 @@
 // @flow
 import { type Mark, type Node } from 'slate';
+import { type Mention } from './type';
 
-function createDecorateNode(
-    mentions: Array<{ name: string }>,
+function createDecorateNode<T>(
+    mentions: Array<Mention<T>>,
     matchInBetween: RegExp,
     decoMark: Mark
 ) {

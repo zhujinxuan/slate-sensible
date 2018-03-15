@@ -1,25 +1,33 @@
 // @flow
-import React, { Component, type ComponentType } from 'react';
+import React, { Component } from 'react';
 import { type Value, type Change, type Range } from 'slate';
-import { InterfaceUpdater, type GetMentions, type Mention } from '../type';
+import {
+    InterfaceUpdater,
+    type GetMentions,
+    type Mention,
+    type MentionItemChildType
+} from '../type';
 import MentionMenuAtRange from './MentionMenuAtRange';
 
-type State = {
+type State<T> = {
     name: null | string,
-    mentions: Array<Mention>,
+    mentions: Array<Mention<T>>,
     range: null | Range
 };
 
-type Props = {
+type Props<T> = {
     updater: InterfaceUpdater,
     value: Value,
     submitChange: Change => *,
-    getMentions: GetMentions,
-    MentionItemChild: ?ComponentType<Mention>
+    getMentions: GetMentions<T>,
+    MentionItemChild: MentionItemChildType<T>
 };
 
-class MentionMenuContainer extends Component<Props, State> {
-    constructor(props: Props) {
+class MentionMenuContainer<T: { name: string }> extends Component<
+    Props<T>,
+    State<T>
+> {
+    constructor(props: Props<T>) {
         super(props);
         const { updater } = props;
 
@@ -35,7 +43,7 @@ class MentionMenuContainer extends Component<Props, State> {
         };
     }
 
-    componentWillReceiveProps(nextProps: Props) {
+    componentWillReceiveProps(nextProps: Props<T>) {
         const { value, getMentions } = nextProps;
         const { mentions, range } = getMentions(value);
         this.setState({ mentions, range });
@@ -68,7 +76,7 @@ class MentionMenuContainer extends Component<Props, State> {
                 .insertText(mention.name);
     };
 
-    selectMention = (mention: Mention) => {
+    selectMention: (Mention<T>) => void = (mention: Mention<T>) => {
         const { mentions } = this.state;
         const index = mentions.indexOf(mention);
         if (index > -1) {
@@ -96,7 +104,7 @@ class MentionMenuContainer extends Component<Props, State> {
                 mentions.length;
         }
 
-        if (index > -1) {
+        if (index > -1 && mentions[index]) {
             this.setState({ name: mentions[index].name });
         }
     };
@@ -116,8 +124,8 @@ class MentionMenuContainer extends Component<Props, State> {
                     mentions,
                     name,
                     value,
-                    selectMention,
                     submitChange,
+                    selectMention,
                     changeHOF,
                     MentionItemChild
                 }}

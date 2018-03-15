@@ -1,6 +1,5 @@
 // @flow
 import { Mark } from 'slate';
-import { type ComponentType } from 'react';
 import createMentionBundle from './components/createMentionBundle';
 import createOnKeyDown from './createOnKeyDown';
 import compileMentions from './compileMentions';
@@ -9,9 +8,9 @@ import createDecorateNode from './createDecorateNode';
 import findMentionRangeCreator from './util/findMentionRange';
 import getExtendedRangeCreator from './util/getExtendedRange';
 import createOnChange from './createOnChangeDecoration';
-import { type Mention as MentionType } from './type';
+import { type MentionItemChildType } from './type';
 
-interface PluginImportOption {
+interface PluginImportOption<T: { name: string }> {
     classNameForDecoration?: string;
     classNameForCursorDecoration?: string;
     beforeMatchRegex?: RegExp;
@@ -21,13 +20,15 @@ interface PluginImportOption {
     matchInBetweenRegex?: RegExp;
     decorationMarkType?: string | Mark;
     cursorDecorationMarkType?: string | Mark;
-    MentionItemChild?: ComponentType<MentionType>;
-    mentions: Array<{ name: string }>;
+    MentionItemChild?: MentionItemChildType<T>;
+    mentions: Array<T>;
 }
 
-function createMentionPlugin(options: PluginImportOption): Object {
+function createMentionPlugin<T: { name: string }>(
+    options: PluginImportOption<T>
+): Object {
     const { decorationMarkType = 'mention-decoration' } = options;
-    const mentions = options.mentions.map(x => ({ name: x.name }));
+    const { mentions } = options;
     const decorationMark = Mark.create(decorationMarkType);
     const { classNameForDecoration = decorationMark.type } = options;
     const {
@@ -42,7 +43,7 @@ function createMentionPlugin(options: PluginImportOption): Object {
     const { beforeFormatMatcherRegex = /^ *{ */ } = options;
     const { afterFormatMatcherRegex = / *} *$/ } = options;
     const { matchInBetweenRegex = /{\$[^{}$]+}/g } = options;
-    const { MentionItemChild } = options;
+    const { MentionItemChild = mention => mention.name } = options;
     const findMentionRange = findMentionRangeCreator(
         beforeMatchRegex,
         afterMatchRegex

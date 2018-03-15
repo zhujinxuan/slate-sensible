@@ -1,9 +1,10 @@
 // @flow
 import { Value, type Node, Range } from 'slate';
 import { findMentionRangeAt } from './findMentionRange';
+import { type Mention } from '../type';
 
-function getExtendedRange(
-    mentions: Array<{ name: string }>,
+function getExtendedRange<T>(
+    mentions: Array<Mention<T>>,
     beforeMatchRegex: RegExp,
     afterMatchRegex: RegExp
 ) {

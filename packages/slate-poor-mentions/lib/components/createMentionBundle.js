@@ -1,17 +1,21 @@
 // @flow
-import React, { type ComponentType, type Element } from 'react';
+import React, { type ComponentType } from 'react';
 import { type Value, type Change } from 'slate';
 import MentionMenuContainer from './MentionMenuContainer';
-import { InterfaceUpdater, type GetMentions, type Mention } from '../type';
+import {
+    InterfaceUpdater,
+    type GetMentions,
+    type MentionItemChildType
+} from '../type';
 
 interface PropsInterface {
     value: Value;
     submitChange: Change => *;
 }
 
-function createMentionBundle(
-    getMentions: GetMentions,
-    MentionItemChild: ?ComponentType<Mention>
+function createMentionBundle<T: { name: string }>(
+    getMentions: GetMentions<T>,
+    MentionItemChild: MentionItemChildType<T>
 ) {
     const updater: InterfaceUpdater = {
         isActive: () => false,
@@ -19,9 +23,9 @@ function createMentionBundle(
         previous: () => null,
         changeHOF: () => undefined
     };
-    const MentionMenu = (
+    const MentionMenu: ComponentType<PropsInterface> = (
         props: PropsInterface
-    ): Element<typeof MentionMenuContainer> => {
+    ) => {
         const { value, submitChange } = props;
         return (
             <MentionMenuContainer

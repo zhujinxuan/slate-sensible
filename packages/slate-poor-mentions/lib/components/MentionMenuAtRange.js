@@ -1,7 +1,7 @@
 // @flow
-import React, { Component, type ComponentType } from 'react';
-import { type Value, type Change } from 'slate';
-import { type Mention } from '../type';
+import React, { Component } from 'react';
+import { Value, type Change } from 'slate';
+import { type Mention, type MentionItemChildType } from '../type';
 import MentionMenu from './MentionMenu';
 
 // Adjust "fake scroll" to ensure the selected item is shown
@@ -9,12 +9,12 @@ import MentionMenu from './MentionMenu';
 // {mentions, name, selectMention, submitChange, changeHOF }
 
 const numShowedMentions = 9;
-function showedMentions(
-    mentions: Array<Mention>,
+function showedMentions<T>(
+    mentions: Array<Mention<T>>,
     name: null | string,
     num: number,
     offsetIndex: number
-): Array<Mention> {
+): Array<Mention<T>> {
     const index = mentions.findIndex(m => m.name === name);
     if (index === -1 || !name) {
         return mentions.slice(0, num);
@@ -39,27 +39,30 @@ function showedMentions(
     return [...beforeMentions, ...afterMentions];
 }
 
-type Props = {
-    mentions: Array<Mention>,
+type Props<T> = {
+    mentions: Array<Mention<T>>,
     name: null | string,
-    submitChange: Change => *,
     value: Value,
+    submitChange: Change => *,
     changeHOF: () => void | (Change => *),
-    selectMention: Mention => *,
-    MentionItemChild: ?ComponentType<Mention>
+    selectMention: (Mention<T>) => *,
+    MentionItemChild: MentionItemChildType<T>
 };
-type State = {
-    mentions: Array<Mention>
+type State<T> = {
+    mentions: Array<Mention<T>>
 };
-class MentionMenuAtRange extends Component<Props, State> {
-    constructor(props: Props) {
+class MentionMenuAtRange<T: { name: string }> extends Component<
+    Props<T>,
+    State<T>
+> {
+    constructor(props: Props<T>) {
         super();
         const { mentions, name } = props;
         this.state = {
             mentions: showedMentions(mentions, name, numShowedMentions, 0)
         };
     }
-    componentWillReceiveProps(nextProps: Props) {
+    componentWillReceiveProps(nextProps: Props<T>) {
         const { name, mentions } = nextProps;
         const offsetIndex = this.state.mentions.findIndex(m => m.name === name);
         this.setState({

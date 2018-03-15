@@ -1,11 +1,11 @@
 // @flow
 
-import React, { Component, type ComponentType } from 'react';
+import React, { Component } from 'react';
 import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
 import Portal from 'react-portal';
 import MentionItem from './MentionItem';
-import { type Mention } from '../type';
+import { type Mention, type MentionItemChildType } from '../type';
 
 function getRect(selectionDOMRange: Range): ClientRect {
     const rect = selectionDOMRange.getBoundingClientRect();
@@ -20,17 +20,17 @@ function hideWithRect(dom: HTMLElement) {
     dom.style.top = '-1000px';
 }
 
-type Props = {
+type Props<T> = {
     value: Value,
-    mentions: Array<Mention>,
+    mentions: Array<Mention<T>>,
     name: null | string,
-    selectMention: Mention => *,
+    selectMention: (Mention<T>) => *,
     changeHOF: () => void | (Change => *),
     submitChange: Change => *,
-    MentionItemChild: ?ComponentType<Mention>
+    MentionItemChild: MentionItemChildType<T>
 };
 
-class MentionMenu extends Component<Props> {
+class MentionMenu<T: { name: string }> extends Component<Props<T>> {
     menu: null | HTMLUListElement;
     componentDidMount() {
         this.adjustPosition();
