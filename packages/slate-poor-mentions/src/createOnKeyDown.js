@@ -1,7 +1,7 @@
 // @flow
 import isHotkey from 'is-hotkey';
 import { type Change } from 'slate';
-import { InterfaceUpdater } from './type';
+import type { InterfaceUpdater } from './type';
 
 function createOnKeyDown(updater: InterfaceUpdater) {
     return (

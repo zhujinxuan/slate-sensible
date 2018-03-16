@@ -60,13 +60,14 @@ function createMentionPlugin<T: { name: string }>(
         afterFormatMatcherRegex,
         mentions
     );
-    const { MentionMenu, updater } = createMentionBundle(
+    const { renderEditor, updater } = createMentionBundle(
         getMentions,
         MentionItemChild
     );
+
     return {
         onKeyDown: createOnKeyDown(updater),
-        portals: { MentionMenu },
+        renderEditor,
         utils: {
             findMentionRange,
             getExtendedRange,

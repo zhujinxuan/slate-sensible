@@ -1,6 +1,6 @@
 // @flow
 import { type Value, type Range, type Mark, type Change } from 'slate';
-import { InterfaceUpdater } from './type';
+import type { InterfaceUpdater } from './type';
 
 function halfClosedFindMention(value, findMentionRange, beforeMatchRegex) {
     if (!value.isFocused) return null;

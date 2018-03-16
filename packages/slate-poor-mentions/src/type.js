@@ -9,7 +9,7 @@ export interface InterfaceUpdater {
     changeHOF: () => void | (Change => *);
 }
 
-type Mention<T> = { ...T, text: string };
+type Mention<T> = { ...T, name: string, text: string };
 export type { Mention };
 
 export type GetMentions<T: { name: string }> = Value => {

@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { type Value, type Change, type Range } from 'slate';
 import {
-    InterfaceUpdater,
+    type InterfaceUpdater,
     type GetMentions,
     type Mention,
     type MentionItemChildType

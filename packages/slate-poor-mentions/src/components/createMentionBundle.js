@@ -1,9 +1,9 @@
 // @flow
 import React, { type ComponentType } from 'react';
-import { type Value, type Change } from 'slate';
+import { type Value, type Change, type Editor } from 'slate';
 import MentionMenuContainer from './MentionMenuContainer';
 import {
-    InterfaceUpdater,
+    type InterfaceUpdater,
     type GetMentions,
     type MentionItemChildType
 } from '../type';
@@ -39,8 +39,15 @@ function createMentionBundle<T: { name: string }>(
             />
         );
     };
+    const renderEditor = (props: Object, editor: Editor) => (
+        <div>
+            {props.children}
+            <MentionMenu value={editor.value} submitChange={editor.change} />
+        </div>
+    );
     return {
         MentionMenu,
+        renderEditor,
         updater
     };
 }
