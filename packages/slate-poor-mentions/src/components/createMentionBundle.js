@@ -1,17 +1,12 @@
 // @flow
-import React, { type ComponentType } from 'react';
-import { type Value, type Change, type Editor } from 'slate';
+import React from 'react';
+import { type Editor } from 'slate';
 import MentionMenuContainer from './MentionMenuContainer';
 import {
     type InterfaceUpdater,
     type GetMentions,
     type MentionItemChildType
 } from '../type';
-
-interface PropsInterface {
-    value: Value;
-    submitChange: Change => *;
-}
 
 function createMentionBundle<T: { name: string }>(
     getMentions: GetMentions<T>,
@@ -23,30 +18,25 @@ function createMentionBundle<T: { name: string }>(
         previous: () => null,
         changeHOF: () => undefined
     };
-    const MentionMenu: ComponentType<PropsInterface> = (
-        props: PropsInterface
-    ) => {
-        const { value, submitChange } = props;
+    const renderEditor = (props: Object, editor: Editor) => {
+        const { value } = editor;
+        const submitChange = editor.change;
         return (
-            <MentionMenuContainer
-                {...{
-                    updater,
-                    value,
-                    submitChange,
-                    getMentions,
-                    MentionItemChild
-                }}
-            />
+            <div>
+                {props.children}
+                <MentionMenuContainer
+                    {...{
+                        updater,
+                        value,
+                        submitChange,
+                        getMentions,
+                        MentionItemChild
+                    }}
+                />
+            </div>
         );
     };
-    const renderEditor = (props: Object, editor: Editor) => (
-        <div>
-            {props.children}
-            <MentionMenu value={editor.value} submitChange={editor.change} />
-        </div>
-    );
     return {
-        MentionMenu,
         renderEditor,
         updater
     };

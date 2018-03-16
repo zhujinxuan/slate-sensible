@@ -1,5 +1,6 @@
 // @flow
 import { Mark } from 'slate';
+import React from 'react';
 import createMentionBundle from './components/createMentionBundle';
 import createOnKeyDown from './createOnKeyDown';
 import compileMentions from './compileMentions';
@@ -43,7 +44,11 @@ function createMentionPlugin<T: { name: string }>(
     const { beforeFormatMatcherRegex = /^ *{ */ } = options;
     const { afterFormatMatcherRegex = / *} *$/ } = options;
     const { matchInBetweenRegex = /{\$[^{}$]+}/g } = options;
-    const { MentionItemChild = mention => mention.name } = options;
+    const {
+        MentionItemChild = (props: { name: string }) => (
+            <span>{props.name}</span>
+        )
+    } = options;
     const findMentionRange = findMentionRangeCreator(
         beforeMatchRegex,
         afterMatchRegex
