@@ -1,6 +1,6 @@
 // @flow
 
-import { Range, type Node } from 'slate';
+import { type Range, type Node } from 'slate';
 
 function areVisiblyTheSame(node: Node, range1: Range, range2: Range): boolean {
     if (range1.isCollapsed && range2.isCollapsed) {

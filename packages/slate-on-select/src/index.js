@@ -19,6 +19,7 @@ function onSelect(event, change: Change): ?true {
         return undefined;
     }
     const range = findRange(native, value);
+    if (!range || !value.selection) return undefined;
     if (areVisiblyTheSame(document, value.selection, range)) {
         return true;
     }
