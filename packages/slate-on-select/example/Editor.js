@@ -5,7 +5,7 @@ import React, { Component, type Node as ReactNode } from 'react';
 import { type Value, type Node } from 'slate';
 import { Editor } from 'slate-react';
 
-import onSelectPlugin from '../lib/';
+import onSelectPlugin from '../src/';
 
 type NodeProps = {
     node: Node,

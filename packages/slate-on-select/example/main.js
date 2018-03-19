@@ -12,5 +12,17 @@ class Example extends Component<*, *> {
         return <Editor value={INITIAL_VALUE} />;
     }
 }
+/**
+ * Mount the router.
+ */
 
-ReactDOM.render(<Example />, window.document.getElementById('example'));
+const root = window.document.createElement('div');
+root.id = 'example';
+window.document.body.appendChild(root);
+
+const render = () => {
+    ReactDOM.render(<Example />, root);
+};
+
+render();
+
