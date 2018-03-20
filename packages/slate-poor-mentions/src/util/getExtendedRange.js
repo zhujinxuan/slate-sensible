@@ -47,7 +47,7 @@ function getExtendedRange<T>(
 
         if (range.startOffset === startOffset && range.endOffset === endOffset)
             return range;
-        if (range.isBackward) range = range.flip;
+        if (range.isBackward) range = range.flip();
         return range
             .moveAnchorTo(startKey, startOffset)
             .moveFocusTo(endKey, endOffset);

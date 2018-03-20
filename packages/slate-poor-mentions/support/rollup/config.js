@@ -1,6 +1,6 @@
 import factory from './factory';
-import slatePoorMention from '../../package.json';
+import packageConfig from '../../package.json';
 
-const configurations = [...factory(slatePoorMention)];
+const configurations = [...factory(packageConfig)];
 
 export default configurations;
