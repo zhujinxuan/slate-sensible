@@ -9,7 +9,9 @@ function getExtendedRange<T>(
     afterMatchRegex: RegExp
 ) {
     const extendRange = (node: Node, range: Range): Range => {
+        if (!range) return range;
         const { startKey, endKey } = range;
+        if (!startKey || !endKey) return range;
         let { startOffset, endOffset } = range;
         const startText = node.getDescendant(startKey);
         const endText = node.getDescendant(endKey);
