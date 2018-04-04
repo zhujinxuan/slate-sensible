@@ -9,7 +9,7 @@ import Editor from './Editor';
 import mentions from './constant-mentions';
 import './main.css';
 
-const beforeMatchRegex = /{ *\$[^{}\n]*$/;
+const beforeMatchRegex = /{* *[$@] *[^{}\n]*$/;
 const afterMatchRegex = /^[^{}\n]*}/;
 class Example extends Component<*, *> {
     render() {
