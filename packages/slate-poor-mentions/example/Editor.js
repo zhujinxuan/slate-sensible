@@ -4,7 +4,7 @@
 import React, { Component, type Node as ReactNode } from 'react';
 import { type Value, type Node } from 'slate';
 import { Editor } from 'slate-react';
-import createMentionPlugin from '../lib/slate-poor-mentions.es';
+import createMentionPlugin from '../src/index';
 
 type NodeProps = {
     node: Node,
@@ -25,21 +25,16 @@ type Props = {
     mentions: Array<{ name: string }>,
     beforeMatchRegex: RegExp,
     afterMatchRegex: RegExp,
-    beforeFormatMatcherRegex: RegExp,
-    afterFormatMatcherRegex: RegExp,
-    matchInBetweenRegex: RegExp,
     value: Value
 };
 
 class SlateEditor extends Component<Props, { value: Value }> {
     plugins: Array<*>;
-
     constructor(props: Props) {
         super(props);
         const { value } = props;
         const mentionPlugin = createMentionPlugin(props);
         this.plugins = [mentionPlugin];
-        this.submitChange = x => undefined;
         this.state = { value };
     }
 

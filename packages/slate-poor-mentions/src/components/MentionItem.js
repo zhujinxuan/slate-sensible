@@ -1,13 +1,14 @@
 // @flow
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from 'react';
-import { type Mention, type MentionItemChildType } from '../type';
+import { type MentionItemChildType } from '../type';
 
-type Props<T> = {
-    mention: Mention<T>,
+type Props<T: { name: string }> = {
+    mention: T,
+    text: string,
     selected: boolean,
     confirmMention: () => *,
-    selectMention: (Mention<T>) => *,
+    selectMention: T => *,
     MentionItemChild: MentionItemChildType<T>
 };
 
@@ -23,8 +24,8 @@ class MentionItem<T: { name: string }> extends Component<Props<T>> {
     };
 
     render() {
-        const { mention, selected, MentionItemChild } = this.props;
-        const children = <MentionItemChild {...mention} />;
+        const { mention, selected, MentionItemChild, text } = this.props;
+        const children = <MentionItemChild {...{ mention, text }} />;
         const { onMouseDown, onMouseEnter } = this;
         const className = selected ? 'selected' : '';
         return (

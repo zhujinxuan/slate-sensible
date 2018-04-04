@@ -5,7 +5,7 @@ import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
 import Portal from 'react-portal';
 import MentionItem from './MentionItem';
-import { type Mention, type MentionItemChildType } from '../type';
+import { type MentionItemChildType } from '../type';
 
 function getRect(selectionDOMRange: Range): ClientRect {
     const rect = selectionDOMRange.getBoundingClientRect();
@@ -21,10 +21,11 @@ function hideWithRect(dom: HTMLElement) {
 }
 
 type Props<T> = {
+    text: string,
     value: Value,
-    mentions: Array<Mention<T>>,
+    mentions: Array<T>,
     name: null | string,
-    selectMention: (Mention<T>) => *,
+    selectMention: T => *,
     changeHOF: () => void | (Change => *),
     submitChange: Change => *,
     MentionItemChild: MentionItemChildType<T>
@@ -101,7 +102,13 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
     };
 
     render() {
-        const { mentions, name, selectMention, MentionItemChild } = this.props;
+        const {
+            mentions,
+            name,
+            text,
+            selectMention,
+            MentionItemChild
+        } = this.props;
         const isOpened = mentions && mentions.length > 0;
 
         return (
@@ -113,7 +120,7 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
                             key={mention.name}
                             confirmMention={this.confirmMention}
                             selectMention={selectMention}
-                            {...{ mention, MentionItemChild }}
+                            {...{ mention, MentionItemChild, text }}
                         />
                     ))}
                 </ul>

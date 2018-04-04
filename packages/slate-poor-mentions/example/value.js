@@ -9,7 +9,7 @@ const h = createHyperscript({
 });
 
 // eslint-disable-next-line no-template-curly-in-string
-const content = '{$ User-id}, {$ User-cat}, {$ User-something }....';
+const content = '{$ User-id }, {$ User-cat }, {$ User-something }....';
 
 const value = (
     <value>

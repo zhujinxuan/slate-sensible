@@ -16,20 +16,19 @@ interface PluginImportOption<T: { name: string }> {
     classNameForCursorDecoration?: string;
     beforeMatchRegex?: RegExp;
     afterMatchRegex?: RegExp;
-    beforeFormatMatcherRegex?: RegExp;
-    afterFormatMatcherRegex?: RegExp;
-    matchInBetweenRegex?: RegExp;
     decorationMarkType?: string | Mark;
     cursorDecorationMarkType?: string | Mark;
     MentionItemChild?: MentionItemChildType<T>;
     mentions: Array<T>;
+    getText?: string => string;
+    matcher?: (string, T) => *;
 }
 
 function createMentionPlugin<T: { name: string }>(
     options: PluginImportOption<T>
 ): Object {
     const { decorationMarkType = 'mention-decoration' } = options;
-    const { mentions } = options;
+    const mentions = options.mentions.filter(m => m.name);
     const decorationMark = Mark.create(decorationMarkType);
     const { classNameForDecoration = decorationMark.type } = options;
     const {
@@ -39,15 +38,28 @@ function createMentionPlugin<T: { name: string }>(
     const {
         classNameForCursorDecoration = cursorDecorationMark.type
     } = options;
+
     const { beforeMatchRegex = /{ *\$[^{}\n]*$/ } = options;
     const { afterMatchRegex = /^[^{}\n]*}/ } = options;
-    const { beforeFormatMatcherRegex = /^ *{ */ } = options;
-    const { afterFormatMatcherRegex = / *} *$/ } = options;
-    const { matchInBetweenRegex = /{\$[^{}$]+}/g } = options;
+
     const {
-        MentionItemChild = (props: { name: string }) => (
-            <span>{props.name}</span>
-        )
+        MentionItemChild = (props: { mention: T, text: string }) => {
+            const { name } = props.mention;
+            const { text } = props;
+            const index = text ? name.indexOf(text) : -1;
+            if (index === -1) {
+                return <span>{props.mention.name}</span>;
+            }
+            const prefixText = name.slice(0, index);
+            const afterText = name.slice(index + text.length);
+            return (
+                <span>
+                    {prefixText}
+                    <span className={'mention-matched-text'}>{text}</span>
+                    {afterText}
+                </span>
+            );
+        }
     } = options;
     const findMentionRange = findMentionRangeCreator(
         beforeMatchRegex,
@@ -58,12 +70,20 @@ function createMentionPlugin<T: { name: string }>(
         beforeMatchRegex,
         afterMatchRegex
     );
+    const {
+        matcher = (text, mention) =>
+            mention.name.toLowerCase().indexOf(text.toLowerCase()) !== -1
+    } = options;
+    const {
+        getText = (x: string) =>
+            x.replace(/^[^A-Z0-9a-z]+/, '').replace(/[^A-Z0-9a-z]+$/, '')
+    } = options;
 
     const getMentions = compileMentions(
         findMentionRange,
-        beforeFormatMatcherRegex,
-        afterFormatMatcherRegex,
-        mentions
+        getText,
+        mentions,
+        matcher
     );
     const { renderEditor, updater } = createMentionBundle(
         getMentions,
@@ -78,11 +98,7 @@ function createMentionPlugin<T: { name: string }>(
             getExtendedRange,
             isActive: updater.isActive
         },
-        decorateNode: createDecorateNode(
-            mentions,
-            matchInBetweenRegex,
-            decorationMark
-        ),
+        decorateNode: createDecorateNode(mentions, decorationMark),
         renderMark: createRenderMark(
             [decorationMark, cursorDecorationMark],
             [classNameForDecoration, classNameForCursorDecoration]

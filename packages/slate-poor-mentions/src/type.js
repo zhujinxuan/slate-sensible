@@ -9,15 +9,13 @@ export interface InterfaceUpdater {
     changeHOF: () => void | (Change => *);
 }
 
-type Mention<T> = { ...T, name: string, text: string };
-export type { Mention };
-
 export type GetMentions<T: { name: string }> = Value => {
-    text: null | string,
+    text: string,
     range: null | Range,
-    mentions: Array<Mention<T>>
+    mentions: Array<T>
 };
 
-export type MentionItemChildType<T: { name: string }> = ComponentType<
-    Mention<T>
->;
+export type MentionItemChildType<T: { name: string }> = ComponentType<{
+    mention: T,
+    text: string
+}>;

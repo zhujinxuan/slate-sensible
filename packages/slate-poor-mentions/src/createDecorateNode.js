@@ -1,10 +1,8 @@
 // @flow
 import { type Mark, type Node } from 'slate';
-import { type Mention } from './type';
 
-function createDecorateNode<T>(
-    mentions: Array<Mention<T>>,
-    matchInBetween: RegExp,
+function createDecorateNode<T: { name: string }>(
+    mentions: Array<T>,
     decoMark: Mark
 ) {
     return (
@@ -22,21 +20,21 @@ function createDecorateNode<T>(
         const texts = node.getTexts();
         const decorations = [];
         texts.forEach(t => {
-            const text = t.text;
-            let matched = matchInBetween.exec(text);
-
-            while (matched) {
-                if (names.indexOf(matched[0]) > -1) {
+            const { text } = t;
+            // We can use common prefix and lastIndexOf if necessary
+            names.forEach(name => {
+                let index = text.indexOf(name, 0);
+                while (index !== -1) {
                     decorations.push({
-                        anchorOffset: matched.index,
-                        focusOffset: matched[0].length + matched.index,
+                        anchorOffset: index,
+                        focusOffset: index + name.length,
                         focusKey: t.key,
                         anchorKey: t.key,
                         marks: [decoMark]
                     });
+                    index = text.indexOf(name, index + name.length);
                 }
-                matched = matchInBetween.exec(text);
-            }
+            });
         });
         return decorations;
     };

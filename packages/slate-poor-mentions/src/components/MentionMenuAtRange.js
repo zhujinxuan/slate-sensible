@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Value, type Change } from 'slate';
-import { type Mention, type MentionItemChildType } from '../type';
+import { type MentionItemChildType } from '../type';
 import MentionMenu from './MentionMenu';
 
 // Adjust "fake scroll" to ensure the selected item is shown
@@ -9,12 +9,12 @@ import MentionMenu from './MentionMenu';
 // {mentions, name, selectMention, submitChange, changeHOF }
 
 const numShowedMentions = 9;
-function showedMentions<T>(
-    mentions: Array<Mention<T>>,
+function showedMentions<T: { name: string }>(
+    mentions: Array<T>,
     name: null | string,
     num: number,
     offsetIndex: number
-): Array<Mention<T>> {
+): Array<T> {
     const index = mentions.findIndex(m => m.name === name);
     if (index === -1 || !name) {
         return mentions.slice(0, num);
@@ -40,16 +40,17 @@ function showedMentions<T>(
 }
 
 type Props<T> = {
-    mentions: Array<Mention<T>>,
+    mentions: Array<T>,
     name: null | string,
     value: Value,
+    text: string,
     submitChange: Change => *,
     changeHOF: () => void | (Change => *),
-    selectMention: (Mention<T>) => *,
+    selectMention: T => *,
     MentionItemChild: MentionItemChildType<T>
 };
 type State<T> = {
-    mentions: Array<Mention<T>>
+    mentions: Array<T>
 };
 class MentionMenuAtRange<T: { name: string }> extends Component<
     Props<T>,
@@ -79,6 +80,7 @@ class MentionMenuAtRange<T: { name: string }> extends Component<
         const {
             value,
             name,
+            text,
             selectMention,
             submitChange,
             changeHOF,
@@ -90,6 +92,7 @@ class MentionMenuAtRange<T: { name: string }> extends Component<
                     value,
                     mentions,
                     name,
+                    text,
                     selectMention,
                     submitChange,
                     changeHOF,

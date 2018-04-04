@@ -43,3 +43,6 @@
   color: #e6f3ff;
 }
 
+.RichEditor-mention-menu li span.mention-matched-text{
+  color: red;
+}

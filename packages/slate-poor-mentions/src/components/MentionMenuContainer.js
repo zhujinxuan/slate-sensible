@@ -4,14 +4,14 @@ import { type Value, type Change, type Range } from 'slate';
 import {
     type InterfaceUpdater,
     type GetMentions,
-    type Mention,
     type MentionItemChildType
 } from '../type';
 import MentionMenuAtRange from './MentionMenuAtRange';
 
 type State<T> = {
     name: null | string,
-    mentions: Array<Mention<T>>,
+    text: string,
+    mentions: Array<T>,
     range: null | Range
 };
 
@@ -39,21 +39,22 @@ class MentionMenuContainer<T: { name: string }> extends Component<
         this.state = {
             name: null,
             mentions: [],
-            range: null
+            range: null,
+            text: ''
         };
     }
 
     componentWillReceiveProps(nextProps: Props<T>) {
         const { value, getMentions } = nextProps;
-        const { mentions, range } = getMentions(value);
-        this.setState({ mentions, range });
+        const { mentions, range, text } = getMentions(value);
+        this.setState({ mentions, range, text });
     }
 
     compomnentDidMount() {
         const { value, getMentions } = this.props;
-        const { mentions, range } = getMentions(value);
+        const { mentions, range, text } = getMentions(value);
         if (mentions.length > 0) {
-            this.setState({ mentions, range });
+            this.setState({ mentions, range, text });
         }
     }
 
@@ -70,13 +71,14 @@ class MentionMenuContainer<T: { name: string }> extends Component<
             return undefined;
         }
         const { anchorOffset, focusOffset } = range;
+        // TODO: use insertTextAtRange and move delta
         return change =>
             change
                 .moveOffsetsTo(anchorOffset, focusOffset)
                 .insertText(mention.name);
     };
 
-    selectMention: (Mention<T>) => void = (mention: Mention<T>) => {
+    selectMention: T => void = (mention: T) => {
         const { mentions } = this.state;
         const index = mentions.indexOf(mention);
         if (index > -1) {
@@ -115,7 +117,7 @@ class MentionMenuContainer<T: { name: string }> extends Component<
     };
 
     render() {
-        const { mentions, name } = this.state;
+        const { mentions, name, text } = this.state;
         const { selectMention, changeHOF } = this;
         const { submitChange, value, MentionItemChild } = this.props;
         return (
@@ -123,6 +125,7 @@ class MentionMenuContainer<T: { name: string }> extends Component<
                 {...{
                     mentions,
                     name,
+                    text,
                     value,
                     submitChange,
                     selectMention,
