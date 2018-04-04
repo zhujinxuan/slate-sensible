@@ -39,7 +39,7 @@ function createMentionPlugin<T: { name: string }>(
         classNameForCursorDecoration = cursorDecorationMark.type
     } = options;
 
-    const { beforeMatchRegex = /{ *\$[^{}\n]*$/ } = options;
+    const { beforeMatchRegex = /{* *[$@] *[^{}\n]*$/ } = options;
     const { afterMatchRegex = /^[^{}\n]*}/ } = options;
 
     const {
