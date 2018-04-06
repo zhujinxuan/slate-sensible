@@ -11,8 +11,8 @@
     "get-window": "^1.1.2",
     "immutable": ">=3.8.2",
     "is-hotkey": "^0.1.1",
-    "slate": ">0.32.4 <0.34.0",
-    "slate-react": ">0.11.4 < 0.13.0"
+    "slate": "^0.32.4 || ^0.33.0",
+    "slate-react": "^0.11.4 || ^0.12.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -63,7 +63,9 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-uglify": "^3.0.0",
-    "slate-hyperscript": "^0.5.0",
+    "slate": "^0.33.4",
+    "slate-hyperscript": "^0.5.10",
+    "slate-react": "^0.12.4",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
@@ -74,6 +76,7 @@
     "build:rollup": "rollup --config ./support/rollup/config.js",
     "build:flow": "flow-copy-source -v ./src/ ./lib/",
     "build": "yarn build:rollup && yarn build:flow",
+    "prepublish": "yarn build",
     "postpublish": "yarn deploy-example",
     "lint": "eslint ./",
     "start": "webpack-dev-server --config ./support/webpack/config.js",
@@ -82,5 +85,8 @@
   },
   "keywords": [
     "slate"
-  ]
+  ],
+  "dependencies": {
+    "immutable": "^3.8.2"
+  }
 }
