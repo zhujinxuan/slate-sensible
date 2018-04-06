@@ -1,18 +1,15 @@
 {
   "name": "slate-poor-mentions",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "A Naive and Poor mention plugin for SlateJS",
   "main": "lib/slate-poor-mentions.js",
   "module": "lib/slate-poor-mentions.es.js",
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "is-hotkey": "^0.1.1",
-    "react": "^15.5.4",
-    "react-portal": "^3.1.0",
-    "slate-react": ">0.11.4 <0.13.0",
-    "webpack-dev-server": "^2.11.1"
+  "peerDependencies": {
+    "immutable": "^3.8.2",
+    "slate": ">0.32.4 <0.34.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -69,10 +66,6 @@
     "uglifyjs-webpack-plugin": "^1.2.4",
     "watchify": "^3.7.0",
     "webpack": "^3.11.0"
-  },
-  "peerDependencies": {
-    "immutable": "^3.8.2",
-    "slate": ">0.32.4 <0.34.0"
   },
   "scripts": {
     "build:rollup": "rollup --config ./support/rollup/config.js",
