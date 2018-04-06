@@ -1,13 +1,13 @@
 {
   "name": "slate-on-select",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Fix Inline Selection of Slate",
   "main": "lib/slate-on-select.js",
   "module": "lib/slate-on-select.es.js",
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "get-window": "^1.1.2",
     "immutable": ">=3.8.2",
     "is-hotkey": "^0.1.1",
