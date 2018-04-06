@@ -1,6 +1,6 @@
 {
   "name": "slate-poor-mentions",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "A Naive and Poor mention plugin for SlateJS",
   "main": "lib/slate-poor-mentions.js",
   "module": "lib/slate-poor-mentions.es.js",
@@ -47,7 +47,8 @@
     "immutable": "^3.8.2",
     "mocha": "^3.0.1",
     "prettier": "^1.9.2",
-    "react-dom": "^15.5.4",
+    "react": "^15.6.2",
+    "react-dom": "^15.6.2",
     "react-hot-loader": "^4.0.0",
     "read-metadata": "^1.0.0",
     "rollup": "^0.57.0",
