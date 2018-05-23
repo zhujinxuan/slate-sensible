@@ -64,6 +64,7 @@
   "scripts": {
     "build:lib": "rollup --config ./support/rollup/config.js",
     "build:flow": "lerna run build:flow",
+    "build": "yarn build:lib && yarn build:flow",
     "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
     "test": "cross-env BABEL_ENV=test mocha --require babel-core/register ./packages/*/test/index.js"
   }
