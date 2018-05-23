@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "slate-sensible-plugins",
+  "workspaces": [
+    "packages/*"
+  ],
+	"devDependencies": {
+		"lerna": "^2.11.0"
+	},
+  "scripts": {
+    "build": "rollup --config ./support/rollup/config.js",
+    "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
+    "test": "cross-env BABEL_ENV=test mocha --require babel-core/register ./packages/*/test/index.js"
+  }
+}
