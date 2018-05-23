@@ -4,6 +4,7 @@
   "description": "Fix Inline Selection of Slate",
   "main": "lib/slate-on-select.js",
   "module": "lib/slate-on-select.es.js",
+  "umd": "dist/slate-on-select.js",
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
