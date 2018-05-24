@@ -1,10 +1,10 @@
 {
-  "name": "slate-on-select",
-  "version": "0.0.10",
-  "description": "Fix Inline Selection of Slate",
-  "main": "lib/slate-on-select.js",
-  "module": "lib/slate-on-select.es.js",
-  "umd": "dist/slate-on-select.js",
+  "name": "slate-delete-one-line",
+  "version": "0.0.1",
+  "description": "Only Delete one line of Slate with cmd+delete",
+  "main": "lib/slate-delete-one-line.js",
+  "module": "lib/slate-delete-one-line.es.js",
+  "umd": "dist/slate-delete-one-line.js",
   "repository": "git@github.com:zhujinxuan/slate-sensible.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
@@ -25,3 +25,4 @@
     "immutable": "^3.8.2"
   }
 }
+
