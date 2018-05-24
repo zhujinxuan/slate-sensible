@@ -5,7 +5,7 @@
   "main": "lib/slate-delete-one-line.js",
   "module": "lib/slate-delete-one-line.es.js",
   "umd": "dist/slate-delete-one-line.js",
-  "repository": "git@github.com:zhujinxuan/slate-sensible.git",
+  "repository":"git://github.com/zhujinxuan/slate-sensible.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
