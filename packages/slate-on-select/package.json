@@ -1,6 +1,6 @@
 {
   "name": "slate-on-select",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Fix Inline Selection of Slate",
   "main": "lib/slate-on-select.js",
   "module": "lib/slate-on-select.es.js",
@@ -10,11 +10,10 @@
   "license": "MIT",
   "peerDependencies": {
     "get-window": "^1.1.2",
-    "immutable": ">=3.8.2",
+    "immutable": "^3.8.2",
     "is-hotkey": "^0.1.1",
     "slate": "^0.32.4 || ^0.33.0",
-    "slate-react": "^0.11.4 || ^0.12.0",
-    "immutable": "^3.8.2"
+    "slate-react": "^0.11.4 || ^0.12.0"
   },
   "scripts": {
     "build:flow": "flow-copy-source -v ./src/ ./lib/"

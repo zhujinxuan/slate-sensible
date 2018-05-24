@@ -1,6 +1,6 @@
 {
   "name": "slate-delete-one-line",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Only Delete one line of Slate with cmd+delete",
   "main": "lib/slate-delete-one-line.js",
   "module": "lib/slate-delete-one-line.es.js",
@@ -10,10 +10,10 @@
   "license": "MIT",
   "peerDependencies": {
     "debug": "^1.6.0",
+    "immutable": "^3.8.2",
     "slate": "^0.32.4 || ^0.33.0",
     "slate-hotkeys": "^0.1.2",
-    "slate-react": "^0.11.4 || ^0.12.0",
-    "immutable": "^3.8.2"
+    "slate-react": "^0.11.4 || ^0.12.0"
   },
   "scripts": {
     "build:flow": "flow-copy-source -v ./src/ ./lib/"
