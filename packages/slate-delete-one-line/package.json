@@ -12,15 +12,13 @@
     "debug": "^1.6.0",
     "slate": "^0.32.4 || ^0.33.0",
     "slate-hotkeys": "^0.1.2",
-    "slate-react": "^0.11.4 || ^0.12.0"
+    "slate-react": "^0.11.4 || ^0.12.0",
+    "immutable": "^3.8.2"
   },
   "scripts": {
     "build:flow": "flow-copy-source -v ./src/ ./lib/"
   },
   "keywords": [
     "slate"
-  ],
-  "dependencies": {
-    "immutable": "^3.8.2"
-  }
+  ]
 }
