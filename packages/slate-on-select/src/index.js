@@ -30,3 +30,4 @@ function onSelect(event, change: Change): ?true {
 }
 
 export default createPlugin;
+export { areVisiblyTheSame };
