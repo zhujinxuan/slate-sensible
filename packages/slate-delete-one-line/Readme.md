@@ -1,2 +1,2 @@
 # slate-delete-one-line
-Fix ![https://github.com/ianstormtaylor/slate/issues/1623](#1623)
+Fix [#1623](https://github.com/ianstormtaylor/slate/issues/1623)
