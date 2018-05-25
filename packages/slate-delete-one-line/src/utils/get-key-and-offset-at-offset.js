@@ -5,7 +5,7 @@ type Position = {
     offset: 'number'
 };
 
-export function getKeyAndOffsetAtOffset(
+export default function getKeyAndOffsetAtOffset(
     block: Block,
     offset: number
 ): Position {

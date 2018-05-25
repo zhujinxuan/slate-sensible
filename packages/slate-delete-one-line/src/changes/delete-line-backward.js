@@ -15,14 +15,14 @@ export default function deleteLineBackward(change: Change) {
     if (!startBlock || startBlock.isVoid) return undefined;
 
     let range = selection.isBackward ? selection.flip() : selection;
-    range = range.moveAnchorToStartOf(startBlock);
-    if (areSameLine(range)) return undefined;
-
-    debug('delete one line');
 
     const rectBenchmark: ClientRect = findDOMRange(
         selection
     ).getBoundingClientRect();
+    if (areSameLine(range.collapseToStartOf(startBlock), rectBenchmark))
+        return undefined;
+
+    debug('delete one line');
 
     const blockOffset = findOffset(
         startBlock.getOffsetAtRange(selection),

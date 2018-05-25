@@ -1,4 +1,5 @@
 // @flow
+
 export default function findOffset(
     offset: number,
     callback: number => boolean
