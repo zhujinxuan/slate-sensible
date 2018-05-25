@@ -1,8 +1,9 @@
 // @flow
+import { type Block } from 'slate';
 
 type Position = {
-    key: 'string',
-    offset: 'number'
+    key: string,
+    offset: number
 };
 
 export default function getKeyAndOffsetAtOffset(

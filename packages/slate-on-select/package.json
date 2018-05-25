@@ -5,6 +5,11 @@
   "main": "lib/slate-on-select.js",
   "module": "lib/slate-on-select.es.js",
   "umd": "dist/slate-on-select.js",
+  "umdMin": "dist/slate-on-select.min.js",
+  "files": [
+    "dist/",
+    "lib/"
+  ],
   "repository": "git://github.com/zhujinxuan/slate-sensible.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",

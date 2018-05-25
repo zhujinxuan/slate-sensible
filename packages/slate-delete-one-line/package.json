@@ -4,7 +4,12 @@
   "description": "Only Delete one line of Slate with cmd+delete",
   "main": "lib/slate-delete-one-line.js",
   "module": "lib/slate-delete-one-line.es.js",
-  "umd": "dist/slate-delete-one-line.js",
+  "umd": "dist/slate-on-select.js",
+  "umdMin": "dist/slate-on-select.min.js",
+  "files": [
+    "dist/",
+    "lib/"
+  ],
   "repository": "git://github.com/zhujinxuan/slate-sensible.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
