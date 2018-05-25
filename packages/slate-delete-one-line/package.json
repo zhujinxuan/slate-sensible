@@ -1,6 +1,6 @@
 {
   "name": "slate-delete-one-line",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Only Delete one line of Slate with cmd+delete",
   "main": "lib/slate-delete-one-line.js",
   "module": "lib/slate-delete-one-line.es.js",
