@@ -7,7 +7,7 @@ import assert from 'assert';
  * Tests.
  */
 
-describe('slate-on-select', () => {
+describe('slate-delete-one-line', () => {
     const categories = fs
         .readdirSync(__dirname)
         .filter(x => x[0] !== '.' && !x.match(/\.js$/));
