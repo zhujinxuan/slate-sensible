@@ -7,9 +7,9 @@ import getKeyAndOffsetAtOffset from '../utils/get-key-and-offset-at-offset';
 import findOffset from './helpers/find-offset';
 import getRangeAtOffset from './helpers/get-range-at-offset';
 
-const debug = new Debug('slate:onKeyDown:plugins:delete-one-line');
+const debug = new Debug('slate:onKeyDown:plugins');
 
-export default function deleteLineBackward(change: Change) {
+export default function deleteLineForward(change: Change) {
     const { value } = change;
     const { selection } = value;
     const { startBlock } = value;
@@ -21,22 +21,28 @@ export default function deleteLineBackward(change: Change) {
         selection
     ).getBoundingClientRect();
 
-    if (areSameLine(range.collapseToStartOf(startBlock), rectBenchmark)) {
-        return undefined;
+    if (areSameLine(range.collapseToEndOf(startBlock), rectBenchmark)) {
+        // To Fix bug of deleteLineForward
+        change.deleteAtRange(range.moveFocusToEndOf(startBlock));
+        return change;
     }
 
-    debug('deletebackward');
+    debug('deleteforward');
 
-    const blockOffset = findOffset(
-        startBlock.getOffsetAtRange(selection),
-        (offset: number) => {
-            const testRange = getRangeAtOffset(startBlock, offset);
-            return areSameLine(testRange, rectBenchmark);
-        }
-    );
+    const startOffset = startBlock.getOffsetAtRange(selection);
+    const textLength = startBlock.text.length;
+
+    const callback = (restOffset: number) => {
+        const offset = textLength - restOffset;
+        const testRange = getRangeAtOffset(startBlock, offset);
+        return areSameLine(testRange, rectBenchmark);
+    };
+
+    const blockOffset =
+        textLength - findOffset(textLength - startOffset, callback);
 
     const { key, offset } = getKeyAndOffsetAtOffset(startBlock, blockOffset);
-    range = range.moveAnchorTo(key, offset);
+    range = range.moveFocusTo(key, offset);
     if (range.isExpanded) change.deleteAtRange(range);
     return change;
 }
