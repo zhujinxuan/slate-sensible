@@ -13,12 +13,14 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 const IS_DEV = !IS_PROD;
 
 const config = {
-    entry: ['react-hot-loader/patch', './examples/index.js'],
+    entry: { main: './examples/index.js' },
     output: {
         path: path.resolve(__dirname, '../../build'),
-        filename: '[name]-[hash].js'
+        filename: '[name]-[hash].js',
+        devtoolModuleFilenameTemplate:
+            'webpack://[namespace]/[resource]?[loaders]'
     },
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     devServer: {
         contentBase: './examples',
         publicPath: '/',

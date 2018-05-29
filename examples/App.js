@@ -11,7 +11,7 @@ type State = {
     value: Value
 };
 
-class App extends Component<{}, State> {
+export default class App extends Component<{}, State> {
     state: State = { value: initialValue };
     onChange = (change: Change) => {
         const { value } = change;
@@ -27,4 +27,3 @@ class App extends Component<{}, State> {
         );
     }
 }
-export default App;
