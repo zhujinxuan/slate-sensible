@@ -16,11 +16,12 @@ const config = {
     entry: { main: './examples/index.js' },
     output: {
         path: path.resolve(__dirname, '../../build'),
-        filename: '[name]-[hash].js',
-        devtoolModuleFilenameTemplate:
-            'webpack://[namespace]/[resource]?[loaders]'
+        filename: '[name]-[hash].js'
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
+    resolveLoader: {
+        modules: ['node_modules', path.resolve(__dirname, 'loaders')]
+    },
     devServer: {
         contentBase: './examples',
         publicPath: '/',
@@ -30,7 +31,12 @@ const config = {
         rules: [
             {
                 test: /\.js?$/,
-                use: 'source-map-loader',
+                use: {
+                    loader: 'better-source-map-loader',
+                    options: {
+                        includeModulePaths: true
+                    }
+                },
                 enforce: 'pre'
             },
             {
