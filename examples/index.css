@@ -1,7 +1,7 @@
 html,
 input,
 textarea {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.4;
   background: #eee;
 }
@@ -44,7 +44,7 @@ blockquote {
   font-style: italic;
 }
 
-blockquote[dir='rtl'] {
+blockquote[dir="rtl"] {
   border-left: none;
   padding-left: 0;
   padding-right: 10px;
@@ -184,7 +184,7 @@ input:focus {
   cursor: pointer;
 }
 
-.button[data-active='true'] {
+.button[data-active="true"] {
   color: black;
 }
 
@@ -229,7 +229,7 @@ input:focus {
   color: #aaa;
 }
 
-.hover-menu .button[data-active='true'] {
+.hover-menu .button[data-active="true"] {
   color: #fff;
 }
 
@@ -270,4 +270,3 @@ input:focus {
   background-color: #ebebeb;
   display: inline-block;
 }
-
