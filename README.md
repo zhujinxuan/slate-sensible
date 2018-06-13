@@ -1,4 +1,5 @@
 # Slate-Sensible
+[![Coverage Status](https://coveralls.io/repos/github/zhujinxuan/slate-sensible/badge.svg?branch=master)](https://coveralls.io/github/zhujinxuan/slate-sensible?branch=master)
 
 Slate-Sensible aims to provide slate plugins as a set of universal settings.
 
