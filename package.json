@@ -73,7 +73,7 @@
     "build": "yarn build:lib && yarn build:flow",
     "build:pages": "yarn build:lib && cross-env NODE_ENV=production MODE=production webpack --config support/webpack/config.js",
     "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
-    "test": "cross-env BABEL_ENV=test jest",
+    "test": "cross-env BABEL_ENV=test jest --coverage",
     "start": "npm-run-all --parallel --print-label watch server",
     "server": "webpack-dev-server --mode development --config ./support/webpack/config.js",
     "watch": "rollup --config ./support/rollup/config.js --watch"

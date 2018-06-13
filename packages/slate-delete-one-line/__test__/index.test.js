@@ -11,7 +11,9 @@ import { resolve } from 'path';
 describe('slate-delete-one-line', () => {
     const categories = fs
         .readdirSync(__dirname)
-        .filter(x => x[0] !== '.' && !x.match(/\.js$/));
+        .filter(
+            x => x[0] !== '.' && !x.includes('helpers') && !x.match(/\.js$/)
+        );
 
     categories.forEach(category => {
         describe(category, () => {
