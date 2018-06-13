@@ -1,8 +1,9 @@
+/* global expect */
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 import fs from 'fs';
 import { resolve } from 'path';
-import assert from 'assert';
+
 /**
  * Tests.
  */
@@ -23,7 +24,7 @@ describe('slate-delete-one-line', () => {
                     const { input, output } = module;
                     const actual = module.default.call(null, input);
                     if (actual !== output) {
-                        assert.deepEqual(actual.toJSON(), output.toJSON());
+                        expect(actual.toJSON()).equals(output.toJSON());
                     }
                 });
             });
