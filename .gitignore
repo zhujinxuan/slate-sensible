@@ -12,6 +12,7 @@ pids
 lib-cov
 
 # Coverage directory used by tools like istanbul
+tmp
 coverage
 
 # nyc test coverage
