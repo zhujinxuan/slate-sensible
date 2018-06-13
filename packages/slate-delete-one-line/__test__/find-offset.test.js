@@ -18,7 +18,7 @@ describe('slate-delete-one-line', () => {
             const tests = fs.readdirSync(dirPath).filter(t => t[0] != '.');
 
             tests.forEach(test => {
-                test(test.replace(/\.js$/, ''), () => {
+                it(test.replace(/\.js$/, ''), () => {
                     const module = require(resolve(dirPath, test));
                     const { input, output } = module;
                     const actual = module.default.call(null, input);
