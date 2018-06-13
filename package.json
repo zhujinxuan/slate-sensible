@@ -74,7 +74,6 @@
     "build:pages": "yarn build:lib && cross-env NODE_ENV=production MODE=production webpack --config support/webpack/config.js",
     "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
     "test": "cross-env BABEL_ENV=test mocha --require babel-core/register ./packages/*/test/index.js",
-    "coveralls": "YOURPACKAGE_COVERAGE=1 yarn test -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js",
     "start": "npm-run-all --parallel --print-label watch server",
     "server": "webpack-dev-server --mode development --config ./support/webpack/config.js",
     "watch": "rollup --config ./support/rollup/config.js --watch"
