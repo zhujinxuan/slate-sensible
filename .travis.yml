@@ -21,3 +21,4 @@ script:
   - yarn build
   # Run testing or linting depending on the environment.
   - yarn $TEST_TYPE
+  - yarn coveralls
