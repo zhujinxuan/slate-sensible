@@ -33,6 +33,7 @@ jspm_packages
 # Optional npm cache directory
 .npm
 
+build/
 # Optional REPL history
 .node_repl_history
 *.map
