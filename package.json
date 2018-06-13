@@ -76,7 +76,7 @@
     "build:pages": "yarn build:lib && cross-env NODE_ENV=production MODE=production webpack --config support/webpack/config.js",
     "lint": "yarn lint:code && yarn lint:document",
     "lint:code": "eslint packages/*/src packages/*/test examples/*/*.js examples/dev/*/*.js",
-    "lint:document": "prettier --list-different '**/*.{js,jsx,md,json,css}'",
+    "lint:document": "prettier --list-different '**/*.{md,json,css}'",
     "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
     "test": "jest",
     "test:coverage": "jest --coverage && codecov",
