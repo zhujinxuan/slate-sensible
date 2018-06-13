@@ -32,6 +32,7 @@ jspm_packages
 
 # Optional npm cache directory
 .npm
+.coveralls.yml
 
 build/
 # Optional REPL history
