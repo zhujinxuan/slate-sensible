@@ -27,7 +27,7 @@ function getExtendedRange<T: { name: string }>(
                 startRange.endOffset
             );
             if (mentions.find(x => x.name === matchingText)) {
-                startOffset = startRange.startOffset;
+                ({ startOffset } = startRange);
             }
         }
         const endRange = findMentionRangeAt(
@@ -42,7 +42,7 @@ function getExtendedRange<T: { name: string }>(
                 endRange.endOffset
             );
             if (mentions.find(x => x.name === matchingText)) {
-                endOffset = endRange.endOffset;
+                ({ endOffset } = endRange);
             }
         }
 

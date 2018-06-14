@@ -55,7 +55,7 @@ function createMentionPlugin<T: { name: string }>(
             return (
                 <span>
                     {prefixText}
-                    <span className={'mention-matched-text'}>{text}</span>
+                    <span className="mention-matched-text">{text}</span>
                     {afterText}
                 </span>
             );
