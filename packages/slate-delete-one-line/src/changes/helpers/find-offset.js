@@ -4,11 +4,11 @@ export default function findOffset(
     offset: number,
     callback: number => boolean
 ) {
-    if (offset < 2) return offset;
     let left = 0;
     let mid = Math.floor(offset / 2);
     let right = offset;
     if (callback(left)) return left;
+    if (offset < 2) return offset;
     const result = right;
 
     while (mid !== result && mid !== left) {
