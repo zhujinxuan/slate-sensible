@@ -42,7 +42,7 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
     }
 
     adjustPosition = () => {
-        const menu = this.menu;
+        const { menu } = this;
         if (!menu) {
             return;
         }
@@ -113,7 +113,7 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
 
         return (
             <Portal isOpened={isOpened} onOpen={this.onOpen}>
-                <ul className={'RichEditor-mention-menu'}>
+                <ul className="RichEditor-mention-menu">
                     {mentions.map(mention => (
                         <MentionItem
                             selected={mention.name === name}

@@ -9,12 +9,14 @@ function halfClosedFindMention(value, findMentionRange, beforeMatchRegex) {
     if (range) return range;
     const text = value.focusText;
     const key = value.focusKey;
-    const focusOffset = value.focusOffset;
+    const { focusOffset } = value;
     const beforeString = text.text.substring(0, focusOffset);
     const beforeMatch = beforeString.match(/{ *\$[^{}\n]*$/);
+
     if (!beforeMatch) {
         return null;
     }
+
     const anchorOffset = beforeMatch.index;
 
     const selection = value.selection.isBackward
