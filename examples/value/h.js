@@ -19,7 +19,8 @@ const h = createHyperscript({
         image: {
             type: 'image',
             isVoid: true
-        }
+        },
+        heading: 'heading'
     },
     inlines: {
         link: 'link',

@@ -13,12 +13,15 @@ type HandleKeyDown = (SyntheticKeyboardEvent<*>, Change) => *;
 
 function onKeyDown(options: Options): HandleKeyDown {
     const { forward, backward } = options;
+
     return (event: SyntheticKeyboardEvent<*>, change: Change) => {
         const { value } = change;
         if (value.isExpanded) return undefined;
+
         if (HotKeys.isDeleteLineBackward(event) && backward) {
             return deleteLineBackward(change);
         }
+
         if (HotKeys.isDeleteLineForward(event) && forward) {
             return deleteLineForward(change);
         }

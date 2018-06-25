@@ -12,6 +12,7 @@ type Props = {
 function renderNode(props: Props) {
     const { node, attributes, children } = props;
     if (node.object !== 'inline') return null;
+
     switch (node.type) {
         case 'link':
             return (
