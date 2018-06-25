@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { Value, type Change } from 'slate';
+import { polyfill } from 'react-lifecycles-compat';
 import { type MentionItemChildType } from '../type';
 import MentionMenu from './MentionMenu';
 
@@ -110,5 +111,7 @@ class MentionMenuAtRange<T: { name: string }> extends Component<
         );
     }
 }
+
+polyfill(MentionMenuAtRange);
 
 export default MentionMenuAtRange;

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { type Value, type Change, type Range } from 'slate';
+import { polyfill } from 'react-lifecycles-compat';
 import {
     type InterfaceUpdater,
     type GetMentions,
@@ -140,5 +141,7 @@ class MentionMenuContainer<T: { name: string }> extends Component<
         );
     }
 }
+
+polyfill(MentionMenuContainer);
 
 export default MentionMenuContainer;
