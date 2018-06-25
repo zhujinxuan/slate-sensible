@@ -12,7 +12,8 @@ type State<T> = {
     name: null | string,
     text: string,
     mentions: Array<T>,
-    range: null | Range
+    range: null | Range,
+    props: Props<T>
 };
 
 type Props<T> = {
@@ -40,14 +41,17 @@ class MentionMenuContainer<T: { name: string }> extends Component<
             name: null,
             mentions: [],
             range: null,
-            text: ''
+            text: '',
+            // eslint-disable-next-line react/no-unused-state
+            props
         };
     }
 
-    componentWillReceiveProps(nextProps: Props<T>) {
-        const { value, getMentions } = nextProps;
+    static getDerivedStateFromProps(props: Props<T>, state: State<T>) {
+        if (props === state.props) return null;
+        const { value, getMentions } = props;
         const { mentions, range, text } = getMentions(value);
-        this.setState({ mentions, range, text });
+        return { ...state, mentions, range, text, props };
     }
 
     compomnentDidMount() {

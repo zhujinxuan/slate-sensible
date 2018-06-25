@@ -69,7 +69,7 @@
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-uglify": "^3.0.0",
     "slate": "^0.34.2",
-    "slate-hyperscript": "^0.5.12",
+    "slate-hyperscript": "^0.5.17",
     "slate-react": "^0.12.11",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
