@@ -3503,6 +3503,10 @@ flow-copy-source@^1.2.1:
     kefir "^3.7.3"
     yargs "^11.0.0"
 
+flow@^0.2.3:
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/flow/-/flow-0.2.3.tgz#f8da65efa249127ec99376a28896572a9795d1af"
+
 flush-write-stream@^1.0.0:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flush-write-stream/-/flush-write-stream-1.0.3.tgz#c5d586ef38af6097650b49bc41b55fabb19f35bd"
@@ -6870,7 +6874,7 @@ react-portal@^3.1.0:
   dependencies:
     prop-types "^15.5.8"
 
-react@^16.2.0:
+react@^16.4.1:
   version "16.4.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.4.1.tgz#de51ba5764b5dbcd1f9079037b862bd26b82fe32"
   dependencies:
@@ -7564,9 +7568,9 @@ slash@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
-slate-base64-serializer@^0.2.32:
-  version "0.2.32"
-  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.32.tgz#71de1644b212351684e3c8694fca9a46699fbcb9"
+slate-base64-serializer@^0.2.36:
+  version "0.2.36"
+  resolved "https://registry.yarnpkg.com/slate-base64-serializer/-/slate-base64-serializer-0.2.36.tgz#1b61046e249306fdbb5ec198179aa5030a2fe91c"
   dependencies:
     isomorphic-base64 "^1.0.2"
 
@@ -7595,21 +7599,21 @@ slate-hyperscript@^0.5.12:
     is-plain-object "^2.0.4"
     slate-dev-logger "^0.1.39"
 
-slate-plain-serializer@^0.5.13:
-  version "0.5.13"
-  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.5.13.tgz#826c9e75517b68f3c08a36805087abd87e27e1e2"
+slate-plain-serializer@^0.5.17:
+  version "0.5.17"
+  resolved "https://registry.yarnpkg.com/slate-plain-serializer/-/slate-plain-serializer-0.5.17.tgz#358f1c785799fe8980b4d33382b1cdd7ad34f4b8"
   dependencies:
     slate-dev-logger "^0.1.39"
 
-slate-prop-types@^0.4.30:
-  version "0.4.30"
-  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.30.tgz#6bd20bee862bdffc79ff5798656fc9a1e58ab3b3"
+slate-prop-types@^0.4.34:
+  version "0.4.34"
+  resolved "https://registry.yarnpkg.com/slate-prop-types/-/slate-prop-types-0.4.34.tgz#40b9e2a8a3029f74ca4f7ad2358de1c9171ba19f"
   dependencies:
     slate-dev-logger "^0.1.39"
 
-slate-react@^0.12.6:
-  version "0.12.7"
-  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.12.7.tgz#7357e94bfad90caf94b4f44c1eb1d97017b4a01e"
+slate-react@^0.12.11:
+  version "0.12.11"
+  resolved "https://registry.yarnpkg.com/slate-react/-/slate-react-0.12.11.tgz#6d83e604634704757690a57dbd6aab282a964ad3"
   dependencies:
     debug "^3.1.0"
     get-window "^1.1.1"
@@ -7620,20 +7624,20 @@ slate-react@^0.12.6:
     react-immutable-proptypes "^2.1.0"
     react-portal "^3.1.0"
     selection-is-backward "^1.0.0"
-    slate-base64-serializer "^0.2.32"
+    slate-base64-serializer "^0.2.36"
     slate-dev-environment "^0.1.2"
     slate-dev-logger "^0.1.39"
     slate-hotkeys "^0.1.2"
-    slate-plain-serializer "^0.5.13"
-    slate-prop-types "^0.4.30"
+    slate-plain-serializer "^0.5.17"
+    slate-prop-types "^0.4.34"
 
-slate-schema-violations@^0.1.11:
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.11.tgz#3a7ccdaa6539f11edb30c1d6d826c4e4c74ef5d9"
+slate-schema-violations@^0.1.15:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.15.tgz#668c30b556397efe72ff1c82b22a2673814fd61e"
 
-slate@^0.33.6:
-  version "0.33.7"
-  resolved "https://registry.yarnpkg.com/slate/-/slate-0.33.7.tgz#af4986f8bce73d43ff43ef500b6fdcd062e4ab92"
+slate@^0.34.2:
+  version "0.34.2"
+  resolved "https://registry.yarnpkg.com/slate/-/slate-0.34.2.tgz#faf75d295e44d8b43cf2e14168f7a43457a29c67"
   dependencies:
     debug "^3.1.0"
     direction "^0.1.5"
@@ -7642,7 +7646,7 @@ slate@^0.33.6:
     is-plain-object "^2.0.4"
     lodash "^4.17.4"
     slate-dev-logger "^0.1.39"
-    slate-schema-violations "^0.1.11"
+    slate-schema-violations "^0.1.15"
     type-of "^2.0.1"
 
 slice-ansi@1.0.0:

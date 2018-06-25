@@ -25,5 +25,11 @@
   ],
   "env": {
     "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "16.4",
+      "flow": " 0.75.0"
+    }
   }
 }
