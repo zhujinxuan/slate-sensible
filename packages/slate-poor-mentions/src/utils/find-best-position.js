@@ -11,7 +11,7 @@ type NumericPosition = {
 };
 
 function translate(p: NumericPosition): Position {
-    const result: Position = {};
+    const result = {};
 
     ['left', 'top'].forEach(key => {
         const value = p[key];
@@ -55,11 +55,11 @@ function findBestPosition(
     }
 
     if (left + width > innerWidth) {
-        position.left -= width;
+        position.left -= width + selection.width;
     }
 
-    if (bottom + height < innerHeight) {
-        position.top -= height;
+    if (bottom + height > innerHeight) {
+        position.top -= height + selection.height;
     }
     return translate(position);
 }

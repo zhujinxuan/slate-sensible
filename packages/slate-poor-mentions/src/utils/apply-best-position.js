@@ -7,10 +7,11 @@ function applyBestPosition(
     parent: ?Element = menu.offsetParent
 ): void {
     if (!parent) return;
-    if (!menu.firstChild) return;
+    const { firstElementChild } = menu;
+    if (!firstElementChild) return;
     const position = findBestPosition(
         selection.getBoundingClientRect(),
-        menu.firstChild.getBoundingClientRect(),
+        firstElementChild.getBoundingClientRect(),
         parent.getBoundingClientRect()
     );
     const { left = '', top = '' } = position;
