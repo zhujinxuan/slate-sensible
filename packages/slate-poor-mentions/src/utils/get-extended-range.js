@@ -1,6 +1,6 @@
 // @flow
 import { Value, type Node, Range } from 'slate';
-import { findMentionRangeAt } from './findMentionRange';
+import { findMentionRangeAt } from './find-mention-range';
 
 function getExtendedRange<T: { name: string }>(
     mentions: Array<T>,

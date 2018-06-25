@@ -6,8 +6,8 @@ import createOnKeyDown from './createOnKeyDown';
 import compileMentions from './compileMentions';
 import createRenderMark from './createRenderMark';
 import createDecorateNode from './createDecorateNode';
-import findMentionRangeCreator from './util/findMentionRange';
-import getExtendedRangeCreator from './util/getExtendedRange';
+import findMentionRangeCreator from './utils/find-mention-range';
+import getExtendedRangeCreator from './utils/get-extended-range';
 import createOnChange from './createOnChangeDecoration';
 import { type MentionItemChildType } from './type';
 

@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
-import Portal from 'react-portal';
+import Portal from './Portal';
 import MentionItem from './MentionItem';
 import { type MentionItemChildType } from '../type';
 
@@ -82,17 +82,16 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
         submitChange(toChange);
     };
 
-    onOpen = (ref: HTMLElement) => {
+    onOpen = (ref: ?HTMLElement) => {
         // $FlowFixMe:
-        this.menu = ref.firstChild;
-        if (this.menu) {
-            // $FlowFixMe:
-            this.menu.style.position = 'absolute';
-            // $FlowFixMe:
-            this.menu.style.visibility = 'hidden';
-            // $FlowFixMe:
-            this.menu.style.display = 'block';
-        }
+        this.menu = ref;
+        if (!this.menu) return;
+        // $FlowFixMe:
+        this.menu.style.position = 'absolute';
+        // $FlowFixMe:
+        this.menu.style.visibility = 'hidden';
+        // $FlowFixMe:
+        this.menu.style.display = 'block';
     };
 
     onClose = () => {
