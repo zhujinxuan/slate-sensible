@@ -6,18 +6,12 @@ import { type Value, type Change } from 'slate';
 import Portal from './Portal';
 import MentionItem from './MentionItem';
 import { type MentionItemChildType } from '../type';
-
-function getRect(selectionDOMRange: Range): ClientRect {
-    const rect = selectionDOMRange.getBoundingClientRect();
-    return rect;
-}
+import applyBestPosition from '../utils/apply-best-position';
 
 function hideWithRect(dom: HTMLElement) {
     dom.style.position = 'absolute';
     dom.style.visibility = 'hidden';
     dom.style.display = 'block';
-    dom.style.left = '-1000px';
-    dom.style.top = '-1000px';
 }
 
 type Props<T> = {
@@ -32,7 +26,7 @@ type Props<T> = {
 };
 
 class MentionMenu<T: { name: string }> extends Component<Props<T>> {
-    menu: null | HTMLUListElement;
+    menu: ?HTMLElement;
     componentDidMount() {
         this.adjustPosition();
     }
@@ -43,9 +37,8 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
 
     adjustPosition = () => {
         const { menu } = this;
-        if (!menu) {
-            return;
-        }
+        if (!menu) return;
+        hideWithRect(menu);
         const { mentions, value } = this.props;
         if (mentions.length === 0) {
             return;
@@ -54,22 +47,7 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
         if (!domRange) {
             return;
         }
-        const { left, top, bottom } = getRect(domRange);
-        hideWithRect(menu);
-        const { width, height } = menu.getBoundingClientRect();
-
-        if (left + width < window.innerWidth) {
-            menu.style.left = `${left + window.scrollX}px`; // eslint-disable-line no-mixed-operators
-        } else {
-            menu.style.left = `${left - width + window.scrollX} px`;
-        }
-
-        if (bottom + height < window.innerHeight) {
-            menu.style.top = `${bottom + window.scrollY}px`;
-        } else {
-            menu.style.top = `${top - height - 34 + window.scrollY}px`;
-        }
-
+        applyBestPosition(domRange, menu);
         menu.style.visibility = 'visible';
     };
 
