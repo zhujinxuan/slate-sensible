@@ -12,7 +12,14 @@ type Props = {
 function renderNode(props: Props) {
     const { node, attributes, children } = props;
     if (node.object !== 'block') return null;
+
     switch (node.type) {
+        case 'heading':
+            return React.createElement(
+                `h${node.data.level}`,
+                attributes,
+                children
+            );
         case 'paragraph':
             return <p {...attributes}>{children}</p>;
         case 'quote':
@@ -21,4 +28,5 @@ function renderNode(props: Props) {
             return undefined;
     }
 }
+
 export default { renderNode };

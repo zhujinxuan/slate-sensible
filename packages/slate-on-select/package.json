@@ -17,7 +17,7 @@
     "get-window": "^1.1.2",
     "immutable": "^3.8.2",
     "is-hotkey": "^0.1.1",
-    "slate": "^0.32.4 || ^0.33.0",
+    "slate": ">=0.33.6",
     "slate-react": "^0.11.4 || ^0.12.0"
   },
   "scripts": {

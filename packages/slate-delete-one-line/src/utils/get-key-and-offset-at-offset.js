@@ -16,6 +16,7 @@ export default function getKeyAndOffsetAtOffset(
         if (t.text.length > offset) {
             return true;
         }
+
         offset -= t.text.length;
         return false;
     });

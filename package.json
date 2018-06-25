@@ -4,6 +4,16 @@
   "workspaces": [
     "packages/*"
   ],
+  "peerDependencies": {
+    "slate": "*",
+    "slate-delete-one-line": "*",
+    "slate-html-serializer": "*",
+    "slate-on-select": "*",
+    "slate-plain-serializer": "*",
+    "slate-poor-mentions": "*",
+    "slate-react": "*",
+    "slate-schema-violations": "*"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -37,13 +47,13 @@
     "html-webpack-plugin": "^3.0.6",
     "html-webpack-template": "^6.1.0",
     "http-server": "^0.9.0",
-    "immutable": "^3.8.2",
+    "immutable": "^4.0.0-rc",
     "jest": "^23.1.0",
     "lerna": "^2.11.0",
     "lerna-alias": "^3.0.2",
     "npm-run-all": "^4.1.3",
     "prettier": "^1.9.2",
-    "react": "^16.2.0",
+    "react": "^16.4.1",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^4.0.0",
     "read-metadata": "^1.0.0",
@@ -58,9 +68,9 @@
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-uglify": "^3.0.0",
-    "slate": "^0.33.6",
-    "slate-hyperscript": "^0.5.12",
-    "slate-react": "^0.12.6",
+    "slate": "^0.34.2",
+    "slate-hyperscript": "^0.5.17",
+    "slate-react": "^0.12.11",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
@@ -74,13 +84,16 @@
     "build": "yarn build:lib && yarn build:flow",
     "build:pages": "yarn build:lib && cross-env NODE_ENV=production MODE=production webpack --config support/webpack/config.js",
     "lint": "yarn lint:code && yarn lint:document",
-    "lint:code": "eslint packages/*/src packages/*/test examples/*/*.js examples/dev/*/*.js",
-    "lint:document": "prettier --list-different '**/*.{md,json,css}'",
+    "lint:eslint": "eslint packages/*/src packages/*/test examples/*/*.js examples/dev/*/*.js",
+    "lint:prettier": "prettier --list-different '**/*.{md,json,css}'",
     "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
     "test": "jest",
     "test:coverage": "jest --coverage && codecov",
     "start": "npm-run-all --parallel --print-label watch server",
     "server": "webpack-dev-server --mode development --config ./support/webpack/config.js",
     "watch": "rollup --config ./support/rollup/config.js --watch"
+  },
+  "dependencies": {
+    "flow": "^0.2.3"
   }
 }

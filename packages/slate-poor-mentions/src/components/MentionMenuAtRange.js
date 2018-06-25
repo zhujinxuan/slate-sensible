@@ -1,14 +1,12 @@
 // @flow
 import React, { Component } from 'react';
 import { Value, type Change } from 'slate';
+import { polyfill } from 'react-lifecycles-compat';
 import { type MentionItemChildType } from '../type';
 import MentionMenu from './MentionMenu';
 
-// Adjust "fake scroll" to ensure the selected item is shown
-// props:
-// {mentions, name, selectMention, submitChange, changeHOF }
-
 const numShowedMentions = 9;
+
 function showedMentions<T: { name: string }>(
     mentions: Array<T>,
     name: null | string,
@@ -49,9 +47,12 @@ type Props<T> = {
     selectMention: T => *,
     MentionItemChild: MentionItemChildType<T>
 };
+
 type State<T> = {
-    mentions: Array<T>
+    mentions: Array<T>,
+    props: Props<T>
 };
+
 class MentionMenuAtRange<T: { name: string }> extends Component<
     Props<T>,
     State<T>
@@ -59,22 +60,30 @@ class MentionMenuAtRange<T: { name: string }> extends Component<
     constructor(props: Props<T>) {
         super();
         const { mentions, name } = props;
+
         this.state = {
-            mentions: showedMentions(mentions, name, numShowedMentions, 0)
+            mentions: showedMentions(mentions, name, numShowedMentions, 0),
+            // eslint-disable-next-line react/no-unused-state
+            props
         };
     }
-    componentWillReceiveProps(nextProps: Props<T>) {
-        const { name, mentions } = nextProps;
-        const offsetIndex = this.state.mentions.findIndex(m => m.name === name);
-        this.setState({
-            mentions: showedMentions(
+
+    static getDerivedStateFromProps(props: Props<T>, state: State<T>) {
+        if (props === state.props) return null;
+
+        const { name, mentions } = props;
+        const offsetIndex = state.mentions.findIndex(m => m.name === name);
+        return {
+            mentions: (showedMentions(
                 mentions,
                 name,
                 numShowedMentions,
                 offsetIndex
-            )
-        });
+            ): Array<T>),
+            props
+        };
     }
+
     render() {
         const { mentions } = this.state;
         const {
@@ -102,5 +111,7 @@ class MentionMenuAtRange<T: { name: string }> extends Component<
         );
     }
 }
+
+polyfill(MentionMenuAtRange);
 
 export default MentionMenuAtRange;

@@ -3,21 +3,15 @@
 import React, { Component } from 'react';
 import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
-import Portal from 'react-portal';
+import Portal from './Portal';
 import MentionItem from './MentionItem';
 import { type MentionItemChildType } from '../type';
-
-function getRect(selectionDOMRange: Range): ClientRect {
-    const rect = selectionDOMRange.getBoundingClientRect();
-    return rect;
-}
+import applyBestPosition from '../utils/apply-best-position';
 
 function hideWithRect(dom: HTMLElement) {
     dom.style.position = 'absolute';
     dom.style.visibility = 'hidden';
     dom.style.display = 'block';
-    dom.style.left = '-1000px';
-    dom.style.top = '-1000px';
 }
 
 type Props<T> = {
@@ -31,46 +25,56 @@ type Props<T> = {
     MentionItemChild: MentionItemChildType<T>
 };
 
-class MentionMenu<T: { name: string }> extends Component<Props<T>> {
-    menu: null | HTMLUListElement;
+type State = {
+    classNames: Array<string>
+};
+
+class MentionMenu<T: { name: string }> extends Component<Props<T>, State> {
+    menu: ?HTMLElement;
+
+    state = {
+        classNames: ['left', 'top']
+    };
+
     componentDidMount() {
         this.adjustPosition();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        if (prevProps === this.props) return;
         this.adjustPosition();
     }
 
     adjustPosition = () => {
         const { menu } = this;
-        if (!menu) {
-            return;
-        }
-        const { mentions, value } = this.props;
-        if (mentions.length === 0) {
-            return;
-        }
-        const domRange = findDOMRange(value.selection, window);
-        if (!domRange) {
-            return;
-        }
-        const { left, top, bottom } = getRect(domRange);
+        if (!menu) return;
         hideWithRect(menu);
-        const { width, height } = menu.getBoundingClientRect();
+        const { mentions, value } = this.props;
+        if (mentions.length === 0) return;
+        const domRange = findDOMRange(value.selection, window);
+        if (!domRange) return;
 
-        if (left + width < window.innerWidth) {
-            menu.style.left = `${left + window.scrollX}px`; // eslint-disable-line no-mixed-operators
-        } else {
-            menu.style.left = `${left - width + window.scrollX} px`;
-        }
-
-        if (bottom + height < window.innerHeight) {
-            menu.style.top = `${bottom + window.scrollY}px`;
-        } else {
-            menu.style.top = `${top - height - 34 + window.scrollY}px`;
-        }
-
+        applyBestPosition(domRange, menu);
         menu.style.visibility = 'visible';
+
+        const { left, top } = menu.getBoundingClientRect();
+
+        const {
+            left: leftS,
+            top: topS,
+            bottom: bottomS
+        } = domRange.getBoundingClientRect();
+
+        const midS = (topS + bottomS) / 2;
+
+        const classNames = [
+            left < leftS ? 'right' : 'left',
+            top < midS ? 'bottom' : 'top'
+        ];
+
+        if (classNames.find((p, index) => this.state.classNames[index] !== p)) {
+            this.setState({ classNames });
+        }
     };
 
     confirmMention = () => {
@@ -82,17 +86,24 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
         submitChange(toChange);
     };
 
-    onOpen = (ref: HTMLElement) => {
+    getClassName = () => {
+        const positionPrefix = 'RichEditor-mention-position';
+        let result = `RichEditor-mention-menu`;
+
+        this.state.classNames.forEach(x => {
+            result += ` ${positionPrefix}-${x}`;
+        });
+
+        return result;
+    };
+
+    onOpen = (ref: ?HTMLElement) => {
         // $FlowFixMe:
-        this.menu = ref.firstChild;
-        if (this.menu) {
-            // $FlowFixMe:
-            this.menu.style.position = 'absolute';
-            // $FlowFixMe:
-            this.menu.style.visibility = 'hidden';
-            // $FlowFixMe:
-            this.menu.style.display = 'block';
-        }
+        this.menu = ref;
+        if (!this.menu) return;
+        this.menu.style.position = 'absolute';
+        this.menu.style.visibility = 'hidden';
+        this.menu.style.display = 'block';
     };
 
     onClose = () => {
@@ -110,10 +121,11 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
             MentionItemChild
         } = this.props;
         const isOpened = mentions && mentions.length > 0;
+        const className = this.getClassName();
 
         return (
             <Portal isOpened={isOpened} onOpen={this.onOpen}>
-                <ul className="RichEditor-mention-menu">
+                <ul className={className}>
                     {mentions.map(mention => (
                         <MentionItem
                             selected={mention.name === name}

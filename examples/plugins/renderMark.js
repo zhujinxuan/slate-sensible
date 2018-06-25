@@ -11,6 +11,7 @@ type Props = {
 
 function renderMark(props: Props) {
     const { children, mark, attributes } = props;
+
     switch (mark.type) {
         case 'bold':
             return <strong {...{ attributes }}>{children}</strong>;
