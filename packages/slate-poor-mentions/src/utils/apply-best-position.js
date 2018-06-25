@@ -19,7 +19,8 @@ function translate(p: NumericPosition): Position {
 
     Object.keys(p).forEach(key => {
         const value = p[key];
-        p[key] = `${value}px`;
+        if (!value) return;
+        result[key] = `${value.toString(10)}px`;
     });
 
     return result;
@@ -76,7 +77,7 @@ function findBestPosition(
     } else {
         position.bottom = parent.bottom - selection.top;
     }
-    return position;
+    return translate(position);
 }
 
 function applyBestPosition(

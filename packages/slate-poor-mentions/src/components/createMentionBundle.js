@@ -8,6 +8,7 @@ import {
     type MentionItemChildType
 } from '../type';
 
+const style = { position: 'relative' };
 function createMentionBundle<T: { name: string }>(
     getMentions: GetMentions<T>,
     MentionItemChild: MentionItemChildType<T>
@@ -18,11 +19,12 @@ function createMentionBundle<T: { name: string }>(
         previous: () => null,
         changeHOF: () => undefined
     };
+
     const renderEditor = (props: Object, editor: Editor) => {
         const { value } = editor;
         const submitChange = editor.change;
         return (
-            <div>
+            <div {...{ style }}>
                 {props.children}
                 <MentionMenuContainer
                     {...{
