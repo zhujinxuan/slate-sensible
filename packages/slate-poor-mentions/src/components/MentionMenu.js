@@ -25,13 +25,23 @@ type Props<T> = {
     MentionItemChild: MentionItemChildType<T>
 };
 
-class MentionMenu<T: { name: string }> extends Component<Props<T>> {
+type State = {
+    classNames: Array<string>
+};
+
+class MentionMenu<T: { name: string }> extends Component<Props<T>, State> {
     menu: ?HTMLElement;
+
+    state = {
+        classNames: ['left', 'top']
+    };
+
     componentDidMount() {
         this.adjustPosition();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        if (prevProps === this.props) return;
         this.adjustPosition();
     }
 
@@ -40,15 +50,31 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
         if (!menu) return;
         hideWithRect(menu);
         const { mentions, value } = this.props;
-        if (mentions.length === 0) {
-            return;
-        }
+        if (mentions.length === 0) return;
         const domRange = findDOMRange(value.selection, window);
-        if (!domRange) {
-            return;
-        }
+        if (!domRange) return;
+
         applyBestPosition(domRange, menu);
         menu.style.visibility = 'visible';
+
+        const { left, top } = menu.getBoundingClientRect();
+
+        const {
+            left: leftS,
+            top: topS,
+            bottom: bottomS
+        } = domRange.getBoundingClientRect();
+
+        const midS = (topS + bottomS) / 2;
+
+        const classNames = [
+            left < leftS ? 'right' : 'left',
+            top < midS ? 'bottom' : 'top'
+        ];
+
+        if (classNames.find((p, index) => this.state.classNames[index] !== p)) {
+            this.setState({ classNames });
+        }
     };
 
     confirmMention = () => {
@@ -58,6 +84,17 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
             return;
         }
         submitChange(toChange);
+    };
+
+    getClassName = () => {
+        const positionPrefix = 'RichEditor-mention-position';
+        let result = `RichEditor-mention-menu`;
+
+        this.state.classNames.forEach(x => {
+            result += ` ${positionPrefix}-${x}`;
+        });
+
+        return result;
     };
 
     onOpen = (ref: ?HTMLElement) => {
@@ -84,10 +121,11 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
             MentionItemChild
         } = this.props;
         const isOpened = mentions && mentions.length > 0;
+        const className = this.getClassName();
 
         return (
             <Portal isOpened={isOpened} onOpen={this.onOpen}>
-                <ul className="RichEditor-mention-menu">
+                <ul className={className}>
                     {mentions.map(mention => (
                         <MentionItem
                             selected={mention.name === name}
