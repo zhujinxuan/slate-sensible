@@ -64,11 +64,8 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>> {
         // $FlowFixMe:
         this.menu = ref;
         if (!this.menu) return;
-        // $FlowFixMe:
         this.menu.style.position = 'absolute';
-        // $FlowFixMe:
         this.menu.style.visibility = 'hidden';
-        // $FlowFixMe:
         this.menu.style.display = 'block';
     };
 
