@@ -18,7 +18,7 @@ function renderNode(props: Props) {
             return React.createElement(
                 `h${node.data.level}`,
                 attributes,
-                ...children
+                children
             );
         case 'paragraph':
             return <p {...attributes}>{children}</p>;

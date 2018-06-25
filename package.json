@@ -4,6 +4,16 @@
   "workspaces": [
     "packages/*"
   ],
+  "peerDependencies": {
+    "slate-delete-one-line" : "*",
+    "slate-on-select" : "*",
+    "slate-poor-mentions" : "*",
+    "slate": "*",
+    "slate-html-serializer": "*",
+    "slate-plain-serializer": "*",
+    "slate-react": "*",
+    "slate-schema-violations": "*"
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
