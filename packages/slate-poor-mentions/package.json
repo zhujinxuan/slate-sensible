@@ -17,5 +17,8 @@
   },
   "keywords": [
     "slate"
-  ]
+  ],
+  "dependencies": {
+    "react-lifecycles-compat": "^3.0.4"
+  }
 }
