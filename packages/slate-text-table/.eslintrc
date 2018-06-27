@@ -1,0 +1,16 @@
+{
+    "parser": "babel-eslint",
+    "extends": [
+        "gitbook"
+    ],
+    "rules": {
+        "no-param-reassign": 0,
+        "import/no-commonjs": 2
+    },
+    "plugins": [
+        "flowtype"
+    ],
+    "env": {
+        "mocha": true
+    },
+}
