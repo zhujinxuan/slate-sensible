@@ -5,7 +5,6 @@ import { type Change } from 'slate';
 import type Options from '../options';
 import { isSelectionInTable } from '../utils';
 
-import onEnter from './onEnter';
 import onModEnter from './onModEnter';
 import onTab from './onTab';
 import onBackspace from './onBackspace';
@@ -39,8 +38,9 @@ function onKeyDown(
             if (event.metaKey && opts.exitBlockType) {
                 return onModEnter(...args);
             }
-            return onEnter(...args);
 
+            event.preventDefault();
+            return true;
         case KEY_TAB:
             return onTab(...args);
         case KEY_BACKSPACE:
