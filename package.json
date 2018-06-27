@@ -34,6 +34,7 @@
     "css-loader": "^0.28.11",
     "eslint": "^4.15.0",
     "eslint-config-gitbook": "^4.0.0",
+    "eslint-import-resolver-lerna": "^1.0.0",
     "eslint-plugin-flowtype": "^2.41.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",

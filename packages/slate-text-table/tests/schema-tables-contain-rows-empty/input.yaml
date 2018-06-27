@@ -1,0 +1,9 @@
+document:
+  nodes:
+    # At least one row
+    - object: block
+      type: table
+      nodes:
+        - object: text
+          leaves:
+            - text: "No rows"

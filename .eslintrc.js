@@ -1,4 +1,6 @@
-{
+const {resolve} = require('path');
+
+module.exports = {
   "parser": "babel-eslint",
   "extends": [
     "gitbook"
@@ -30,6 +32,11 @@
     "react": {
       "version": "16.4",
       "flow": " 0.75.0"
+    },
+    'import/resolver': {
+      'eslint-import-resolver-lerna': {
+        'packages': resolve(__dirname, 'packages')
+      }
     }
   }
 }
