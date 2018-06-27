@@ -8,6 +8,8 @@ pids
 *.pid
 *.seed
 
+# flow
+flow-typed/
 # Version control
 packages/*/yarn.lock
 

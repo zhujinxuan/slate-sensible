@@ -40,7 +40,7 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>, State> {
         this.adjustPosition();
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: Props<T>) {
         if (prevProps === this.props) return;
         this.adjustPosition();
     }
