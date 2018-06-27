@@ -4,8 +4,8 @@
   "description": "Provides align for slate editor",
   "main": "lib/slate-delete-one-line.js",
   "module": "lib/slate-delete-one-line.es.js",
-  "umd": "dist/slate-on-select.js",
-  "umdMin": "dist/slate-on-select.min.js",
+  "umd": "dist/slate-delete-one-line.js",
+  "umdMin": "dist/slate-delete-one-line.min.js",
   "files": [
     "dist/",
     "lib/"
