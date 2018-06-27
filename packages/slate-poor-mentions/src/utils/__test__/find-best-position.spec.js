@@ -62,7 +62,7 @@ describe('find-best-position', () => {
         expect(position).toEqual({ left: '820px', top: '580px' });
     });
 
-    it('right-bottom-outside', () => {
+    it('right-top-outside', () => {
         const selectionRect = createRect({ left: -50, bottom: -40 });
         const menuRect = createRect({
             left: 0,
@@ -71,6 +71,18 @@ describe('find-best-position', () => {
             height: 100
         });
         const position = findBestPosition(selectionRect, menuRect, parentRect);
-        expect(position).toEqual({ left: '-250px', top: '-160px' });
+        expect(position).toEqual({ left: '-250px', top: '-60px' });
+    });
+
+    it('left-bottom-outside', () => {
+        const selectionRect = createRect({ left: 100, bottom: -40 });
+        const menuRect = createRect({
+            left: 0,
+            right: 0,
+            width: 100,
+            height: 100
+        });
+        const position = findBestPosition(selectionRect, menuRect, parentRect);
+        expect(position).toEqual({ left: '0px', top: '-160px' });
     });
 });
