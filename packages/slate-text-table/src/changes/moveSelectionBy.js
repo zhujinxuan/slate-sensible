@@ -2,7 +2,7 @@
 import { type Change } from 'slate';
 
 import { TablePosition } from '../utils';
-import { moveSelection } from '../changes';
+import moveSelection from './moveSelection';
 import type Options from '../options';
 
 /**

@@ -3,7 +3,7 @@ import { type Change } from 'slate';
 import { List } from 'immutable';
 
 import { TablePosition, createCell } from '../utils';
-import { moveSelection } from '../changes';
+import moveSelection from './moveSelection';
 
 import ALIGN from '../ALIGN';
 
