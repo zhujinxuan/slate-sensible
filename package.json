@@ -84,7 +84,7 @@
     "build:flow": "lerna run build:flow",
     "build": "yarn build:lib && yarn build:flow",
     "prod": "NODE_ENV=production yarn build:lib && yarn build:flow",
-    "build:pages": "yarn build:lib && cross-env NODE_ENV=production MODE=production webpack --config support/webpack/config.js",
+    "build:pages": "yarn build:lib && cross-env NODE_ENV=production webpack --mode=production --config support/webpack/config.js",
     "gh-pages": "gh-pages --dist ./build",
     "lint": "yarn lint:code && yarn lint:document",
     "lint:eslint": "eslint packages/*/src packages/*/test examples/*/*.js examples/dev/*/*.js",
