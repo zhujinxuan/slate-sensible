@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+
+import React from 'react';
 import { type Value, type Change, type Range } from 'slate';
 import { polyfill } from 'react-lifecycles-compat';
 import {
@@ -8,6 +9,8 @@ import {
     type MentionItemChildType
 } from '../type';
 import MentionMenuAtRange from './MentionMenuAtRange';
+
+const { Component } = React;
 
 type State<T> = {
     name: null | string,
