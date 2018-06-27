@@ -1,0 +1,24 @@
+{
+  "name": "slate-align",
+  "version": "0.1.0",
+  "description": "Provides align for slate editor",
+  "main": "lib/slate-delete-one-line.js",
+  "module": "lib/slate-delete-one-line.es.js",
+  "umd": "dist/slate-on-select.js",
+  "umdMin": "dist/slate-on-select.min.js",
+  "files": [
+    "dist/",
+    "lib/"
+  ],
+  "repository": "git://github.com/zhujinxuan/slate-sensible.git",
+  "author": "zhujinxuan <zhujinxuan@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "slate"
+  ],
+  "peerDependencies": {
+    "debug": "^3.1.0",
+    "immutable": ">=3.8.2",
+    "slate": ">=0.33.0"
+  }
+}
