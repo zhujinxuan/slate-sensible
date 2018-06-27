@@ -24,19 +24,17 @@ npm install slate-edit-table
 ### Simple Usage
 
 ```js
-import EditTable from 'slate-edit-table'
+import EditTable from "slate-edit-table";
 
-const plugins = [
-  EditTable()
-]
+const plugins = [EditTable()];
 ```
 
 #### Arguments
 
-- ``[typeTable: String]`` — type for table
-- ``[typeRow: String]`` — type for the rows.
-- ``[typeCell: String]`` — type for the cells.
-- ``[exitBlockType: String]`` — Mod+Enter will exit the table, into the given block type. Pass `null` to disable this behavior.
+- `[typeTable: String]` — type for table
+- `[typeRow: String]` — type for the rows.
+- `[typeCell: String]` — type for the cells.
+- `[exitBlockType: String]` — Mod+Enter will exit the table, into the given block type. Pass `null` to disable this behavior.
 
 ### Utilities and Change
 
@@ -52,7 +50,7 @@ Return true if selection is inside a table cell.
 
 `plugin.utils.isSelectionOutOfTable(value: Slate.Value) => boolean`
 
-Return true if selection starts and ends both outside any table.  (Notice: it is NOT the opposite value of `isSelectionInTable`)
+Return true if selection starts and ends both outside any table. (Notice: it is NOT the opposite value of `isSelectionInTable`)
 
 #### `utils.getPosition`
 
@@ -117,7 +115,7 @@ defaults to center, `at` is optional and defaults to current cursor position.
 
 > The `align` values are stored in the table node's data.
 > `table.node.data.get('align')` should be an array of aligns string, corresponding to
-each column.
+> each column.
 
 ### TablePosition
 
