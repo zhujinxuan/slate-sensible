@@ -10,6 +10,6 @@ resizeEvent.initEvent('resize', true, true);
 
 global.window.resizeTo = (width, height) => {
     global.window.innerWidth = width || global.window.innerWidth;
-    global.window.innerHeight = width || global.window.innerHeight;
+    global.window.innerHeight = height || global.window.innerHeight;
     global.window.dispatchEvent(resizeEvent);
 };
