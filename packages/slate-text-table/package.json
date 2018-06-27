@@ -13,8 +13,8 @@
     "lib/"
   ],
   "peerDependencies": {
-    "immutable": "^3.8.1",
-    "slate": "^0.32.0"
+    "immutable": ">=3.8.1",
+    "slate": ">= 0.32.0"
   },
   "keywords": [
     "slate"
