@@ -4,10 +4,12 @@ import type Options from '../options';
 
 function createValidation(opts: Options) {
     const { textBlocks, floatBlocks } = opts;
+
     return (block: Node | Text): void | (Change => Change) => {
         if (block.object !== 'block') {
             return undefined;
         }
+
         if (!block.data || !block.data.get('textAlign')) return undefined;
 
         if (

@@ -13,4 +13,5 @@ function createUtils(opts: Options) {
             getAlignBlocksInBlock(opts, node)
     };
 }
+
 export default createUtils;

@@ -28,6 +28,7 @@ function getAlignBlocksAtRange(
         if (node.isLeafBlock()) {
             return getAlignBlocksInBlock(opts, node);
         }
+
         if (isStartByKey(node, startKey) && isEndByKey(node, endKey)) {
             if (
                 range.startOffset === 0 &&
@@ -37,15 +38,18 @@ function getAlignBlocksAtRange(
             }
         }
     }
+
     const startChild = node.getFurthestAncestor(startKey);
     const endChild = node.getFurthestAncestor(endKey);
     if (!startChild || !endChild) return [];
+
     if (startChild === endChild) {
         if (startChild.object === 'block') {
             return getAlignBlocksAtRange(opts, range, startChild);
         }
         return getAlignBlocksInBlock(opts, node);
     }
+
     let result = getAlignBlocksAtRange(
         opts,
         range.moveFocusToEndOf(startChild),
@@ -53,6 +57,7 @@ function getAlignBlocksAtRange(
     );
     const startIndex = node.nodes.indexOf(startChild);
     const endIndex = node.nodes.indexOf(endChild);
+
     node.nodes.slice(startIndex + 1, endIndex).forEach(n => {
         result = result.concat(getAlignBlocksInBlock(opts, n));
     });

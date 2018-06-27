@@ -12,6 +12,7 @@ function getData(el: HTMLElement): { textAlign?: string } {
 
     if (el.style && typeof el.style.textAlign === 'string') {
         const align: string = el.style.textAlign;
+
         if (align && alignments.indexOf(align) > -1) {
             return { textAlign: align };
         }
@@ -19,6 +20,7 @@ function getData(el: HTMLElement): { textAlign?: string } {
 
     if (el.getAttribute('align')) {
         const align: ?string = el.getAttribute('align');
+
         if (align && alignments.indexOf(align) > -1) {
             return { textAlign: align };
         }
@@ -30,6 +32,7 @@ function getData(el: HTMLElement): { textAlign?: string } {
         el.style.float !== 'clear'
     ) {
         const align: string = el.style.float;
+
         if (align && alignments.indexOf(align) > -1) {
             return { textAlign: align };
         }

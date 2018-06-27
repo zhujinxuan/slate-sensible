@@ -11,17 +11,22 @@ type typeStyle = {
 
 function createStyle(opts: Options): { getStyle: Function, getData: Function } {
     const { textBlocks, floatBlocks } = opts;
+
     const getStyle = (block: Node): typeStyle => {
         if (block.object !== 'block') {
             return {};
         }
+
         const align = block.data.get('textAlign');
+
         if (!align || ['left', 'center', 'right'].indexOf(align) === -1) {
             return {};
         }
+
         if (textBlocks.indexOf(block.type) > -1) {
             return { textAlign: align };
         }
+
         if (floatBlocks.indexOf(block.type) > -1) {
             return { float: align };
         }

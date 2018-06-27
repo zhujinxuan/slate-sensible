@@ -16,6 +16,7 @@ function removeAlignAtRange(opts: Options) {
         const alignBlocks = getAlignBlocksAtRange(opts, range, document)
             .filter(n => n.data && n.data.get('textAlign') === align)
             .reverse();
+
         alignBlocks.forEach(n => {
             change.setNodeByKey(
                 n.key,
