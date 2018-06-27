@@ -7,6 +7,10 @@
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
+  "files": [
+    "dist/",
+    "lib/"
+  ],
   "peerDependencies": {
     "immutable": ">=3.8.2",
     "is-hotkey": "^0.1.2",

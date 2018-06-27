@@ -1,10 +1,9 @@
-import expect from 'expect';
+/* eslint-disable import/no-extraneous-dependencies */
 import fs from 'fs';
 import path from 'path';
 import Slate from 'slate';
 import readMetadata from 'read-metadata';
-
-import EditTable from '../lib';
+import EditTable from 'slate-text-table';
 
 const PLUGIN = EditTable();
 const SCHEMA = Slate.Schema.create({
@@ -18,7 +17,7 @@ function deserializeValue(json) {
     );
 }
 
-describe('slate-edit-table', () => {
+describe('slate-text-table', () => {
     const tests = fs.readdirSync(__dirname);
 
     tests.forEach(test => {

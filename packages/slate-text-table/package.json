@@ -8,6 +8,10 @@
   "module": "lib/slate-text-table.es.js",
   "umd": "dist/slate-text-table.js",
   "umdMin": "dist/slate-text-table.min.js",
+  "files": [
+    "dist/",
+    "lib/"
+  ],
   "peerDependencies": {
     "immutable": "^3.8.1",
     "slate": "^0.32.0"
