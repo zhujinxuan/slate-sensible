@@ -1,7 +1,9 @@
 // @flow
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React, { Component } from 'react';
+import React from 'react';
 import { type MentionItemChildType } from '../type';
+
+const { Component } = React;
 
 type Props<T: { name: string }> = {
     mention: T,

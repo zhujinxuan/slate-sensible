@@ -1,12 +1,14 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
 import Portal from './Portal';
 import MentionItem from './MentionItem';
 import { type MentionItemChildType } from '../type';
 import applyBestPosition from '../utils/apply-best-position';
+
+const { Component } = React;
 
 function hideWithRect(dom: HTMLElement) {
     dom.style.position = 'absolute';

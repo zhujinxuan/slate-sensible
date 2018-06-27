@@ -4,6 +4,8 @@
   "description": "A Naive and Poor mention plugin for SlateJS",
   "main": "lib/slate-poor-mentions.js",
   "module": "lib/slate-poor-mentions.es.js",
+  "umd": "dist/slate-poor-mentions.js",
+  "umdMin": "dist/slate-poor-mentions.min.js",
   "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",

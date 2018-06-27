@@ -1,9 +1,11 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import { Value, type Change } from 'slate';
 import { polyfill } from 'react-lifecycles-compat';
 import { type MentionItemChildType } from '../type';
 import MentionMenu from './MentionMenu';
+
+const { Component } = React;
 
 const numShowedMentions = 9;
 
