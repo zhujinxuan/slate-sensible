@@ -15,7 +15,7 @@ function translate(p: NumericPosition): Position {
 
     ['left', 'top'].forEach(key => {
         const value = p[key];
-        if (!value) return;
+        if (!Number.isFinite(value)) return;
         result[key] = `${value.toString(10)}px`;
     });
 
