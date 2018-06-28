@@ -1,15 +1,21 @@
 # slate-better-soft-break
 
-Improve `slate-soft-break` with `validateNode` with features:
+Allow users to insert `\n` by pressing `enter`, alike [`slate-soft-break`](https://github.com/ianstormtaylor/slate-plugins/tree/master/packages/slate-soft-break)
 
-1.  Break '\n' in blocks disallowing soft-break
-2.  Break '\n' in inlines
+# Why this plugin
 
-## Usage
+`slate-soft-break` allows `\n` into un-wanted blocks or inlines by paste.  Therefore, `slate-better-soft-break` provide normalization to ensure:
+
+1.  Disable `\n` in blocks disallowing soft-break
+2.  Disable `\n` in inlines
+
+## Install
 
 ```
 yarn add slate-better-soft-break
 ```
+
+## Simple Usage
 
 ```
 import createSoftBreakPlugin from '../../lib/';
