@@ -10,4 +10,5 @@ function createPlugin(pluginOptions: typeOpts) {
     const validateNode = createValidateNode(opts);
     return { onKeyDown, validateNode };
 }
+
 export default createPlugin;
