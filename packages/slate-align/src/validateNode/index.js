@@ -12,12 +12,9 @@ function createValidation(opts: Options) {
 
         if (!block.data || !block.data.get('textAlign')) return undefined;
 
-        if (
-            ['left', 'right', 'center'].indexOf(block.data.get('textAlign')) !==
-            -1
-        ) {
-            if (textBlocks.indexOf(block.type) > -1) return undefined;
-            if (floatBlocks.indexOf(block.type) > -1) return undefined;
+        if (['left', 'right', 'center'].includes(block.data.get('textAlign'))) {
+            if (textBlocks.includes(block.type)) return undefined;
+            if (floatBlocks.includes(block.type)) return undefined;
         }
 
         const newData = block.data.delete('textAlign');
