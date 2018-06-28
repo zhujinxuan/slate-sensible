@@ -7687,6 +7687,10 @@ slate-schema-violations@^0.1.15:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/slate-schema-violations/-/slate-schema-violations-0.1.15.tgz#668c30b556397efe72ff1c82b22a2673814fd61e"
 
+slate-simulator@^0.4.34:
+  version "0.4.34"
+  resolved "https://registry.yarnpkg.com/slate-simulator/-/slate-simulator-0.4.34.tgz#bfad1299c07416eb9ed4f201e3d0512001e14265"
+
 slate@^0.34.2:
   version "0.34.2"
   resolved "https://registry.yarnpkg.com/slate/-/slate-0.34.2.tgz#faf75d295e44d8b43cf2e14168f7a43457a29c67"
