@@ -6,7 +6,7 @@
   "module": "lib/slate-poor-mentions.es.js",
   "umd": "dist/slate-poor-mentions.js",
   "umdMin": "dist/slate-poor-mentions.min.js",
-  "repository": "git@github.com:zhujinxuan/slate-poor-mentions.git",
+  "repository": "git://github.com/zhujinxuan/slate-sensible.git",
   "author": "zhujinxuan <zhujinxuan@gmail.com>",
   "license": "MIT",
   "files": [
