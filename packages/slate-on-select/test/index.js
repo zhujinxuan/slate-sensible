@@ -22,6 +22,7 @@ describe('slate-on-select', () => {
                     const module = require(resolve(dirPath, test));
                     const { input, output } = module;
                     const actual = module.default.call(null, input);
+
                     if (actual !== output) {
                         assert.deepEqual(actual.toJSON(), output.toJSON());
                     }

@@ -47,9 +47,11 @@ function createMentionPlugin<T: { name: string }>(
             const { name } = props.mention;
             const { text } = props;
             const index = text ? name.indexOf(text) : -1;
+
             if (index === -1) {
                 return <span>{props.mention.name}</span>;
             }
+
             const prefixText = name.slice(0, index);
             const afterText = name.slice(index + text.length);
             return (

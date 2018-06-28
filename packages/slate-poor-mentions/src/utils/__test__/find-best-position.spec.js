@@ -1,3 +1,4 @@
+/* global window */
 import './js-dom-helper';
 import findBestPosition from '../find-best-position';
 

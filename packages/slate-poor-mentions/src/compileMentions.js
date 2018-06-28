@@ -10,6 +10,7 @@ function compileMentions<T: { name: string }>(
 ): GetMentions<T> {
     const getMentions = (text: string) =>
         mentions.filter(m => matcher(text, m));
+
     return (value: Value) => {
         const range = findMentionRange(value);
 

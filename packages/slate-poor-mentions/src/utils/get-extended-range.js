@@ -21,26 +21,31 @@ function getExtendedRange<T: { name: string }>(
             startText,
             startOffset
         );
+
         if (startRange) {
             const matchingText = startText.text.substring(
                 startRange.startOffset,
                 startRange.endOffset
             );
+
             if (mentions.find(x => x.name === matchingText)) {
                 ({ startOffset } = startRange);
             }
         }
+
         const endRange = findMentionRangeAt(
             beforeMatchRegex,
             afterMatchRegex,
             endText,
             endOffset
         );
+
         if (endRange) {
             const matchingText = endText.text.substring(
                 endRange.startOffset,
                 endRange.endOffset
             );
+
             if (mentions.find(x => x.name === matchingText)) {
                 ({ endOffset } = endRange);
             }

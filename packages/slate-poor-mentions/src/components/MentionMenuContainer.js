@@ -61,6 +61,7 @@ class MentionMenuContainer<T: { name: string }> extends Component<
     compomnentDidMount() {
         const { value, getMentions } = this.props;
         const { mentions, range, text } = getMentions(value);
+
         if (mentions.length > 0) {
             this.setState({ mentions, range, text });
         }
@@ -70,14 +71,18 @@ class MentionMenuContainer<T: { name: string }> extends Component<
         if (!this.isActive()) {
             return undefined;
         }
+
         const { name, mentions, range } = this.state;
         const mention = mentions.find(m => m.name === name);
+
         if (!mention) {
             return undefined;
         }
+
         if (!name || !range) {
             return undefined;
         }
+
         const { anchorOffset, focusOffset } = range;
         // TODO: use insertTextAtRange and move delta
         return change =>
@@ -89,6 +94,7 @@ class MentionMenuContainer<T: { name: string }> extends Component<
     selectMention: T => void = (mention: T) => {
         const { mentions } = this.state;
         const index = mentions.indexOf(mention);
+
         if (index > -1) {
             this.setState({ name: mention.name });
         }
@@ -98,12 +104,16 @@ class MentionMenuContainer<T: { name: string }> extends Component<
         if (offset === 0) {
             return;
         }
+
         const { name, mentions } = this.state;
+
         if (mentions.length === 0) {
             return;
         }
+
         const lastIndex = mentions.findIndex(m => m.name === name);
         let index;
+
         if (offset > 0) {
             index = (lastIndex + offset) % mentions.length;
         } else {

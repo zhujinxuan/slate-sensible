@@ -12,5 +12,5 @@ Slate-Sensible is a collection of [my](https://github.com/zhujinxuan) slate plug
 
 ## Feature Providers
 
-- [slate-poor-mentions](./package/slate-poor-mentions)
+- [slate-poor-mentions](./packages/slate-poor-mentions)
 - [slate-align](./packages/slate-align)

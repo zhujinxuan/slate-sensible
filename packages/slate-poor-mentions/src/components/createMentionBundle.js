@@ -9,6 +9,7 @@ import {
 } from '../type';
 
 const style = { position: 'relative' };
+
 function createMentionBundle<T: { name: string }>(
     getMentions: GetMentions<T>,
     MentionItemChild: MentionItemChildType<T>

@@ -16,6 +16,7 @@ function showedMentions<T: { name: string }>(
     offsetIndex: number
 ): Array<T> {
     const index = mentions.findIndex(m => m.name === name);
+
     if (index === -1 || !name) {
         return mentions.slice(0, num);
     }
@@ -23,17 +24,21 @@ function showedMentions<T: { name: string }>(
     if (mentions.length < num) {
         num = mentions.length;
     }
+
     if (offsetIndex < 0) {
         offsetIndex = 0;
     } else if (offsetIndex > num - 1) {
         offsetIndex = num - 1;
     }
+
     const startIndex =
         (index - offsetIndex + mentions.length) % mentions.length;
     const endIndex = startIndex + num;
+
     if (endIndex < mentions.length) {
         return mentions.slice(startIndex, endIndex);
     }
+
     const beforeMentions = mentions.slice(startIndex, mentions.length);
     const afterMentions = mentions.slice(0, endIndex - mentions.length);
     return [...beforeMentions, ...afterMentions];

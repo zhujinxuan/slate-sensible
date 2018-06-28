@@ -24,12 +24,15 @@ function findMentionRangeAt(
     const beforeString = text.text.substring(0, offset);
     const afterString = text.text.substring(offset);
     const beforeMatch = beforeString.match(beforeMatchRegex);
+
     if (beforeMatch === null) {
         return null;
     }
+
     const anchorOffset = beforeMatch.index;
     let focusOffset = offset;
     const afterMatch = afterString.match(afterMatchRegex);
+
     if (afterMatch) {
         focusOffset = afterMatch[0].length + focusOffset;
     }

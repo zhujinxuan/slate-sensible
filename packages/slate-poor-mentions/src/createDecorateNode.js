@@ -19,11 +19,14 @@ function createDecorateNode<T: { name: string }>(
         if (!node.isLeafBlock()) return null;
         const texts = node.getTexts();
         const decorations = [];
+
         texts.forEach(t => {
             const { text } = t;
+
             // We can use common prefix and lastIndexOf if necessary
             names.forEach(name => {
                 let index = text.indexOf(name, 0);
+
                 while (index !== -1) {
                     decorations.push({
                         anchorOffset: index,
@@ -32,6 +35,7 @@ function createDecorateNode<T: { name: string }>(
                         anchorKey: t.key,
                         marks: [decoMark]
                     });
+
                     index = text.indexOf(name, index + name.length);
                 }
             });
@@ -39,4 +43,5 @@ function createDecorateNode<T: { name: string }>(
         return decorations;
     };
 }
+
 export default createDecorateNode;
