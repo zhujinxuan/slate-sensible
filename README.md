@@ -2,10 +2,15 @@
 
 [![codecov](https://codecov.io/gh/zhujinxuan/slate-sensible/branch/master/graph/badge.svg)](https://codecov.io/gh/zhujinxuan/slate-sensible)
 
-Slate-Sensible aims to provide slate plugins as a set of universal settings.
+Slate-Sensible is a collection of [my](https://github.com/zhujinxuan) slate plugins about sensible adjustment, bug fixes, and editing features.
 
-1.  slate-on-select: Allow cursor placed at the back of a inline node
-2.  slate-delete-one-line: Delete one line with `cmd+backspace` when there are multi-lines in block;
-3.  [Importing...] slate-better-soft-break: Provides soft-break feature like [slate-soft-break](https://github.com/ianstormtaylor/slate-plugins/tree/master/packages/slate-soft-break), but disallowing soft-break in inline nodes and common blocks.
-4.  [Importing...] slate-poor-mentions: Provides mentions configuration
-5.  [Importing...] slate-align: Provides `{data: textAlign}` to blocks, and provides functions to convert between CSS style and Slate Data Map.
+## Sensible Adjustment and bug fixes
+
+- [slate-on-select](./packages/slate-on-select)
+- [slate-delete-one-line](./packages/slate-delete-one-line)
+- [slate-better-soft-break](./packages/slate-better-soft-break)
+
+## Feature Providers
+
+- [slate-poor-mentions](./package/slate-poor-mentions)
+- [slate-align](./packages/slate-align)
