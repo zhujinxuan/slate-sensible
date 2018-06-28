@@ -72,6 +72,7 @@
     "slate": "^0.34.2",
     "slate-hyperscript": "^0.5.17",
     "slate-react": "^0.12.11",
+    "slate-simulator": "^0.4.34",
     "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
