@@ -87,7 +87,7 @@
     "prod": "NODE_ENV=production yarn build:lib && yarn build:flow",
     "build:pages": "yarn build:lib && cross-env NODE_ENV=production webpack --mode=production --config support/webpack/config.js",
     "gh-pages": "gh-pages --dist ./build",
-    "lint": "yarn lint:code && yarn lint:document",
+    "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint packages/*/src packages/*/test examples/*/*.js examples/dev/*/*.js",
     "lint:prettier": "prettier --list-different '**/*.{md,json,css}'",
     "clean": "lerna run clean && rm -rf ./node_modules ./dist ./build",
