@@ -1,5 +1,7 @@
 # slate-delete-one-line
 
+Delete a visual line rather than a block line. 
+
 Fix [#1623](https://github.com/ianstormtaylor/slate/issues/1623)
 
 ## Usage
@@ -9,7 +11,7 @@ Fix [#1623](https://github.com/ianstormtaylor/slate/issues/1623)
 
 ```
 import LineDelete from 'slate-delete-one-line'
-const plugin = LineDelete()
+export default LineDelete()
 ```
 
 ### Arguments
