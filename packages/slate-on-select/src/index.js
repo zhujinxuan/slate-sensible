@@ -15,14 +15,13 @@ function onSelect(event, change: Change): ?true {
     const { document } = value;
     const native = window.getSelection();
 
-    if (!native.rangeCount) {
-        return undefined;
-    }
+    if (!native.rangeCount) return undefined;
     const range = findRange(native, value);
     if (!range || !value.selection) return undefined;
     if (!range.anchorKey || !value.anchorKey) return undefined;
     if (!range.focusKey || !value.focusKey) return undefined;
     if (!range.isFocused || !value.isFocused) return undefined;
+
     if (areVisiblyTheSame(document, value.selection, range)) {
         return true;
     }
