@@ -4,7 +4,7 @@ Allow users to insert `\n` by pressing `enter`, alike [`slate-soft-break`](https
 
 # Why this plugin
 
-`slate-soft-break` allows `\n` into un-wanted blocks or inlines by paste.  Therefore, `slate-better-soft-break` provide normalization to ensure:
+`slate-soft-break` allows `\n` into un-wanted blocks or inlines by paste. Therefore, `slate-better-soft-break` provide normalization to ensure:
 
 1.  Disable `\n` in blocks disallowing soft-break
 2.  Disable `\n` in inlines

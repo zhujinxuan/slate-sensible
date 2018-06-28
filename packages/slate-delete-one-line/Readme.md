@@ -1,6 +1,6 @@
 # slate-delete-one-line
 
-Delete a visual line rather than a block line. 
+Delete a visual line rather than a block line.
 
 Fix [#1623](https://github.com/ianstormtaylor/slate/issues/1623)
 
