@@ -1,7 +1,7 @@
 {
   "name": "slate-react-bind-copy-paste",
   "description": "Bind deleteAtRange, insertAtRange and getFragmentAtRange to slate-react events",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "main": "lib/slate-react-bind-copy-paste.js",
   "module": "lib/slate-react-bind-copy-paste.es.js",
   "umd": "dist/slate-react-bind-copy-paste.js",
@@ -20,8 +20,8 @@
     "immutable": ">=3.8.2",
     "is-hotkey": "^0.1.2",
     "slate": ">=0.33.0",
-    "slate-react": ">=0.12.4",
     "slate-bad-table": "*",
-    "slate-bind-copy-paste": "*"
+    "slate-bind-copy-paste": "*",
+    "slate-react": ">=0.12.4"
   }
 }

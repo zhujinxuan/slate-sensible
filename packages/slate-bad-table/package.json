@@ -1,7 +1,7 @@
 {
   "name": "slate-bad-table",
   "description": "An ugly solution for nested table in Slate",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "main": "lib/slate-bad-table.js",
   "module": "lib/slate-bad-table.es.js",
   "umd": "dist/slate-bad-table.js",

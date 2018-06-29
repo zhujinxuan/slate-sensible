@@ -1,6 +1,6 @@
 {
   "name": "slate-on-select",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "description": "Fix Inline Selection of Slate",
   "main": "lib/slate-on-select.js",
   "module": "lib/slate-on-select.es.js",
