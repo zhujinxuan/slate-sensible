@@ -1,5 +1,7 @@
 # slate-delete-one-line
 
+[![NPM version](https://badge.fury.io/js/slate-delete-one-line.svg)](http://badge.fury.io/js/slate-delete-one-line)
+
 Delete a visual line rather than a block line.
 
 Fix [#1623](https://github.com/ianstormtaylor/slate/issues/1623)

@@ -1,5 +1,7 @@
 # slate-better-soft-break
 
+[![NPM version](https://badge.fury.io/js/slate-better-soft-break.svg)](http://badge.fury.io/js/slate-better-soft-break)
+
 Allow users to insert `\n` by pressing `enter`, alike [`slate-soft-break`](https://github.com/ianstormtaylor/slate-plugins/tree/master/packages/slate-soft-break)
 
 # Why this plugin

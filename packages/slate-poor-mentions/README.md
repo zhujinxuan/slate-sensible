@@ -1,5 +1,7 @@
 # slate-poor-mentions
 
+[![NPM version](https://badge.fury.io/js/slate-poor-mentions.svg)](http://badge.fury.io/js/slate-poor-mentions)
+
 Mentions plugin for SlateJS. You can have a try by pressing `@` at this repo [demo](https://zhujinxuan.github.io/slate-sensible/).
 
 ![slate-poor-mentions](https://user-images.githubusercontent.com/746159/42059094-5a7392b8-7af0-11e8-8a11-650043a0de86.png)
@@ -39,7 +41,7 @@ By default, this pattern will consider `{$` and `@` as mention triggering char.
 
 3.  `afterMatchRegex: RegexExp` (optional)
 
-The pattern matches the text between the cursor and mention ending char in text context.  If no match is found, it will use 
+The pattern matches the text between the cursor and mention ending char in text context. If no match is found, it will use
 the editing text ending in the cursor position to match the mention.
 
 By default, this pattern will match `}`
@@ -52,11 +54,11 @@ By default, the getText will remove all chars not in alpha-beta and numbers in t
 
 5.  `MentionItemChild: React.Component<{mention: Mention, text: string}>` (optional)
 
-Render the mention items with a customized component.  The props is a object containing two properties:
+Render the mention items with a customized component. The props is a object containing two properties:
 
-- `mention: {name: string}`  The mention object of `mentions : Array<Mention>` passed to plugin.
-- `text: string` the editing text captured by `beforeMatchRegex` and `afterMatchRegex`.  Used for highlighting 
-the matched text in mention items for example.
+- `mention: {name: string}` The mention object of `mentions : Array<Mention>` passed to plugin.
+- `text: string` the editing text captured by `beforeMatchRegex` and `afterMatchRegex`. Used for highlighting
+  the matched text in mention items for example.
 
 By default, it is only `<span>{mention.name}</span>`
 
@@ -64,12 +66,12 @@ By default, it is only `<span>{mention.name}</span>`
 
 ### Containers
 
-To style the container, you can specify the CSS for `ul.RichEditor-mention-menu`. To style the single mention item, 
-   you can specify CSS for `ul.RichEditor-mention-menu > li` or customize `MentionItemChild` in creating the plugin.
+To style the container, you can specify the CSS for `ul.RichEditor-mention-menu`. To style the single mention item,
+you can specify CSS for `ul.RichEditor-mention-menu > li` or customize `MentionItemChild` in creating the plugin.
 
 ### Padding
 
-By the relative position between selection and mention pop-up, the mention container `ul.RichEditor-mention-menu` 
+By the relative position between selection and mention pop-up, the mention container `ul.RichEditor-mention-menu`
 is decorated by classes
 `RichEditor-mention-position-top`, `RichEditor-mention-position-bottom`, `RichEditor-mention-position-left` and
 `RichEditor-mention-position-right` respectively. If you always wants a `10px * 10 px` distance between selection
