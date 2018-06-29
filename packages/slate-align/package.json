@@ -16,6 +16,9 @@
   "keywords": [
     "slate"
   ],
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
+  },
   "peerDependencies": {
     "debug": "^3.1.0",
     "immutable": ">=3.8.2",

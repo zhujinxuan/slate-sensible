@@ -17,6 +17,9 @@
     "immutable": ">=3.8.2",
     "slate": ">=0.33.0"
   },
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
+  },
   "keywords": [
     "slate"
   ]

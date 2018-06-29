@@ -24,6 +24,9 @@
   "keywords": [
     "slate"
   ],
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
+  },
   "dependencies": {
     "react-lifecycles-compat": "^3.0.4"
   }
