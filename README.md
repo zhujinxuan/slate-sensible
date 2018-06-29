@@ -14,3 +14,9 @@ Slate-Sensible is a collection of [my](https://github.com/zhujinxuan) slate plug
 
 - [slate-poor-mentions](./packages/slate-poor-mentions)
 - [slate-align](./packages/slate-align)
+
+## On development and undocumented
+
+- [slate-bind-copy-paste](./packages/slate-bind-copy-paste)
+- [slate-bad-table](./packages/slate-bad-table)
+- [slate-react-copy-paste](./packages/slate-react-copy-paste)
