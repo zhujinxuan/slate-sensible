@@ -1,5 +1,7 @@
 # slate-align
 
+[![NPM version](https://badge.fury.io/js/slate-align.svg)](http://badge.fury.io/js/slate-align)
+
 Provides `data.textAlign` for blocks, providing `validateNode` for align blocks, providing `getStyle` and `getData` to convert between CSS style and slate `block.data`.
 
 ## Install

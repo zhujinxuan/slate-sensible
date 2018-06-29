@@ -1,6 +1,6 @@
 {
   "name": "slate-poor-mentions",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A Naive and Poor mention plugin for SlateJS",
   "main": "lib/slate-poor-mentions.js",
   "module": "lib/slate-poor-mentions.es.js",
@@ -24,6 +24,9 @@
   "keywords": [
     "slate"
   ],
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
+  },
   "dependencies": {
     "react-lifecycles-compat": "^3.0.4"
   }

@@ -1,7 +1,7 @@
 {
   "name": "slate-text-table",
   "description": "A Slate plugin to handle keyboard events in tables. (based on slate-edit-table)",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "Apache-2.0",
   "repository": "git://github.com/zhujinxuan/slate-sensible.git",
   "main": "lib/slate-text-table.js",
@@ -15,6 +15,9 @@
   "peerDependencies": {
     "immutable": ">=3.8.1",
     "slate": ">= 0.32.0"
+  },
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
   },
   "keywords": [
     "slate"

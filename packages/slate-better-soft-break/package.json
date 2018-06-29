@@ -1,6 +1,6 @@
 {
   "name": "slate-better-soft-break",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Enable soft-break and avoid soft-break at non-soft-break blocks",
   "main": "lib/slate-better-soft-break.js",
   "module": "lib/slate-better-soft-break.es.js",
@@ -16,6 +16,9 @@
   "peerDependencies": {
     "immutable": ">=3.8.2",
     "slate": ">=0.33.0"
+  },
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
   },
   "keywords": [
     "slate"
