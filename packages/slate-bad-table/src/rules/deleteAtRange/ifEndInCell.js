@@ -10,13 +10,17 @@ function ifEndInCell(opts: Options): typeRule {
             endKey,
             x => x.type === opts.typeBadCell
         );
+
         if (!cell) {
             return next(removeOptions);
         }
+
         if (cell.hasDescendant(startKey)) {
             return next(removeOptions);
         }
+
         const prevBlock = document.getPreviousBlock(cell.key);
+
         if (prevBlock) {
             rootDelete(
                 change,

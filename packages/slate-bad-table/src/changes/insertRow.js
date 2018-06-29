@@ -14,6 +14,7 @@ function insertColumn(opts: Options): Change => Change {
             focusKey,
             cell => cell && cell.type === typeBadCell
         );
+
         if (!badCell || badCell.type !== typeBadCell) {
             return change;
         }

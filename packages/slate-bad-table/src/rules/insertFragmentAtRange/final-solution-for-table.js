@@ -9,6 +9,7 @@ function finalSolutionToJumpOutOfATable(opts: Options): typeRule {
         const startBlock = document.getClosestBlock(startKey);
         if (startBlock.type !== opts.typeCell) return next(insertOptions);
         const endBlock = document.getClosestBlock(endKey);
+
         if (endBlock.type !== opts.typeCell) {
             return rootInsert(
                 change,
@@ -23,6 +24,7 @@ function finalSolutionToJumpOutOfATable(opts: Options): typeRule {
 
         const parent = document.getParent(table.key);
         const index = parent.nodes.indexOf(table) + indexFix;
+
         fragment.nodes.forEach((n, ii) =>
             change.insertNodeByKey(parent.key, index + ii, n, {
                 normalize: false
@@ -31,4 +33,5 @@ function finalSolutionToJumpOutOfATable(opts: Options): typeRule {
         return change;
     };
 }
+
 export default finalSolutionToJumpOutOfATable;

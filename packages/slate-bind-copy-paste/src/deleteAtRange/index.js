@@ -7,6 +7,7 @@ import atDifferentText from './rules/atDifferentText';
 import atSameText from './rules/atSameText';
 
 const debug = new Debug('slate:changes:customized');
+
 function bindRules(
     rules: Array<typeRule>,
     index: number,
@@ -17,6 +18,7 @@ function bindRules(
     if (index === rules.length) {
         return change;
     }
+
     const rule = rules[index];
     const next = removeOptions =>
         bindRules(rules, index + 1, change, range, removeOptions);
@@ -52,8 +54,10 @@ export default {
         if (snapshot) {
             change.snapshotSelection();
         }
+
         if (range.isBackward) {
             const { startKey, startOffset, endKey, endOffset } = range;
+
             range = Range.create()
                 .moveAnchorTo(startKey, startOffset)
                 .moveFocusTo(endKey, endOffset);

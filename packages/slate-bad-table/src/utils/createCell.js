@@ -15,4 +15,5 @@ function createCell(position: BadTablePosition): Block {
         )
     });
 }
+
 export default createCell;

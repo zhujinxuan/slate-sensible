@@ -16,18 +16,22 @@ function onPaste(opts: Option, changes: Changes, debug: Debug) {
         const { htmlSerializer } = opts;
         const transfer = getEventTransfer(event);
         debug('onPaste', { transfer });
+
         if (transfer.type === 'text') {
             const { text } = transfer;
             changes.insertText(change, text);
             return true;
         }
+
         let fragment;
+
         if (transfer.type === 'fragment') {
             fragment = transfer.fragment;
         } else if (htmlSerializer && transfer.type === 'html') {
             const result = htmlSerializer.deserialize(transfer.html);
             fragment = result.document ? result.document : result;
         }
+
         if (!fragment) return undefined;
         changes.insertFragment(change, fragment);
         return true;

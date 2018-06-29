@@ -10,6 +10,7 @@ function ifInSameEditTable(opts: Options): typeRule {
         const { startKey, endKey, startOffset, endOffset } = range;
 
         const startCell = document.getClosestBlock(startKey);
+
         if (!startCell || startCell.type !== opts.typeCell) {
             return next(removeOptions);
         }
@@ -19,11 +20,13 @@ function ifInSameEditTable(opts: Options): typeRule {
             x => x.type === opts.typeTable
         );
         const endCell = document.getClosestBlock(endKey);
+
         if (!table || !table.hasDescendant(endCell.key)) {
             return next(removeOptions);
         }
 
         const { deleteStartText, deleteEndText } = removeOptions;
+
         if (startCell === endCell) {
             if (deleteEndText && deleteStartText) {
                 return next(removeOptions.set('deleteStartText', false));
@@ -52,15 +55,18 @@ function ifInSameEditTable(opts: Options): typeRule {
                 change.removeNodeByKey(table.key, { normalize: false });
                 return change;
             }
+
             if (
                 isStartByKey(startRow, startKey) &&
                 isEndByKey(endRow, endKey)
             ) {
                 const startIndex = table.nodes.indexOf(startRow);
                 const endIndex = table.nodes.indexOf(endRow);
+
                 if (startIndex > endIndex) {
                     return change;
                 }
+
                 table.nodes.skipWhile(n => n !== startRow).find(row => {
                     change.removeNodeByKey(row.key, { normalize: false });
                     return row === endRow;
@@ -76,14 +82,17 @@ function ifInSameEditTable(opts: Options): typeRule {
                 range.moveFocusToEndOf(startRow),
                 removeOptions.set('deleteEndText', true)
             );
+
             const nextStartRow = table.nodes.get(
                 table.nodes.indexOf(startRow) + 1
             );
+
             // Delete the middleRows
             if (nextStartRow !== endRow) {
                 const nextEndRow = table.nodes.get(
                     table.nodes.indexOf(endRow) - 1
                 );
+
                 rootDelete(
                     change,
                     range
@@ -115,6 +124,7 @@ function ifInSameEditTable(opts: Options): typeRule {
             .find(middleCell => {
                 if (middleCell === endCell) return true;
                 const cellRange = Range.create().moveToRangeOf(middleCell);
+
                 rootDelete(
                     change,
                     cellRange,

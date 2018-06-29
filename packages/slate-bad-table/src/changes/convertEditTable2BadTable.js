@@ -12,6 +12,7 @@ function convertEditTable2BadTable(
     if (table.type !== opts.typeTable) {
         return change;
     }
+
     table.nodes.forEach(row => {
         row.nodes.forEach(cell => {
             const paragraph = Block.create({
@@ -22,6 +23,7 @@ function convertEditTable2BadTable(
                 type: opts.typeBadCell,
                 nodes: List(paragraph)
             });
+
             change.replaceNodeByKey(nextCell.key, nextCell, {
                 normalize: false
             });
@@ -32,6 +34,7 @@ function convertEditTable2BadTable(
 
             while (textToCheck) {
                 const matched = textToCheck.text.match(/\n/);
+
                 if (!matched) {
                     textToCheck = cell.getNextText(textToCheck.key);
                 }
@@ -44,6 +47,7 @@ function convertEditTable2BadTable(
                 change.removeTextByKey(textToCheck.key, charIndex, 1, {
                     normalize: false
                 });
+
                 change.splitDescendantsByKey(
                     furthestAncestor.key,
                     textToCheck.key,
@@ -76,12 +80,15 @@ function convertEditTable2BadTable(
                 }
             }
         });
+
         change.setNodeByKey(row.key, opts.typeBadRow, { normalize: false });
         return true;
     });
+
     change.setNodeByKey(table.key, opts.typeBadRow, {
         normalize: false
     });
     return range;
 }
+
 export default convertEditTable2BadTable;

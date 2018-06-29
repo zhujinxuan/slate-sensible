@@ -10,13 +10,17 @@ function ifStartInCell(opts: Options): typeRule {
             startKey,
             x => x.type === opts.typeBadCell
         );
+
         if (!cell) {
             return next(removeOptions);
         }
+
         if (cell.hasDescendant(endKey)) {
             return next(removeOptions);
         }
+
         const nextBlock = document.getNextBlock(cell.key);
+
         if (nextBlock) {
             rootDelete(
                 change,
@@ -24,6 +28,7 @@ function ifStartInCell(opts: Options): typeRule {
                 removeOptions.set('deleteStartText', true)
             );
         }
+
         rootDelete(
             change,
             range.moveFocusToEndOf(cell),

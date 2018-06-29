@@ -15,6 +15,7 @@ function appendTableAtRangeStart(opts: Options): typeRule {
         if (fragment.nodes.size === 0) {
             return next(insertOptions);
         }
+
         const fragmentTable = fragment.nodes.first();
 
         if (fragmentTable.type !== opts.typeTable) {
@@ -65,11 +66,13 @@ function appendTableAtRangeStart(opts: Options): typeRule {
 
         fragment = fragment.deleteIn(['nodes', 0]);
         const nextBlock = document.getNextBlock(table.key);
+
         if (!nextBlock) {
             range = range.collapseToEndOf(fragmentTable);
             insertOptions = insertOptions.set('lastNodeAsText', false);
         } else {
             range = range.moveAnchorToStartOf(nextBlock);
+
             if (startPosition.isSameTable(endPosition)) {
                 range = range.moveToAnchor();
             }
@@ -82,4 +85,5 @@ function appendTableAtRangeStart(opts: Options): typeRule {
         );
     };
 }
+
 export default appendTableAtRangeStart;

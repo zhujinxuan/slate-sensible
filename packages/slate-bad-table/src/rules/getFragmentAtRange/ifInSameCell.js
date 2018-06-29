@@ -13,10 +13,12 @@ function isInSameCell(opts: Options): typeRule {
         if (!cell || !cell.getDescendant(endKey)) {
             return next(getOpts);
         }
+
         if (cell === node) {
             return next(getOpts);
         }
         return rootGetFragment(cell, range, getOpts);
     };
 }
+
 export default isInSameCell;

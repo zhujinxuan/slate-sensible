@@ -12,6 +12,7 @@ function bindRules(
     if (index === rules.length) {
         return node.getFragmentAtRange(range);
     }
+
     const rule = rules[index];
     const next = (getOpts: GetAtRangeOptions) =>
         bindRules(rules, index + 1, node, range, getOpts);
@@ -27,6 +28,7 @@ export default {
     ): Document => {
         if (range.isBackward) {
             const { startKey, startOffset, endKey, endOffset } = range;
+
             range = Range.create()
                 .moveAnchorTo(startKey, startOffset)
                 .moveFocusTo(endKey, endOffset);

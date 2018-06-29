@@ -17,6 +17,7 @@ function ifEndInCell(opts: Options): typeRule {
         }
 
         const row = node.getParent(cell.key);
+
         if (cell === row.nodes.last()) {
             return next(getOpts);
         }
@@ -29,12 +30,14 @@ function ifEndInCell(opts: Options): typeRule {
                 if (afterCellIndex < cellIndex) {
                     return afterCell;
                 }
+
                 if (afterCellIndex > cellIndex) {
                     return Block.create({
                         type: opts.typeCell,
                         nodes: [Text.create('')]
                     });
                 }
+
                 let newCell;
                 let child = node.getDescendant(endKey);
                 child = child.removeText(endOffset, child.text.length);
@@ -44,6 +47,7 @@ function ifEndInCell(opts: Options): typeRule {
                     const childIndex = parent.nodes.findIndex(
                         n => n.key === child.key
                     );
+
                     parent = parent.set(
                         'nodes',
                         parent.nodes.set(childIndex, child).take(childIndex + 1)
@@ -53,6 +57,7 @@ function ifEndInCell(opts: Options): typeRule {
                         child = parent;
                         return false;
                     }
+
                     newCell = parent;
                     return true;
                 });
@@ -64,4 +69,5 @@ function ifEndInCell(opts: Options): typeRule {
         return rootGetFragment(node, range, getOpts);
     };
 }
+
 export default ifEndInCell;

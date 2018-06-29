@@ -19,10 +19,12 @@ function normalize(
 
     if (reason === 'child_required') {
         const { node }: { node: Node } = context;
+
         if (node.nodes.size === 0) {
             change.removeNodeByKey(node.key, { normalize: false });
             return;
         }
+
         const parent: Node = change.value.document.getParent(node.key);
         moveNodesToParent(change, node, parent);
     }
@@ -32,4 +34,5 @@ function normalize(
         change.unwrapNodeByKey(child.key, { normalize: false });
     }
 }
+
 export default normalize;

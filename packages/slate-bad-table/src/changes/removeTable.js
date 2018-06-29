@@ -15,20 +15,24 @@ function removeTable(opts: Options): (Change, typeRemoveOptions) => Change {
             focusKey,
             cell => cell && cell.type === typeBadTable
         );
+
         if (!table || table.type !== typeBadTable) {
             return change;
         }
+
         if (removeOptions.snapshot) {
             change.snapshotSelection();
         }
 
         const nextBlock = document.getNextBlock(table.key);
+
         if (nextBlock) {
             change.removeNodeByKey(table.key).collapseToStartOf(nextBlock);
             return change;
         }
 
         const prevBlock = document.getPreviousBlock(table.key);
+
         if (prevBlock) {
             change.removeNodeByKey(table.key).collapseToEndOf(prevBlock);
             return change;

@@ -8,9 +8,11 @@ function ifEndInEditTable(opts: Options): typeRule {
         const { startKey, endKey } = range;
 
         const cell = document.getClosestBlock(endKey);
+
         if (!cell || cell.type !== opts.typeCell) {
             return next(removeOptions);
         }
+
         const ancestors = document.getAncestors(endKey);
         const cellAncestorIndex = ancestors.indexOf(cell);
 
@@ -21,6 +23,7 @@ function ifEndInEditTable(opts: Options): typeRule {
         }
 
         const prevBlock = document.getPreviousBlock(table.key);
+
         if (prevBlock) {
             rootDelete(
                 change,

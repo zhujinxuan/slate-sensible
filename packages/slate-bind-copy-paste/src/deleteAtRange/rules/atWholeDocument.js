@@ -16,9 +16,11 @@ const atWholeDocument: typeRule = (rootDelete, change, range, opts, next) => {
     if (startKey === endKey) return next(opts);
 
     if (!isEndByKey(document, endKey)) return next(opts);
+
     if (endOffset !== document.getDescendant(endKey).text.length) {
         return next(opts);
     }
+
     if (document.nodes.size === 0) return change;
 
     const { deleteStartText, deleteEndText } = opts;
@@ -49,10 +51,12 @@ const atWholeDocument: typeRule = (rootDelete, change, range, opts, next) => {
             }
 
             const nextBlock = leafBlock.set('nodes', newNodes);
+
             change.replaceNodeByKey(nextBlock.key, nextBlock, {
                 normalize: false
             });
         });
+
         if (isFocused) {
             change.collapseToStartOf(change.value.document).focus();
         }
@@ -61,16 +65,19 @@ const atWholeDocument: typeRule = (rootDelete, change, range, opts, next) => {
     }
 
     const lastTextBlock = document.getBlocks().findLast(b => !b.isVoid);
+
     if (lastTextBlock) {
         const furthestAncestor = document.getFurthestAncestor(
             lastTextBlock.key
         );
         const ancestors = furthestAncestor.getAncestors(lastTextBlock.key);
         let nextBlock = lastTextBlock.set('nodes', newNodes);
+
         ancestors.findLast((n, index) => {
             nextBlock = n.set('nodes', List.of(nextBlock));
             return false;
         });
+
         document.nodes.forEach(n => {
             if (n !== furthestAncestor) {
                 change.removeNodeByKey(n.key, { normalize: false });
@@ -81,6 +88,7 @@ const atWholeDocument: typeRule = (rootDelete, change, range, opts, next) => {
                 normalize: false
             });
         });
+
         if (isFocused) {
             change.collapseToStartOf(change.value.document).focus();
         }
@@ -94,9 +102,11 @@ const atWholeDocument: typeRule = (rootDelete, change, range, opts, next) => {
         ? endKey
         : document.getPreviousText(endKey).key;
     deleteBetweenNodes(change, firstKey, lastKey);
+
     if (isFocused) {
         change.collapseToStartOf(change.value.document).focus();
     }
     return change;
 };
+
 export default atWholeDocument;

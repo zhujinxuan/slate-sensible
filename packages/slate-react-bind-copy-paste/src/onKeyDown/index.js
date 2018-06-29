@@ -19,10 +19,12 @@ export default function onKeyDown(opts: Option, changes: Changes) {
         editor: Editor
     ): ?true => {
         debug('onKeyDown', { event });
+
         if (HOTKEYS.SPLITBLOCK(event)) {
             changes.splitBlock(change);
             return true;
         }
+
         if (HOTKEYS.DELETE(event) && change.value.isExpanded) {
             changes.delete(change);
             return true;

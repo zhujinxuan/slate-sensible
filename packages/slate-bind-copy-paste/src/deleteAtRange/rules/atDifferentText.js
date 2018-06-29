@@ -13,11 +13,14 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
     }
 
     const { startKey, endKey } = range;
+
     if (startKey === endKey) {
         return next(opts);
     }
+
     const { document } = change.value;
     const nextText = document.getNextText(startKey);
+
     if (!nextText) {
         return rootDelete(
             change,
@@ -29,6 +32,7 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
     // Normalize the Range
     if (range.startOffset !== 0) {
         const voidParent = document.getClosestVoid(startKey);
+
         if (voidParent) {
             range = range.moveAnchorToStartOf(voidParent);
         }
@@ -36,6 +40,7 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
 
     if (range.endOffset !== 0) {
         const voidParent = document.getClosestVoid(endKey);
+
         if (voidParent) {
             range = range.moveFocusToEndOf(voidParent);
         }
@@ -50,8 +55,10 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
     const startText = document.getDescendant(startKey);
 
     let firstRemovedText = document.getNextText(startKey);
+
     if (document.getClosestVoid(startKey)) {
         const voidParent = document.getClosestVoid(startKey);
+
         if (voidParent.object === 'block') {
             firstRemovedText = startText;
         } else {
@@ -62,10 +69,12 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
             );
         }
     }
+
     if (startOffset === 0) {
         if (startBlock !== endBlock && isStartByKey(startBlock, startKey)) {
             firstRemovedText = startText;
         }
+
         if (deleteStartText) {
             firstRemovedText = startText;
         }
@@ -79,13 +88,16 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
         if (startOffset !== 0 || !isStartByKey(startBlock, startKey)) {
             lastRemovedText = endText;
         }
+
         // Delete the end void Block if the start is also a void block
         if (startBlock.isVoid) {
             lastRemovedText = endText;
         }
     }
+
     if (endOffset !== 0 && document.getClosestVoid(endKey)) {
         const voidParent = document.getClosestVoid(endKey);
+
         if (voidParent.object === 'block') {
             lastRemovedText = endText;
         } else {
@@ -96,6 +108,7 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
             );
         }
     }
+
     if (deleteEndText && endText.text.length === endOffset) {
         lastRemovedText = endText;
     }
@@ -123,6 +136,7 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
     if (!deleteStartText) {
         refindStartText(change, document, startKey, endKey);
     }
+
     if (!deleteEndText) {
         refindEndText(change, document, startKey, endKey);
     }
@@ -140,6 +154,7 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
             isStartByKey(endBlock, endKey) &&
             isStartByKey(startBlock, startKey) &&
             startOffset === 0;
+
         if (!isHanging) {
             const newEndBlock = change.value.document.getDescendant(
                 endBlock.key
@@ -147,6 +162,7 @@ const atDifferentText: typeRule = (rootDelete, change, range, opts, next) => {
             const newStartBlock = change.value.document.getDescendant(
                 startBlock.key
             );
+
             newEndBlock.nodes.forEach((c, index) => {
                 change.moveNodeByKey(
                     c.key,
@@ -175,19 +191,23 @@ function refindStartText(
     let newStartBlock = getLastBlock(
         change.value.document.getDescendant(startBlock.key)
     );
+
     if (!newStartBlock) {
         const oldPreviousBlock = document.getPreviousBlock(startBlock.key);
+
         if (oldPreviousBlock) {
             newStartBlock = getLastBlock(
                 document.getDescendant(oldPreviousBlock.key)
             );
         }
     }
+
     if (newStartBlock) {
         if (newStartBlock.isVoid) {
             replaceVoidNode(change, newStartBlock, startKey);
             return;
         }
+
         change.insertNodeByKey(
             newStartBlock.key,
             newStartBlock.nodes.size,
@@ -200,15 +220,18 @@ function refindStartText(
     let newEndBlock = getFirstBlock(
         change.value.document.getDescendant(endBlock.key)
     );
+
     if (!newEndBlock) {
         newEndBlock = getFirstBlock(document.getNextBlock(endBlock.key));
     }
+
     if (!newEndBlock) return;
 
     if (newEndBlock.isVoid) {
         replaceVoidNode(change, newEndBlock, startKey);
         return;
     }
+
     change.insertNodeByKey(newEndBlock.key, 0, startTextPlaceHolder, {
         normalize: false
     });
@@ -228,6 +251,7 @@ function refindEndText(
 
     if (!newEndBlock) {
         const oldNextBlock = document.getNextBlock(endBlock.key);
+
         if (oldNextBlock) {
             newEndBlock = getFirstBlock(
                 change.value.document.getDescendant(oldNextBlock.key)
@@ -240,6 +264,7 @@ function refindEndText(
         replaceVoidNode(change, newEndBlock, endKey);
         return;
     }
+
     if (newEndBlock) {
         const insertIndex = newEndBlock.getDescendant(startKey)
             ? 0
@@ -247,6 +272,7 @@ function refindEndText(
               newEndBlock.nodes.indexOf(
                   newEndBlock.getFurthestAncestor(startKey)
               );
+
         change.insertNodeByKey(
             newEndBlock.key,
             insertIndex,
@@ -259,14 +285,17 @@ function refindEndText(
     let newStartBlock = getLastBlock(
         change.value.document.getDescendant(startBlock.key)
     );
+
     if (!newStartBlock) {
         newStartBlock = getLastBlock(
             document.getDescendant(document.getPreviousBlock(startBlock.key))
         );
     }
+
     if (!newStartBlock) return;
     if (newStartBlock.isVoid) return;
     const insertIndex = newStartBlock.nodes.size;
+
     change.insertNodeByKey(newStartBlock.key, insertIndex, endTextPlaceHolder, {
         normalize: false
     });
@@ -277,6 +306,7 @@ function replaceVoidNode(change: Change, block: Node, key: string): void {
         change.replaceNodeByKey(block.key, Text.create('').set)('key', key);
         return;
     }
+
     change.replaceNodeByKey(
         block.key,
         block.set('nodes', List.of(Text.create(' ').set('key', key))),

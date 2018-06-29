@@ -14,6 +14,7 @@ export type Changes = {
 };
 
 const debug = new Debug('slate:changes:customized');
+
 function createChanges(opts: Option): Changes {
     return {
         insertText: insertText(opts, debug),

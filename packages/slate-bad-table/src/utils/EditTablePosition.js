@@ -21,15 +21,19 @@ class TablePosition extends Record({
 }) {
     static create(attrs: typeAttrs) {
         const { node, range, opts } = attrs;
+
         if (!node) {
             throw new Error('node must be set for TablePosition');
         }
+
         if (!range) {
             throw new Error('attrs.range must be set for TablePosition');
         }
+
         if (range.isExpanded) {
             throw new Error('attrs.range must be collapsed for TablePosition');
         }
+
         if (!opts) {
             throw new Error('attrs.opts must have types for TablePosition');
         }
@@ -40,6 +44,7 @@ class TablePosition extends Record({
         if (cell.type !== opts.typeCell) {
             return new TablePosition({ range });
         }
+
         const ancestors = node.getAncestors(startKey);
         const cellAncestorIndex = ancestors.indexOf(cell);
         const table = ancestors.get(cellAncestorIndex - 2);

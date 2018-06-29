@@ -16,8 +16,10 @@ function normalize(
         const { node, parent }: { node: Node, parent: Node } = context;
         moveNodesToParent(change, node, parent);
     }
+
     if (reason === 'child_object_invalid') {
         const { child } = context;
+
         if (child.object === 'text' || child.object === 'inline') {
             change.wrapBlockByKey(child.key, opts.typeParagraph, {
                 normalize: false
@@ -26,6 +28,7 @@ function normalize(
             change.unwrapNodeByKey(child.key, { normalize: false });
         }
     }
+
     if (reason === 'child_type_invalid') {
         const { child } = context;
         change.unwrapNodeByKey(child.key, { normalize: false });
@@ -37,4 +40,5 @@ function normalize(
         moveNodesToParent(change, node, parent);
     }
 }
+
 export default normalize;

@@ -26,4 +26,5 @@ function pasteSingleRow(
         })
     );
 }
+
 export default pasteSingleRow;

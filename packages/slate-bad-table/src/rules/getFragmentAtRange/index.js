@@ -36,6 +36,7 @@ function makePatch(opts: Options): typePatch {
         }
     };
 }
+
 function getFragmentAtRange(opts: Options): (Change, Range) => Document {
     return plugin.generate(makeRules(opts));
 }

@@ -11,4 +11,5 @@ function isEndByKey(node: Node, key: string): boolean {
     if (lastValid.object === 'text') return false;
     return isEndByKey(lastValid, key);
 }
+
 export default isEndByKey;

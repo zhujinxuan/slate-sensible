@@ -14,12 +14,14 @@ function insertColumn(opts: Options): Change => Change {
             focusKey,
             cell => cell && cell.type === typeBadCell
         );
+
         if (!badCell || badCell.type !== typeBadCell) {
             return change;
         }
 
         const position = BadTablePosition.create(opts, document, badCell);
         const columnIndex = position.getColumnIndex();
+
         position.badTable.nodes.forEach(row => {
             const nextCell = createCell(position);
             change.insertNodeByKey(row.key, columnIndex + 1, nextCell);

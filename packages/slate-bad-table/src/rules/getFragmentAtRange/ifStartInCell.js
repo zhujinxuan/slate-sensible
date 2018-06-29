@@ -9,16 +9,21 @@ function ifStartInCell(opts: Options): typeRule {
             startKey,
             x => x.type === opts.typeBadCell
         );
+
         if (!cell) {
             return next(getOpts);
         }
+
         if (cell.hasDescendant(endKey)) {
             return next(getOpts);
         }
+
         const nextBlock = node.getNextBlock(cell.key);
+
         if (!nextBlock) {
             return rootGetFragment(cell, range.moveFocusToEndOf(cell), getOpts);
         }
+
         const badCellFragment = rootGetFragment(
             node,
             range.moveFocusToEndOf(cell),
@@ -35,4 +40,5 @@ function ifStartInCell(opts: Options): typeRule {
         );
     };
 }
+
 export default ifStartInCell;

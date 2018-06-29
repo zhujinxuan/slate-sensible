@@ -8,6 +8,7 @@ import nodesAsBlocks from './rules/nodesAsBlocks';
 import deleteAtRangeGenerator from '../deleteAtRange';
 
 const debug = new Debug('slate:changes:customized');
+
 function bindRules(
     rules: Array<typeRule>,
     index: number,
@@ -19,6 +20,7 @@ function bindRules(
     if (index === rules.length) {
         return change;
     }
+
     const rule = rules[index];
     const next = (insOpt: InsertAtRangeOptions) =>
         bindRules(rules, index + 1, change, range, fragment, insOpt);
@@ -67,6 +69,7 @@ export default {
         } = opts;
         const { deleteAtRange = deleteAtRangeDefault } = generateOptions;
         const { isFocused } = change.value;
+
         if (range.isBackward) {
             range = range.flip();
         }
@@ -78,10 +81,12 @@ export default {
                 deleteEndText: false,
                 snapshot
             });
+
             if (range.endKey === range.startKey) {
                 range = range.collapseToStart();
             } else {
                 range = range.moveFocusTo(range.endKey, 0);
+
                 if (!change.value.document.getDescendant(range.endKey)) {
                     range = range.collapseToStart();
                 }
@@ -89,6 +94,7 @@ export default {
         } else if (snapshot) {
             change.snapshotSelection();
         }
+
         fragment = fragment.set(
             'nodes',
             fragment.nodes
@@ -99,9 +105,11 @@ export default {
         );
 
         fragment = fragment.mapDescendants(child => child.regenerateKey());
+
         if (fragment.nodes.size === 0) {
             return change;
         }
+
         if (fragment.getTexts().size === 0) {
             return change;
         }
@@ -123,6 +131,7 @@ export default {
                 .getTexts()
                 .findLast(x => change.value.document.getDescendant(x.key));
             change.collapseToEndOf(lastValid);
+
             if (isFocused) {
                 change.focus();
             }
@@ -130,6 +139,7 @@ export default {
             const { selection } = change.value;
             change.select(selection.collapseToStart(), { snapshot: false });
         }
+
         if (normalize) {
             change.normalize();
         }

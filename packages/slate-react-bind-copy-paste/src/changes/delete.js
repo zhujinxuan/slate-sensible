@@ -4,6 +4,7 @@ import type Debug from 'debug';
 import { type Option } from '../type';
 
 export type typeDelete = (Change, options?: Object) => Change;
+
 function deleteAtCurrentRange(opts: Option, debug: Debug) {
     return (change: Change, options?: Object = { snapshot: true }): Change => {
         debug('delete', { change, options });
@@ -13,4 +14,5 @@ function deleteAtCurrentRange(opts: Option, debug: Debug) {
         return change;
     };
 }
+
 export default deleteAtCurrentRange;

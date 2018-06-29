@@ -13,6 +13,7 @@ function insertTextNodesAtRange(
     const endBlock = change.value.document.getClosestBlock(range.endKey);
     let parent = change.value.document.getParent(endBlock.key);
     const parentPath = change.value.document.getPath(parent.key);
+
     if (!range.collapseToEnd().isAtStartOf(endBlock)) {
         change.splitDescendantsByKey(
             endBlock.key,
@@ -20,18 +21,23 @@ function insertTextNodesAtRange(
             range.endOffset,
             { normalize: false }
         );
+
         parent = change.value.document.getDescendantAtPath(parentPath);
         const endText = parent.getNextText(range.endKey);
         range = range.moveFocusToStartOf(endText);
     }
+
     const insertIndex = parent.nodes.indexOf(
         parent.getFurthestAncestor(range.endKey)
     );
+
     change.insertNodeByKey(parent.key, insertIndex, lastNode, {
         normalize: false
     });
+
     parent = change.value.document.getDescendantAtPath(parentPath);
     const blockToRemove = parent.getClosestBlock(range.endKey);
+
     blockToRemove.nodes.forEach((n, index) =>
         change.insertNodeByKey(
             insertBlock.key,
@@ -40,6 +46,7 @@ function insertTextNodesAtRange(
             { normalize: false }
         )
     );
+
     change.removeNodeByKey(blockToRemove.key, { normalize: false });
 }
 
@@ -56,6 +63,7 @@ const insertLastParagraphAsText: typeRule = (
     }
 
     const { lastNodeAsText } = opts;
+
     if (!lastNodeAsText) {
         return next(opts);
     }
@@ -78,20 +86,25 @@ const insertLastParagraphAsText: typeRule = (
         if (voidParent.object === 'block') {
             return rootInsert(change, range, fragment, opts);
         }
+
         range = range.collapseToStartOf(voidParent);
     }
 
     const lastNode = fragment.nodes.last();
+
     if (!isTextBlock(lastNode)) {
         return next(opts);
     }
+
     const insertBlock = getLastBlock(lastNode);
+
     if (!insertBlock) {
         return next(opts);
     }
 
     fragment = fragment.set('nodes', fragment.nodes.pop());
     insertTextNodesAtRange(change, range, lastNode, insertBlock);
+
     if (range.startKey === range.endKey) {
         range = range.collapseToStartOf(insertBlock);
     } else {

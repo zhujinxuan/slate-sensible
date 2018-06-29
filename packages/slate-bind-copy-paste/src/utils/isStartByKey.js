@@ -11,4 +11,5 @@ function isStartByKey(node: Node, key: string): boolean {
     if (firstValid.object === 'text') return false;
     return isStartByKey(firstValid, key);
 }
+
 export default isStartByKey;

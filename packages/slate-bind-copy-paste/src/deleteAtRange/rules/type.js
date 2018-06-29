@@ -1,6 +1,6 @@
 // @flow
 import { Record } from 'immutable';
-import { type Node, type Change, type Range } from 'slate';
+import { type Change, type Range } from 'slate';
 
 class DeleteAtRangeOptions extends Record({
     deleteStartText: false,

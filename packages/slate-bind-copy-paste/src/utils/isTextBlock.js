@@ -7,6 +7,7 @@ function isTextBlock(node: Node): boolean {
     if (node.object !== 'block') {
         return false;
     }
+
     const firstBlock = getFirstBlock(node);
     return !!(
         firstBlock &&
@@ -14,4 +15,5 @@ function isTextBlock(node: Node): boolean {
         !firstBlock.isVoid
     );
 }
+
 export default isTextBlock;

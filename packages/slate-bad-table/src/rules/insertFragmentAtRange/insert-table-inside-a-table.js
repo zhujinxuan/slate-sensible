@@ -12,14 +12,19 @@ function insertTableInsideTable(opts: Options): typeRule {
         if (fragment.nodes.size !== 1) {
             return next(insertOptions);
         }
+
         const { lastNodeAsText, firstNodeAsText } = insertOptions;
+
         if (!lastNodeAsText || !firstNodeAsText) {
             return next(insertOptions);
         }
+
         const fragmentTable = fragment.nodes.last();
+
         if (fragmentTable.type !== opts.typeTable) {
             return next(insertOptions);
         }
+
         const startPosition = EditTablePosition.create({
             node: change.value.document,
             range: range.collapseToStart(),
@@ -62,6 +67,7 @@ function insertTableInsideTable(opts: Options): typeRule {
 
         let middleRows = fragmentTable.nodes;
         let nextTable: Node = table;
+
         if (firstNodeAsText) {
             const fragmentRow = middleRows.first();
             middleRows = middleRows.shift();
@@ -95,6 +101,7 @@ function insertTableInsideTable(opts: Options): typeRule {
                     nextTable.nodes.skip(startPosition.rowIndex + 1)
                 )
         );
+
         change.replaceNodeByKey(nextTable.key, nextTable, { normalize: false });
         return change;
     };

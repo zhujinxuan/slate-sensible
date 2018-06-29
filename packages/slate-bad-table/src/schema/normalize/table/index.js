@@ -25,4 +25,5 @@ function normalize(
         change.unwrapNodeByKey(child.key, { normalize: false });
     }
 }
+
 export default normalize;

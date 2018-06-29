@@ -12,8 +12,10 @@ function getInsertMarksAtRange(node: Node, range: Range): Set<Mark> {
 
     if (range.isCollapsed && startOffset === 0) {
         const startBlock = node.getClosestBlock(startKey);
+
         if (startBlock && startBlock.getFirstText().key === startKey) {
             let previousBlock = node.getPreviousBlock(startBlock.key);
+
             while (
                 previousBlock &&
                 previousBlock.type.indexOf('table') === -1
@@ -23,6 +25,7 @@ function getInsertMarksAtRange(node: Node, range: Range): Set<Mark> {
                         range.collapseToEndOf(previousBlock)
                     );
                 }
+
                 previousBlock = node.getPreviousBlock(previousBlock.key);
             }
         }
@@ -34,20 +37,24 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
     return (change: Change, text: string, marks?: Set<Mark>) => {
         const { value } = change;
         const { document, selection } = value;
+
         marks =
             marks ||
             selection.marks ||
             getInsertMarksAtRange(document, selection);
 
         debug('insertText', { change, text, marks });
+
         change.insertTextByKey(value.startKey, value.startOffset, text, marks, {
             normalize: false
         });
 
         let range = selection.isBackward ? selection.flip() : selection;
+
         if (range.anchorKey === range.focusKey) {
             range = range.moveFocus(text.length);
         }
+
         range = range.moveAnchor(text.length);
 
         if (!range.isCollapsed) {
@@ -60,11 +67,13 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
                 !document.hasVoidParent(startKey) &&
                 startBlock.getFirstText().key === startKey &&
                 endBlock.getFirstText().key === endKey;
+
             if (isHanging) {
                 range = range.moveFocusToEndOf(
                     document.getPreviousBlock(endBlock.key)
                 );
             }
+
             opts.deleteAtRange(change, range, {
                 snapshot: false,
                 normalize: false
@@ -74,6 +83,7 @@ function insertText(opts: Option, debug: Debug): typeInsertText {
         if (!selection.isCollapsed) {
             change.normalize();
         }
+
         // If the text was successfully inserted, and the selection had marks on it,
         // unset the selection's marks.
         if (selection.marks && document != change.value.document) {

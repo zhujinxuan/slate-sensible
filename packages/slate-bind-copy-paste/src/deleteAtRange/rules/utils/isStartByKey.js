@@ -1,2 +1,3 @@
-import isStartByKey from '../../../utils/isStartByKey'
-export default isStartByKey
+import isStartByKey from '../../../utils/isStartByKey';
+
+export default isStartByKey;

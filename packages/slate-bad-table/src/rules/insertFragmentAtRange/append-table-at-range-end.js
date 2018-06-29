@@ -14,6 +14,7 @@ function appendTableAtRangeEnd(opts: Options): typeRule {
         if (fragment.nodes.size === 0) {
             return next(insertOptions);
         }
+
         const fragmentTable = fragment.nodes.last();
 
         if (fragmentTable.type !== opts.typeTable) {
@@ -43,6 +44,7 @@ function appendTableAtRangeEnd(opts: Options): typeRule {
         }
 
         const { table, cellIndex, row } = endPosition;
+
         if (!isSameWidth(table, fragmentTable)) {
             return next(insertOptions);
         }
@@ -72,11 +74,13 @@ function appendTableAtRangeEnd(opts: Options): typeRule {
 
         fragment = fragment.set('nodes', fragment.nodes.pop());
         const prevBlock = document.getPreviousBlock(table.key);
+
         if (!prevBlock) {
             range = range.collapseToStartOf(fragmentTable);
             insertOptions = insertOptions.set('firstNodeAsText', false);
         } else {
             range = range.moveFocusToEndOf(prevBlock);
+
             if (startPosition.isSameTable(endPosition)) {
                 range = range.moveToFocus();
             }
@@ -90,4 +94,5 @@ function appendTableAtRangeEnd(opts: Options): typeRule {
         );
     };
 }
+
 export default appendTableAtRangeEnd;

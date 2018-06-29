@@ -8,6 +8,7 @@ function insertTextNodesAtRange(change, range, nodes) {
     let startBlock = change.value.document.getClosestBlock(range.startKey);
     const blockPath = change.value.document.getPath(startBlock.key);
     const startChild = startBlock.getFurthestAncestor(range.startKey);
+
     if (!range.collapseToStart().isAtStartOf(startChild)) {
         change.splitDescendantsByKey(
             startChild.key,
@@ -15,17 +16,21 @@ function insertTextNodesAtRange(change, range, nodes) {
             range.startOffset,
             { normalize: false }
         );
+
         startBlock = change.value.document.getDescendantAtPath(blockPath);
         const startText = startBlock.getNextText(range.startKey);
+
         if (range.startKey === range.endKey) {
             range = range.collapseToStartOf(startText);
         } else {
             range = range.moveAnchorToStartOf(startText);
         }
     }
+
     const insertIndex = startBlock.nodes.indexOf(
         startBlock.getFurthestAncestor(range.startKey)
     );
+
     nodes.forEach((n, index) =>
         change.insertNodeByKey(startBlock.key, insertIndex + index, n, {
             normalize: false
@@ -47,6 +52,7 @@ const insertFirstParagraphAsText: typeRule = (
     }
 
     const { firstNodeAsText } = opts;
+
     if (!firstNodeAsText) {
         return next(opts);
     }
@@ -58,12 +64,14 @@ const insertFirstParagraphAsText: typeRule = (
     const { document } = change.value;
     const ancestors = document.getAncestors(startKey);
     const voidParent = document.getClosestVoid(startKey);
+
     if (voidParent) {
         const container: Node = ancestors.find(
             (n, index) => voidParent === ancestors.get(index + 1)
         );
 
         const nextText = container.getNextText(voidParent.getLastText().key);
+
         if (!nextText) {
             range = range.collapseToStartOf(voidParent);
         } else if (range.startKey !== range.endKey) {
@@ -71,17 +79,20 @@ const insertFirstParagraphAsText: typeRule = (
         } else {
             range = range.collapseToStartOf(nextText);
         }
+
         if (voidParent.object === 'block') {
             return rootInsert(change, range, fragment, opts);
         }
     }
 
     const firstNode = fragment.nodes.first();
+
     if (!isTextBlock(firstNode)) {
         return next(opts);
     }
 
     const insertBlock = getFirstBlock(firstNode);
+
     if (!insertBlock) {
         return next(opts);
     }

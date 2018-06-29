@@ -10,10 +10,13 @@ function ifEndInCell(opts: Options): typeRule {
         if (!cell) {
             return next(getOpts);
         }
+
         if (cell.getDescendant(startKey)) {
             return next(getOpts);
         }
+
         const prevBlock = node.getPreviousBlock(cell.key);
+
         if (!prevBlock) {
             return rootGetFragment(
                 cell,
@@ -21,6 +24,7 @@ function ifEndInCell(opts: Options): typeRule {
                 getOpts
             );
         }
+
         const prevFragment = rootGetFragment(
             node,
             range.moveFocusToEndOf(prevBlock),

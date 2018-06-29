@@ -15,4 +15,5 @@ function createOnKeyDown(opts: Options): (*, Change) => Change | void {
         return undefined;
     };
 }
+
 export default createOnKeyDown;

@@ -8,13 +8,16 @@ function ifStartInEditCell(opts: Options): typeRule {
         const { startKey, endKey } = range;
 
         const cell = document.getClosestBlock(startKey);
+
         if (!cell || cell.type !== opts.typeCell) {
             return next(removeOptions);
         }
+
         const ancestors = document.getAncestors(startKey);
         const cellAncestorIndex = ancestors.indexOf(cell);
 
         const table = ancestors.get(cellAncestorIndex - 2);
+
         if (table.hasDescendant(endKey)) {
             return next(removeOptions);
         }
@@ -26,6 +29,7 @@ function ifStartInEditCell(opts: Options): typeRule {
         );
 
         const nextBlock = document.getNextBlock(table.key);
+
         if (nextBlock) {
             rootDelete(
                 change,

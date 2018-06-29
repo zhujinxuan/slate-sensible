@@ -11,6 +11,7 @@ import ifEndInEditTable from './ifEndInEditTable';
 import ifInSameEditTable from './ifInSameEditTable';
 
 const { atDifferentText, atSameText } = plugin.rules;
+
 function makeRules(opts: Options): Array<typeRule> {
     return [
         ifStartInCell(opts),

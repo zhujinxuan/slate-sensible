@@ -4,6 +4,7 @@ import { type typeRule } from './type';
 const deleteAtSameText: typeRule = (rootDelete, change, range, opts, next) => {
     const { deleteStartText, deleteEndText } = opts;
     const { startKey, startOffset, endKey, endOffset } = range;
+
     if (startKey !== endKey) {
         return next(opts);
     }
@@ -35,6 +36,7 @@ const deleteAtSameText: typeRule = (rootDelete, change, range, opts, next) => {
             change.removeNodeByKey(removalKey, { normalize: false });
             return change;
         }
+
         change.removeTextByKey(startKey, startOffset, endOffset - startOffset, {
             normalize: false
         });
@@ -46,6 +48,7 @@ const deleteAtSameText: typeRule = (rootDelete, change, range, opts, next) => {
             change.removeNodeByKey(voidParent.key, { normalize: false });
             return change;
         }
+
         change.replaceNodeByKey(voidParent.key, startText, {
             normalize: false
         });
@@ -66,4 +69,5 @@ const deleteAtSameText: typeRule = (rootDelete, change, range, opts, next) => {
     change.removeNodeByKey(voidParent.key, { normalize: false });
     return change;
 };
+
 export default deleteAtSameText;

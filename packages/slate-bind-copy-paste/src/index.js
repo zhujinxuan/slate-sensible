@@ -6,8 +6,8 @@ import deleteAtRange from './deleteAtRange/index';
 import isTextBlock from './utils/isTextBlock';
 import getFirstBlock from './utils/getFirstBlock';
 import getLastBlock from './utils/getLastBlock';
-import isStartByKey from './utils/isStartByKey'
-import isEndByKey from './utils/isEndByKey'
+import isStartByKey from './utils/isStartByKey';
+import isEndByKey from './utils/isEndByKey';
 import {
     type DeleteAtRangeOptions,
     type typeRule as typeDeleteAtRangeRule

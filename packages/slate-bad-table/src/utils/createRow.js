@@ -13,4 +13,5 @@ function createRow(position: BadTablePosition): Block {
             .map(() => createCell(position))
     });
 }
+
 export default createRow;

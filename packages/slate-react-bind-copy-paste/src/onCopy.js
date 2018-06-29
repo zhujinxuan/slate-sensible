@@ -17,6 +17,7 @@ function onCopy(opts: Option, debug: Debug) {
         const fragment = opts.getFragmentAtRange(document, selection);
         if (!fragment) return undefined;
         const { htmlSerializer } = opts;
+
         if (htmlSerializer) {
             event.clipboardData.setData(
                 'text/html',
@@ -25,9 +26,11 @@ function onCopy(opts: Option, debug: Debug) {
         } else {
             cloneFragment(event, value, fragment);
         }
+
         event.preventDefault();
 
         return true;
     };
 }
+
 export default onCopy;

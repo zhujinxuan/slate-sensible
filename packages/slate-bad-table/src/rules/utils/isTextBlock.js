@@ -8,15 +8,19 @@ function isTextBlock(opts: Options, node: Node) {
     if (node.object !== 'block') {
         return true;
     }
+
     if (node.type === opts.typeParagraph) {
         return true;
     }
+
     if (node.type === opts.typeTable) {
         return false;
     }
+
     if (node.type === opts.typeBadTable) {
         return false;
     }
     return getFirstBlock(node) === getLastBlock(node);
 }
+
 export default isTextBlock;

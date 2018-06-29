@@ -7,6 +7,7 @@ function insertUnknownInDifferentCells(opts: Options): typeRule {
         if (fragment.nodes.size === 0) {
             return next(insertOptions);
         }
+
         const { document } = change.value;
         const { startKey, endKey } = range;
         const startCell = document.getClosestBlock(startKey);
@@ -30,4 +31,5 @@ function insertUnknownInDifferentCells(opts: Options): typeRule {
         );
     };
 }
+
 export default insertUnknownInDifferentCells;
