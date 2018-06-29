@@ -30,16 +30,16 @@ Consider a slate text like
 
 The plugin options are an object of
 
--  `mentions : Array<{name: string}>` (necessary)
+- `mentions : Array<{name: string}>` (necessary)
 
 An array of mentions, in each mention object, a name property is necessary as the string for mention replacement.
 
--  `beforeMatchRegex: RegExp` (optional)
+- `beforeMatchRegex: RegExp` (optional)
 
 The pattern matches the text between the mention triggering char and the cursor. In this case, it shall matches `$ To`
 By default, this pattern will consider `{$` and `@` as mention triggering char.
 
--  `afterMatchRegex: RegexExp` (optional)
+- `afterMatchRegex: RegexExp` (optional)
 
 The pattern matches the text between the cursor and mention ending char in text context. If no match is found, it will use
 the editing text ending in the cursor position to match the mention.
