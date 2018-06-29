@@ -1,6 +1,6 @@
 # slate-poor-mentions
 
-Mentions plugin for SlateJS.
+Mentions plugin for SlateJS. You can have a try by pressing `@` at this repo [demo](https://zhujinxuan.github.io/slate-sensible/).
 
 ![slate-poor-mentions](https://user-images.githubusercontent.com/746159/42059094-5a7392b8-7af0-11e8-8a11-650043a0de86.png)
 
@@ -28,7 +28,30 @@ Consider a slate text like
 
 The plugin options are an object of
 
-1.  `mentions : Array<{name: string}>`, the name property is the string for mention replacement.
+1.  `mentions : Array<{name: string}>` (necessary)
+
+An array of mentions, in each mention object, a name property is necessary as the string for mention replacement.
+
+2.  `beforeMatchRegex: RegExp` (optional)
+
+The pattern matches the text between the mention triggering char and the cursor. In this case, it shall matches `$ To`
+By default, this pattern will consider `{$` and `@` as mention triggering char.
+
+3.  `afterMatchRegex: RegexExp` (optional)
+
+The pattern matches the text between the cursor and mention ending char in text context. In this case, it shall matches
+
+By default, this pattern will match `}`
+
+4.  `getText: string => string` (optional)
+
+Triming the mention triggering and ending chars to compare the editing text with mention texts.
+
+By default, the getText will remove all chars not in alpha-beta and numbers in the double ends.
+
+5.  `MentionItemChild: React.Component<Mention>` (optional)
+
+By default, it is only `<span>{mention.name}</span>`
 
 ## Styling
 
