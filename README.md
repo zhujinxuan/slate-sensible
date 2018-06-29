@@ -1,9 +1,9 @@
-# Slate-Sensible
+# slate-sensible
 
 [![codecov](https://codecov.io/gh/zhujinxuan/slate-sensible/branch/master/graph/badge.svg)](https://codecov.io/gh/zhujinxuan/slate-sensible)
 [![Build Status](https://travis-ci.org/zhujinxuan/slate-sensible.svg?branch=master)](https://travis-ci.org/zhujinxuan/slate-sensible)
 
-Slate-Sensible is a collection of [my](https://github.com/zhujinxuan) slate plugins about sensible adjustment, bug fixes, and editing features.
+This repo is a collection of [my](https://github.com/zhujinxuan) slate plugins about sensible adjustment, bug fixes, and editing features.
 
 ## Sensible Adjustment and bug fixes
 
