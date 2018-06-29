@@ -1,4 +1,5 @@
 // @flow
+/* global window */
 
 type Position = {
     left: string,

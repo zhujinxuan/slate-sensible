@@ -11,21 +11,26 @@ function createOnKeyDown(updater: InterfaceUpdater) {
         if (!updater.isActive()) {
             return undefined;
         }
+
         if (isHotkey('down', event)) {
             event.preventDefault();
             updater.next();
             return true;
         }
+
         if (isHotkey('up', event)) {
             event.preventDefault();
             updater.previous();
             return true;
         }
+
         if (isHotkey('enter', event)) {
             const changeHOF = updater.changeHOF();
+
             if (!changeHOF) {
                 return undefined;
             }
+
             event.preventDefault();
             changeHOF(change);
             return true;
@@ -33,4 +38,5 @@ function createOnKeyDown(updater: InterfaceUpdater) {
         return undefined;
     };
 }
+
 export default createOnKeyDown;

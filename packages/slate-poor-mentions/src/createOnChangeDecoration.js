@@ -33,6 +33,7 @@ function createOnChangeDecoration(
 ) {
     return (change: Change): void => {
         if (!updater.isActive) return;
+
         if (!updater.isActive()) {
             const { decorations } = change.value;
             if (!decorations) return;
@@ -40,12 +41,14 @@ function createOnChangeDecoration(
                 x => !x.marks || !x.marks.find(m => m.type === decoMark.type)
             );
             if (nextDecorations.size === decorations.size) return;
+
             change
                 .setOperationFlag('save', false)
                 .setValue({ decorations: nextDecorations })
                 .setOperationFlag('save', true);
             return;
         }
+
         const { value } = change;
 
         const range = halfClosedFindMention(
@@ -60,6 +63,7 @@ function createOnChangeDecoration(
                 x => !x.marks || !x.marks.find(m => m.type === decoMark.type)
             );
             if (nextDecorations.size === value.decorations.size) return;
+
             change
                 .setOperationFlag('save', false)
                 .setValue({ decorations: nextDecorations })
@@ -88,6 +92,7 @@ function createOnChangeDecoration(
                     r.endOffset === range.endOffset
             );
             if (found) return;
+
             decorations = value.decorations
                 .filter(
                     r =>
@@ -103,4 +108,5 @@ function createOnChangeDecoration(
             .setOperationFlag('save', true);
     };
 }
+
 export default createOnChangeDecoration;

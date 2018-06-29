@@ -19,4 +19,5 @@ function createRenderMark(
         return <span className={className}>{props.children}</span>;
     };
 }
+
 export default createRenderMark;

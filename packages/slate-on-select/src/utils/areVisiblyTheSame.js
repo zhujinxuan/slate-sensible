@@ -6,6 +6,7 @@ function areVisiblyTheSame(node: Node, range1: Range, range2: Range): boolean {
     if (range1.isCollapsed && range2.isCollapsed) {
         return areVisiblyCollapsedTheSame(node, range1, range2);
     }
+
     if (range1.isCollapsed !== range2.isCollapsed) return false;
     if (
         !areVisiblyCollapsedTheSame(
@@ -36,12 +37,15 @@ function areVisiblyCollapsedTheSame(
     if (endOffset === 0 && startOffset !== 0)
         return areVisiblyCollapsedTheSame(node, range2, range1);
     if (startOffset !== 0) return false;
+
     if (node.getClosestBlock(startKey) !== node.getClosestBlock(endKey)) {
         return false;
     }
+
     const endText = node.getDescendant(endKey);
     if (endOffset !== endText.text.length) return false;
     let previousText = node.getPreviousText(startKey);
+
     while (
         previousText &&
         previousText.key !== endKey &&

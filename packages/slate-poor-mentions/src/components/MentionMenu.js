@@ -1,5 +1,5 @@
 // @flow
-
+/* global window */
 import React from 'react';
 import { findDOMRange } from 'slate-react';
 import { type Value, type Change } from 'slate';
@@ -82,9 +82,11 @@ class MentionMenu<T: { name: string }> extends Component<Props<T>, State> {
     confirmMention = () => {
         const { changeHOF, submitChange } = this.props;
         const toChange = changeHOF();
+
         if (!toChange) {
             return;
         }
+
         submitChange(toChange);
     };
 

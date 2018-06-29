@@ -1,7 +1,13 @@
-import './js-dom-helper';
+/**
+ * @jest-environment jsdom
+ */
+
+/* global window */
+
 import findBestPosition from '../find-best-position';
 
-window.resizeTo(1024, 768);
+window.innerWidth = 1024;
+window.innerHeight = 768;
 
 function createRect(rect) {
     let { left, right, top, bottom } = rect;
@@ -25,6 +31,11 @@ function createRect(rect) {
 
 describe('find-best-position', () => {
     const parentRect = { left: 100, top: 20 };
+
+    it('window-size', () => {
+        expect(window.innerWidth).toBe(1024);
+        expect(window.innerHeight).toBe(768);
+    });
 
     it('left-top', () => {
         const selectionRect = createRect({ left: 110, bottom: 40 });
