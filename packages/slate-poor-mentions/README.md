@@ -30,29 +30,29 @@ Consider a slate text like
 
 The plugin options are an object of
 
-1.  `mentions : Array<{name: string}>` (necessary)
+- `mentions : Array<{name: string}>` (necessary)
 
 An array of mentions, in each mention object, a name property is necessary as the string for mention replacement.
 
-2.  `beforeMatchRegex: RegExp` (optional)
+- `beforeMatchRegex: RegExp` (optional)
 
 The pattern matches the text between the mention triggering char and the cursor. In this case, it shall matches `$ To`
 By default, this pattern will consider `{$` and `@` as mention triggering char.
 
-3.  `afterMatchRegex: RegexExp` (optional)
+- `afterMatchRegex: RegexExp` (optional)
 
 The pattern matches the text between the cursor and mention ending char in text context. If no match is found, it will use
 the editing text ending in the cursor position to match the mention.
 
 By default, this pattern will match `}`
 
-4.  `getText: string => string` (optional)
+- `getText: string => string` (optional)
 
 Triming the mention triggering and ending chars to compare the editing text with mention texts.
 
 By default, the getText will remove all chars not in alpha-beta and numbers in the double ends.
 
-5.  `MentionItemChild: React.Component<{mention: Mention, text: string}>` (optional)
+- `MentionItemChild: React.Component<{mention: Mention, text: string}>` (optional)
 
 Render the mention items with a customized component. The props is a object containing two properties:
 

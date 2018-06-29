@@ -1,0 +1,24 @@
+{
+  "name": "slate-bad-table",
+  "description": "An ugly solution for nested table in Slate",
+  "version": "0.1.2",
+  "main": "lib/slate-bad-table.js",
+  "module": "lib/slate-bad-table.es.js",
+  "umd": "dist/slate-bad-table.js",
+  "umdMin": "dist/slate-bad-table.min.js",
+  "author": "zhujinxuan <zhujinxuan@gmail.com>",
+  "license": "MIT",
+  "repository": "git://github.com/zhujinxuan/slate-sensible.git",
+  "scripts": {
+    "build:flow": "flow-copy-source -v ./src/ ./lib/"
+  },
+  "keywords": [
+    "slate"
+  ],
+  "peerDependencies": {
+    "immutable": ">=3.8.2",
+    "is-hotkey": "^0.1.1",
+    "slate": ">=0.33.0",
+    "slate-bind-copy-paste": "*"
+  }
+}

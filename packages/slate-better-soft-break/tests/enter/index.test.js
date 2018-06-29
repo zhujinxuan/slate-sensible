@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import fs from 'fs';
 import path from 'path';
 import assert from 'assert';
 import Simulator from 'slate-simulator';
-import createSoftBreakPlugin from '../../src/';
+import createSoftBreakPlugin from 'slate-better-soft-break';
 
 const ignoreWhen = (event, value) => {
     const { startOffset, startText, startBlock } = value;
@@ -19,6 +20,7 @@ const plugin = createSoftBreakPlugin({
 });
 
 const plugins = [plugin];
+
 describe('slate-better-soft-break', () => {
     const tests = fs.readdirSync(__dirname);
 

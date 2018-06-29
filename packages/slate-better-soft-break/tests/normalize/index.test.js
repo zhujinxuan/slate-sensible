@@ -1,8 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import fs from 'fs';
 import path from 'path';
 import assert from 'assert';
 import { Schema } from 'slate';
-import createSoftBreakPlugin from '../../src/';
+import createSoftBreakPlugin from 'slate-better-soft-break';
 
 const plugin = createSoftBreakPlugin({
     softBreakIn: ['code', 'cell']
