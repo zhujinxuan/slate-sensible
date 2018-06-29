@@ -26,7 +26,7 @@ function onPaste(opts: Option, changes: Changes, debug: Debug) {
         let fragment;
 
         if (transfer.type === 'fragment') {
-            fragment = transfer.fragment;
+            ({ fragment } = transfer);
         } else if (htmlSerializer && transfer.type === 'html') {
             const result = htmlSerializer.deserialize(transfer.html);
             fragment = result.document ? result.document : result;
