@@ -20,14 +20,14 @@ export const input = (
         <document>
             <table>
                 <tr>
-                    <td>Col 0, Row 0</td>
+                    <td>
+                        <cursor />Col 0, Row 0
+                    </td>
                     <td>Col 1, Row 0</td>
                     <td>Col 2, Row 0</td>
                 </tr>
                 <tr>
-                    <td>
-                        <cursor />Col 0, Row 1
-                    </td>
+                    <td>Col 0, Row 1</td>
                     <td>Col 1, Row 1</td>
                     <td>Col 2, Row 1</td>
                 </tr>
@@ -46,11 +46,16 @@ export const expected = (
         <document>
             <table>
                 <tr>
+                    <td />
+                    <td />
+                    <td>
+                        <cursor />
+                    </td>
+                </tr>
+                <tr>
                     <td>Col 0, Row 0</td>
                     <td>Col 1, Row 0</td>
-                    <td>
-                        <anchor />Col 2, Row 0<focus />
-                    </td>
+                    <td>Col 2, Row 0</td>
                 </tr>
                 <tr>
                     <td>Col 0, Row 1</td>
