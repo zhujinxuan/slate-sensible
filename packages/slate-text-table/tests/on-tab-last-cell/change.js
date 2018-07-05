@@ -1,9 +1,8 @@
-import expect from 'expect';
+/** @jsx h */
+
+import h from '../h';
 
 export default function(plugin, change) {
-    const cursorBlock = change.value.document.getDescendant('_cursor_');
-    change.moveToRangeOf(cursorBlock);
-
     plugin.onKeyDown(
         {
             key: 'Tab',
@@ -12,13 +11,62 @@ export default function(plugin, change) {
         },
         change
     );
-
-    const position = plugin.utils.getPosition(change.value);
-
-    // Last row (new one)
-    expect(position.getRowIndex()).toEqual(2);
-    // First cell
-    expect(position.getColumnIndex()).toEqual(0);
-
     return change;
 }
+
+export const input = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Col 0, Row 0</td>
+                    <td>Col 1, Row 0</td>
+                    <td>Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 1</td>
+                    <td>Col 1, Row 1</td>
+                    <td>Col 2, Row 1</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 2</td>
+                    <td>Col 1, Row 2</td>
+                    <td>
+                        <cursor />Col 2, Row 2
+                    </td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Col 0, Row 0</td>
+                    <td>Col 1, Row 0</td>
+                    <td>Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 1</td>
+                    <td>Col 1, Row 1</td>
+                    <td>Col 2, Row 1</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 2</td>
+                    <td>Col 1, Row 2</td>
+                    <td>Col 2, Row 2</td>
+                </tr>
+                <tr>
+                    <td>
+                        <cursor />
+                    </td>
+                    <td />
+                    <td />
+                </tr>
+            </table>
+        </document>
+    </value>
+);
