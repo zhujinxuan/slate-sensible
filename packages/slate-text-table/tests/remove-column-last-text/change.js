@@ -9,7 +9,7 @@ export default function(plugin, change) {
 export const input = (
     <value>
         <document>
-            <table presetAlign={['left', 'left', 'left']}>
+            <table presetAlign={['left']}>
                 <tr>
                     <td textAlign="left">
                         <cursor />
@@ -30,7 +30,7 @@ export const input = (
 export const expected = (
     <value>
         <document>
-            <table presetAlign={['left', 'left', 'left']}>
+            <table presetAlign={['left']}>
                 <tr>
                     <td textAlign="left">
                         <cursor />
