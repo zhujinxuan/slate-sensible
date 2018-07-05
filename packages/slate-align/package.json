@@ -2,10 +2,10 @@
   "name": "slate-align",
   "version": "0.1.2",
   "description": "Provides align for slate editor",
-  "main": "lib/slate-delete-one-line.js",
-  "module": "lib/slate-delete-one-line.es.js",
-  "umd": "dist/slate-delete-one-line.js",
-  "umdMin": "dist/slate-delete-one-line.min.js",
+  "main": "lib/slate-align.js",
+  "module": "lib/slate-align.es.js",
+  "umd": "dist/slate-align.js",
+  "umdMin": "dist/slate-align.min.js",
   "files": [
     "dist/",
     "lib/"
