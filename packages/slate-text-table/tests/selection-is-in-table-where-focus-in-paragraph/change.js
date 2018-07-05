@@ -3,7 +3,7 @@
 import h from '../h';
 
 export default function(plugin, change) {
-    expect(plugin.utils.isSelectionInTable(change.value)).toBe(true);
+    expect(plugin.utils.isSelectionInTable(change.value)).toBe(false);
 }
 
 export const input = (
@@ -12,10 +12,13 @@ export const input = (
             <table>
                 <tr>
                     <td>
-                        <cursor />
+                        <anchor />
                     </td>
                 </tr>
             </table>
+            <paragraph>
+                <focus />
+            </paragraph>
         </document>
     </value>
 );

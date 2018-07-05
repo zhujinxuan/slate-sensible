@@ -12,7 +12,12 @@ export const input = (
             <table>
                 <tr>
                     <td>
-                        <cursor />
+                        <anchor />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <focus />
                     </td>
                 </tr>
             </table>
