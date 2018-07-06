@@ -1,3 +1,7 @@
 [options]
 emoji=true
 esproposal.decorators=ignore
+module.name_mapper='^slate-poor-mentions' ->'<PROJECT_ROOT>/packages/slate-poor-mentions/src'
+module.name_mapper='^slate-bind-copy-paste' ->'<PROJECT_ROOT>/packages/slate-bind-copy-paste/src'
+[ignore]
+<PROJECT_ROOT>/packages/slate.*/lib/.*

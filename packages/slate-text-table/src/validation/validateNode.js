@@ -1,19 +1,13 @@
 // @flow
-import { Block, Text, type Change, type Node } from 'slate';
+import { Block, Text, type Node } from 'slate';
 import { Range, List } from 'immutable';
 
 import { createAlign } from '../utils';
 import type Options from '../options';
 
-type Normalizer = Change => any;
-type Validator = Node => void | Normalizer;
-
-// Old format for Slate rules
-type Rule = {
-    match: Node => boolean,
-    validate: Node => any,
-    normalize: (Change, Node, any) => Normalizer
-};
+import type { Validator, Rule } from './types';
+import noBlocksWithinCell from './rules/no-blocks-within-cell';
+import cellsWithinTable from './rules/cells-within-table';
 
 /**
  * Returns a validateNode function, handling validation specific to tables that
@@ -56,78 +50,6 @@ function toValidateNode(rule: Rule): Validator {
         }
 
         return change => rule.normalize(change, node, validationResult);
-    };
-}
-
-/**
- * Rule to enforce cells only contain inlines or text.
- * It unwrap blocks in cell blocks
- */
-function noBlocksWithinCell(opts: Options): Rule {
-    return {
-        match(node) {
-            return node.object == 'block' && node.type == opts.typeCell;
-        },
-
-        // Find nested blocks
-        validate(node) {
-            const nestedBlocks = node.nodes.filter(
-                child => child.object === 'block'
-            );
-
-            return nestedBlocks.size > 0 ? nestedBlocks : null;
-        },
-
-        // If any, unwrap all nested blocks
-        normalize(change, node, nestedBlocks: Node[]) {
-            nestedBlocks.forEach(block =>
-                block.nodes.forEach(grandChild => {
-                    change.unwrapNodeByKey(grandChild.key, {
-                        normalize: false
-                    });
-                })
-            );
-
-            return change;
-        }
-    };
-}
-
-/**
- * Rule to enforce cells are always surrounded by a row.
- */
-function cellsWithinTable(opts: Options): Rule {
-    return {
-        match(node) {
-            return (
-                (node.object === 'document' || node.object === 'block') &&
-                node.type !== opts.typeRow
-            );
-        },
-
-        // Find child cells nodes not in a row
-        validate(node) {
-            const cells = node.nodes.filter(n => n.type === opts.typeCell);
-
-            if (cells.isEmpty()) {
-                return undefined;
-            }
-
-            return {
-                cells
-            };
-        },
-
-        // If any, wrap all cells in a row block
-        normalize(change, node, { cells }: { cells: Node[] }) {
-            cells.forEach(cell =>
-                change.wrapBlockByKey(cell.key, opts.typeRow, {
-                    normalize: false
-                })
-            );
-
-            return change;
-        }
     };
 }
 
