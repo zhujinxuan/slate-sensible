@@ -48,7 +48,10 @@ describe('slate-text-table', () => {
                 if (objectExpected) expected = deserializeValue(objectExpected);
             }
 
-            const newChange = runChange(PLUGIN, input.change());
+            const newChange = runChange(
+                PLUGIN,
+                input.change().setValue({ schema: SCHEMA })
+            );
 
             if (expected) {
                 const newDocJSon = newChange.value.toJSON(opts);

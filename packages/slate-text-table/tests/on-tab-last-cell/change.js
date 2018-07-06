@@ -17,22 +17,22 @@ export default function(plugin, change) {
 export const input = (
     <value>
         <document>
-            <table>
+            <table presetAlign={['left', 'left', 'left']}>
                 <tr>
-                    <td>Col 0, Row 0</td>
-                    <td>Col 1, Row 0</td>
-                    <td>Col 2, Row 0</td>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
                 </tr>
                 <tr>
-                    <td>Col 0, Row 1</td>
-                    <td>Col 1, Row 1</td>
-                    <td>Col 2, Row 1</td>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">Col 1, Row 1</td>
+                    <td textAlign="left">Col 2, Row 1</td>
                 </tr>
                 <tr>
-                    <td>Col 0, Row 2</td>
-                    <td>Col 1, Row 2</td>
-                    <td>
-                        <cursor />Col 2, Row 2
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">Col 1, Row 1</td>
+                    <td textAlign="left">
+                        <cursor />Col 2, Row 1
                     </td>
                 </tr>
             </table>
@@ -43,28 +43,30 @@ export const input = (
 export const expected = (
     <value>
         <document>
-            <table>
+            <table presetAlign={['left', 'left', 'left']}>
                 <tr>
-                    <td>Col 0, Row 0</td>
-                    <td>Col 1, Row 0</td>
-                    <td>Col 2, Row 0</td>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
                 </tr>
                 <tr>
-                    <td>Col 0, Row 1</td>
-                    <td>Col 1, Row 1</td>
-                    <td>Col 2, Row 1</td>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">Col 1, Row 1</td>
+                    <td textAlign="left">Col 2, Row 1</td>
                 </tr>
                 <tr>
-                    <td>Col 0, Row 2</td>
-                    <td>Col 1, Row 2</td>
-                    <td>Col 2, Row 2</td>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">Col 1, Row 1</td>
+                    <td textAlign="left">
+                        <cursor />Col 2, Row 1
+                    </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td textAlign="left">
                         <cursor />
                     </td>
-                    <td />
-                    <td />
+                    <td textAlign="left" />
+                    <td textAlign="left" />
                 </tr>
             </table>
         </document>

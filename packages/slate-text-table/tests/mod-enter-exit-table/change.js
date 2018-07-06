@@ -18,18 +18,18 @@ export default function(plugin, change) {
 export const input = (
     <value>
         <document>
-            <table>
+            <table presetAlign={['left', 'left', 'left']}>
                 <tr>
-                    <td>Col 0, Row 0</td>
-                    <td>Col 1, Row 0</td>
-                    <td>Col 2, Row 0</td>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
                 </tr>
                 <tr>
-                    <td>Col 0, Row 1</td>
-                    <td>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">
                         <cursor />Col 1, Row 1
                     </td>
-                    <td>Col 2, Row 1</td>
+                    <td textAlign="left">Col 2, Row 1</td>
                 </tr>
             </table>
         </document>
@@ -39,16 +39,16 @@ export const input = (
 export const expected = (
     <value>
         <document>
-            <table>
+            <table presetAlign={['left', 'left', 'left']}>
                 <tr>
-                    <td>Col 0, Row 0</td>
-                    <td>Col 1, Row 0</td>
-                    <td>Col 2, Row 0</td>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
                 </tr>
                 <tr>
-                    <td>Col 0, Row 1</td>
-                    <td>Col 1, Row 1</td>
-                    <td>Col 2, Row 1</td>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">Col 1, Row 1</td>
+                    <td textAlign="left">Col 2, Row 1</td>
                 </tr>
             </table>
             <paragraph>
