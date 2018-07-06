@@ -8,6 +8,7 @@ export default function(plugin, change) {
 export const input = (
     <value>
         <document>
+            <paragraph>Before</paragraph>
             <table>No Rows</table>
         </document>
     </value>
@@ -16,6 +17,7 @@ export const input = (
 export const expected = (
     <value>
         <document>
+            <paragraph>Before</paragraph>
             <table presetAlign={['left']}>
                 <tr>
                     <td />
