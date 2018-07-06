@@ -1,7 +1,10 @@
 // @flow
 import { type Change, Range } from 'slate';
 import Debug from 'debug';
-import { DeleteAtRangeOptions, type typeRule } from './rules/type';
+import defaultOptions, {
+    type DeleteAtRangeOptions,
+    type typeRule
+} from './rules/type';
 import atWholeDocument from './rules/atWholeDocument';
 import atDifferentText from './rules/atDifferentText';
 import atSameText from './rules/atSameText';
@@ -68,7 +71,7 @@ export default {
             0,
             change,
             range,
-            new DeleteAtRangeOptions({ deleteStartText, deleteEndText })
+            defaultOptions.merge({ deleteStartText, deleteEndText })
         );
 
         if (normalize) {

@@ -1,7 +1,7 @@
 // @flow
 import { insertFragmentAtRange as plugin } from 'slate-bind-copy-paste';
 import { type Change, type Range, type Document } from 'slate';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 
 import appendTableAtRangeEnd from './append-table-at-range-end';

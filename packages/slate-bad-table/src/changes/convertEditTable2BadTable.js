@@ -1,7 +1,7 @@
 // @flow
 import { type Change, type Node, type Range, Block } from 'slate';
 import { List } from 'immutable';
-import type Options from '../options';
+import type { Options } from '../options';
 
 function convertEditTable2BadTable(
     opts: Options,

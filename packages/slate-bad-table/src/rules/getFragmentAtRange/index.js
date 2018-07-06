@@ -2,7 +2,7 @@
 import { getFragmentAtRange as plugin } from 'slate-bind-copy-paste';
 import { type Change, type Range, type Document } from 'slate';
 import { type typeRule } from './type';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import ifInSameCell from './ifInSameCell';
 import ifEndInCell from './ifEndInCell';
 import ifStartInCell from './ifStartInCell';

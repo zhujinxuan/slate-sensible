@@ -3,7 +3,7 @@ import { type Node } from 'slate';
 import isSameWidth from './utils/isSameWidth';
 import pasteSingleRow from './utils/pasteSingleRow';
 import EditTablePosition from '../../utils/EditTablePosition';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 
 // Only when firstNodeAsText === true && lastNodeAsText === true && fragment.nodes only includes a table with same width

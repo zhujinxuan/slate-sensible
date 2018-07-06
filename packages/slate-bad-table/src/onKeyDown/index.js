@@ -1,7 +1,7 @@
 // @flow
 import { type Change } from 'slate';
 import isHotKey from 'is-hotkey';
-import type Options from '../options';
+import type { Options } from '../options';
 import backspace from './backspace';
 
 function createOnKeyDown(opts: Options): (*, Change) => Change | void {

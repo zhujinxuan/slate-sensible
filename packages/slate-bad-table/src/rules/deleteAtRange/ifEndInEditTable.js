@@ -1,5 +1,5 @@
 // @flow
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 
 function ifEndInEditTable(opts: Options): typeRule {

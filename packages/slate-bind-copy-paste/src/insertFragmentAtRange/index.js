@@ -1,7 +1,11 @@
 // @flow
+
 import { type Change, Range, type Document } from 'slate';
 import Debug from 'debug';
-import { InsertAtRangeOptions, type typeRule } from './rules/type';
+import defaultOptions, {
+    type InsertAtRangeOptions,
+    type typeRule
+} from './rules/type';
 import firstParagraphAsText from './rules/firstParagraphAsText';
 import lastParagraphAsText from './rules/lastParagraphAsText';
 import nodesAsBlocks from './rules/nodesAsBlocks';
@@ -44,6 +48,7 @@ const deleteAtRangeDefault = deleteAtRangeGenerator.generate();
 type typeGenerateOptions = {
     deleteAtRange?: (Change, Range, Object) => *
 };
+
 export default {
     rules: {
         firstParagraphAsText,
@@ -120,7 +125,7 @@ export default {
             change,
             range,
             fragment,
-            new InsertAtRangeOptions({
+            defaultOptions.merge({
                 lastNodeAsText,
                 firstNodeAsText
             })

@@ -1,6 +1,6 @@
 // @flow
 import { type typeRule } from './type';
-import type Options from '../../options';
+import type { Options } from '../../options';
 
 function ifEndInCell(opts: Options): typeRule {
     return (rootGetFragment, node, range, getOpts, next) => {

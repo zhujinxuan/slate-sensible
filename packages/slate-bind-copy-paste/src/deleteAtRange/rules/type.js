@@ -1,16 +1,11 @@
 // @flow
-import { Record } from 'immutable';
+import { Record, type RecordOf } from 'immutable';
 import { type Change, type Range } from 'slate';
 
-class DeleteAtRangeOptions extends Record({
-    deleteStartText: false,
-    deleteEndText: true
-}) {
-    deleteStartText: boolean;
-    deleteEndText: boolean;
-    merge: Object => DeleteAtRangeOptions;
-    set: (string, *) => DeleteAtRangeOptions;
-}
+export type DeleteAtRangeOptions = RecordOf<{
+    deleteStartText: boolean,
+    deleteEndText: boolean
+}>;
 
 export type typeRule = (
     (Change, Range, DeleteAtRangeOptions) => Change,
@@ -20,4 +15,9 @@ export type typeRule = (
     (DeleteAtRangeOptions) => Change
 ) => Change;
 
-export { DeleteAtRangeOptions };
+const defaultOptions: DeleteAtRangeOptions = Record({
+    deleteStartText: false,
+    deleteEndText: true
+})();
+
+export default defaultOptions;

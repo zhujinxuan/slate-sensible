@@ -2,7 +2,7 @@
 import { Record, List } from 'immutable';
 import { type Node, Block, Range } from 'slate';
 
-import type Options from '../options';
+import type { Options } from '../options';
 
 type typeAttrs = {
     node: Node,

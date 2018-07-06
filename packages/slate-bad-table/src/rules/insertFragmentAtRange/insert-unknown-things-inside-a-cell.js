@@ -2,7 +2,7 @@
 import { isTextBlock, getFirstBlock } from 'slate-bind-copy-paste';
 import { Text } from 'slate';
 import { List } from 'immutable';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 
 function insertUnknownInSameCell(opts: Options): typeRule {
@@ -55,7 +55,11 @@ function insertUnknownInSameCell(opts: Options): typeRule {
         let insertNodes = List.of();
 
         fragment.nodes.forEach(n => {
-            insertNodes = insertNodes.concat(getFirstBlock(n).nodes);
+            const firstBlock = getFirstBlock(n);
+
+            if (firstBlock) {
+                insertNodes = insertNodes.concat(firstBlock.nodes);
+            }
 
             if (n !== fragment.nodes.last()) {
                 insertNodes = insertNodes.push(Text.create('\n'));

@@ -1,5 +1,5 @@
 // @flow
-import type Options from '../options';
+import type { Options } from '../options';
 import createNormalizer from './normalize/index';
 
 function createSchema(opts: Options): Object {
