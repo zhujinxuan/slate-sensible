@@ -19,7 +19,7 @@ const defaultOpts: typeOpts = {
 };
 class Options extends Record(defaultOpts) {
     softBreakIn: Array<string>;
-    shfitIn: Array<string>;
+    shiftIn: Array<string>;
     ignoreWhen: (event: SyntheticKeyboardEvent<*>, value: Value) => boolean;
     deleteAtRange: (Change, Range, options?: Object) => Change;
 }
