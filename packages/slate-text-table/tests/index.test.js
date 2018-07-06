@@ -4,21 +4,18 @@
 
 import fs from 'fs';
 import path from 'path';
-import Slate from 'slate';
+import { Schema, Value } from 'slate';
 import readMetadata from 'read-metadata';
 import EditTable from 'slate-text-table';
 
 const PLUGIN = EditTable();
 
-const SCHEMA = Slate.Schema.create({
+const SCHEMA = Schema.create({
     plugins: [PLUGIN]
 });
 
 function deserializeValue(json) {
-    return Slate.Value.fromJSON(
-        { ...json, schema: SCHEMA },
-        { normalize: false }
-    );
+    return Value.fromJSON({ ...json, schema: SCHEMA }, { normalize: false });
 }
 
 describe('slate-text-table', () => {
