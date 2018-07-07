@@ -1,7 +1,7 @@
 // @flow
 
 import { type Value } from 'slate';
-import type Options from '../options';
+import type { Options } from '../options';
 import isSelectionInCell from './isSelectionInCell';
 import isSelectionOutOfCell from './isSelectionOutOfCell';
 

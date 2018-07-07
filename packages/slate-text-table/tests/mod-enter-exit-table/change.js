@@ -1,9 +1,8 @@
-import expect from 'expect';
+/** @jsx h */
+
+import h from '../h';
 
 export default function(plugin, change) {
-    const blockStart = change.value.document.getDescendant('_cursor_');
-    const withCursor = change.collapseToStartOf(blockStart);
-
     const result = plugin.onKeyDown(
         {
             key: 'Enter',
@@ -11,10 +10,50 @@ export default function(plugin, change) {
             preventDefault() {},
             stopPropagation() {}
         },
-        withCursor
+        change
     );
-
-    expect(result.value.startBlock.type).toBe('paragraph');
-
     return result;
 }
+
+export const input = (
+    <value>
+        <document>
+            <table presetAlign={['left', 'left', 'left']}>
+                <tr>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">
+                        <cursor />Col 1, Row 1
+                    </td>
+                    <td textAlign="left">Col 2, Row 1</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = (
+    <value>
+        <document>
+            <table presetAlign={['left', 'left', 'left']}>
+                <tr>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td textAlign="left">Col 0, Row 1</td>
+                    <td textAlign="left">Col 1, Row 1</td>
+                    <td textAlign="left">Col 2, Row 1</td>
+                </tr>
+            </table>
+            <paragraph>
+                <cursor />
+            </paragraph>
+        </document>
+    </value>
+);

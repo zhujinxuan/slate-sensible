@@ -35,19 +35,23 @@ type pluginInterface = {
 function createPlugin(pluginOptions: pluginInterface) {
     const { rules, htmlSerializer } = pluginOptions;
     const deleteAtRange = deleteGen.generate(rules.deleteAtRange);
+
     const insertFragmentAtRange = insertGen.generate(
         rules.insertFragmentAtRange,
         {
             deleteAtRange
         }
     );
+
     const getFragmentAtRange = getGen.generate(rules.getFragmentAtRange);
+
     const opts = {
         deleteAtRange,
         insertFragmentAtRange,
         getFragmentAtRange,
         htmlSerializer
     };
+
     const changes = createChanges(opts);
     return {
         changes,

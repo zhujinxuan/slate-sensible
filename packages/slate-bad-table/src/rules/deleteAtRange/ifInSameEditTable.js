@@ -1,7 +1,7 @@
 // @flow
 import { Range } from 'slate';
 import { isStartByKey, isEndByKey } from 'slate-bind-copy-paste';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 
 function ifInSameEditTable(opts: Options): typeRule {

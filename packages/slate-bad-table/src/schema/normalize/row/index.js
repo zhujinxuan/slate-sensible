@@ -1,6 +1,6 @@
 // @flow
 import { type Node, type Change } from 'slate';
-import type Options from '../../../options';
+import type { Options } from '../../../options';
 import moveNodesToParent from '../utils/moveNodesToParent';
 
 function normalize(

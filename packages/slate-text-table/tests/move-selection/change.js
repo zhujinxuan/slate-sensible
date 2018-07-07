@@ -1,18 +1,62 @@
-import expect from 'expect';
+/** @jsx h */
+
+import h from '../h';
 
 export default function(plugin, change) {
-    const { value } = change;
-    const cursorBlock = value.document.getDescendant('_cursor_');
-    const offset = 2;
-    change.moveToRangeOf(cursorBlock).move(offset);
-
     plugin.changes.moveSelection(change, 2, 2);
-
-    expect(change.value.startBlock.text).toEqual('Col 2, Row 2');
-    const selection = change.value.selection;
-    expect(selection.startKey).toEqual(selection.endKey);
-    // Keep same offset
-    expect(selection.startOffset).toEqual(offset);
-
     return change;
 }
+
+export const input = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Col 0, Row 0</td>
+                    <td>Col 1, Row 0</td>
+                    <td>Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 1</td>
+                    <td>
+                        Col 1,<anchor /> Row 1
+                    </td>
+                    <td>
+                        Col 2,<focus /> Row 1
+                    </td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 2</td>
+                    <td>Col 1, Row 2</td>
+                    <td>Col 2, Row 2</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>Col 0, Row 0</td>
+                    <td>Col 1, Row 0</td>
+                    <td>Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 1</td>
+                    <td>Col 1, Row 1</td>
+                    <td>Col 2, Row 1</td>
+                </tr>
+                <tr>
+                    <td>Col 0, Row 2</td>
+                    <td>Col 1, Row 2</td>
+                    <td>
+                        Col 2,<cursor /> Row 2
+                    </td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);

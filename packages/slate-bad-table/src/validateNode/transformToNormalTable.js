@@ -1,7 +1,8 @@
 // @flow
 import { isTextBlock, getFirstBlock } from 'slate-bind-copy-paste';
 import { type Node, type Change, Text } from 'slate';
-import type Options from '../options';
+import { List } from 'immutable';
+import type { Options } from '../options';
 
 function validateNode(opts: Options, table: Node): (Change => Change) | void {
     if (table.object !== 'block' || table.type !== opts.typeBadTable) {
@@ -31,13 +32,16 @@ function validateNode(opts: Options, table: Node): (Change => Change) | void {
                 type: opts.typeRow,
                 nodes: row.nodes.map(cell => {
                     const blocks = cell.nodes.shift();
-                    const nextNodes = blocks.reduce(
-                        (cache, block) =>
-                            cache
-                                .push(Text.create('\n'))
-                                .concat(getFirstBlock(block).nodes),
-                        getFirstBlock(cell.nodes.first()).nodes
-                    );
+                    const firstBlock = getFirstBlock(cell.nodes.first());
+                    const initialTexts = firstBlock ? firstBlock.nodes : List();
+
+                    const nextNodes = blocks.reduce((cache, block) => {
+                        const firstLeafBlock = getFirstBlock(block);
+                        if (!firstLeafBlock) return cache;
+                        return cache
+                            .push(Text.create('\n'))
+                            .concat(firstLeafBlock.nodes);
+                    }, initialTexts);
                     return cell.merge({
                         nodes: nextNodes,
                         type: opts.typeCell

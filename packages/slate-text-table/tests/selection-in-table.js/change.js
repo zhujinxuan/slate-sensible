@@ -1,15 +1,23 @@
-import expect from 'expect';
+/** @jsx h */
+
+import h from '../h';
 
 export default function(plugin, change) {
-    const { value } = change;
-    const start = value.document.getDescendant('start');
-    const end = value.document.getDescendant('end');
-
-    change.collapseToStartOf(start);
-
     expect(plugin.utils.isSelectionInTable(change.value)).toBe(true);
-
-    change.extendToEndOf(end);
-
-    expect(plugin.utils.isSelectionInTable(change.value)).toBe(false);
 }
+
+export const input = (
+    <value>
+        <document>
+            <table>
+                <tr>
+                    <td>
+                        <cursor />
+                    </td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = undefined;

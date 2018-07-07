@@ -91,7 +91,7 @@ and mention pop up, you can
 }
 
 .RichEditor-mention-position-right {
-  margin-right: -10px;
+  margin-left: -10px;
 }
 ```
 

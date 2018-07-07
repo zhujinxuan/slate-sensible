@@ -1,6 +1,6 @@
 // @flow
 import { type Change, Block, Text } from 'slate';
-import type Options from '../options';
+import type { Options } from '../options';
 
 type typeRemoveOptions = {
     snapshot: boolean

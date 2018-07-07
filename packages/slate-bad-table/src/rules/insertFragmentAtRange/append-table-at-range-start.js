@@ -2,7 +2,7 @@
 import isSameWidth from './utils/isSameWidth';
 import pasteSingleRow from './utils/pasteSingleRow';
 import EditTablePosition from '../../utils/EditTablePosition';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 
 // Append at the table end when:

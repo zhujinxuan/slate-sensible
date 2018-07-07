@@ -1,13 +1,37 @@
-import expect from 'expect';
+/** @jsx h */
+
+import h from '../h';
 
 export default function(plugin, change) {
-    const cursorBlock = change.value.document.getDescendant('_cursor_');
-    change.moveToRangeOf(cursorBlock);
-
-    plugin.changes.removeTable(change);
-    expect(change.value.startBlock.key).toEqual('_cursor_after_');
-    expect(change.value.startOffset).toEqual(
-        change.value.startBlock.text.length
-    );
-    return change;
+    return plugin.changes.removeTable(change);
 }
+
+export const input = (
+    <value>
+        <document>
+            <paragraph>Before</paragraph>
+            <table presetAlign={['left', 'left']}>
+                <tr>
+                    <td textAlign="left" />
+                    <td textAlign="left" />
+                </tr>
+                <tr>
+                    <td textAlign="left" />
+                    <td textAlign="left">
+                        <cursor />
+                    </td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = (
+    <value>
+        <document>
+            <paragraph>
+                Before<cursor />
+            </paragraph>
+        </document>
+    </value>
+);
