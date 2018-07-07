@@ -11,7 +11,7 @@ export default function arePointsEquivalent(
     const { key: key1, offset: offset1 } = point1;
     const { key: key2, offset: offset2 } = point2;
     if (key1 === key2) return offset1 === offset2;
-    if (key1 !== 0 && key2 !== 0) return false;
+    if (offset1 !== 0 && offset2 !== 0) return false;
 
     const block = node.getClosestBlock(key1);
     if (!block || block !== node.getClosestBlock(key2)) return false;

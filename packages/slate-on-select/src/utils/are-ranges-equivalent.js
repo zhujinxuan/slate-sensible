@@ -13,6 +13,8 @@ function getEndPoint(range: Range) {
 }
 
 function areVisiblyTheSame(node: Node, range1: Range, range2: Range): boolean {
+    if (range1.equals(range2)) return true;
+
     if (
         !arePointsEquivalent(node, getStartPoint(range1), getStartPoint(range2))
     ) {
