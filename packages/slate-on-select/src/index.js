@@ -3,7 +3,7 @@
 import { findRange } from 'slate-react';
 import getWindow from 'get-window';
 import { type Change } from 'slate';
-import areVisiblyTheSame from './utils/areVisiblyTheSame';
+import areRangesEquivalent from './utils/are-ranges-equivalent';
 
 function createPlugin(): Object {
     return { onSelect };
@@ -22,11 +22,11 @@ function onSelect(event, change: Change): ?true {
     if (!range.focusKey || !value.focusKey) return undefined;
     if (!range.isFocused || !value.isFocused) return undefined;
 
-    if (areVisiblyTheSame(document, value.selection, range)) {
+    if (areRangesEquivalent(document, value.selection, range)) {
         return true;
     }
     return undefined;
 }
 
 export default createPlugin;
-export { areVisiblyTheSame };
+export { areRangesEquivalent };
