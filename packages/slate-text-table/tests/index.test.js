@@ -53,10 +53,17 @@ describe('slate-text-table', () => {
                 input.change().setValue({ schema: SCHEMA })
             );
 
-            if (expected) {
-                const newDocJSon = newChange.value.toJSON(opts);
-                expect(newDocJSon).toEqual(expected.toJSON(opts));
+            if (expected === newChange) return;
+
+            if (!expected) {
+                throw new Error(
+                    'Expected must have a validate value to compare'
+                );
             }
+
+            if (expected.equals && expected.equals(newChange)) return;
+            const newDocJSon = newChange.value.toJSON(opts);
+            expect(newDocJSon).toEqual(expected.toJSON(opts));
         });
     });
 });

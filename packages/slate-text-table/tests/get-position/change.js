@@ -11,7 +11,7 @@ export default function(plugin, change) {
     expect(position.getRowIndex()).toEqual(1);
     expect(position.getColumnIndex()).toEqual(0);
 
-    return value;
+    return change;
 }
 
 export const input = (
@@ -40,4 +40,4 @@ export const input = (
     </value>
 );
 
-export const expected = undefined;
+export const expected = input;
