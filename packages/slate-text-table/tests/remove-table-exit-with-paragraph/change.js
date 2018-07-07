@@ -1,16 +1,36 @@
+/** @jsx h */
+
+import h from '../h';
+
 export default function(plugin, change) {
-    const cursorBlock = change.value.document.getDescendant('_cursor_');
-    change.moveToRangeOf(cursorBlock);
-
-    plugin.changes.removeTable(change);
-    const { value } = change;
-    expect(value.startBlock.type).toEqual('paragraph');
-
-    expect(change.value.startOffset).toEqual(
-        change.value.startBlock.text.length
-    );
-
-    expect(change.value.startOffset).toEqual(0);
-
-    return change;
+    return plugin.changes.removeTable(change);
 }
+
+export const input = (
+    <value>
+        <document>
+            <table presetAlign={['left', 'left']}>
+                <tr>
+                    <td textAlign="left" />
+                    <td textAlign="left" />
+                </tr>
+                <tr>
+                    <td textAlign="left" />
+                    <td textAlign="left">
+                        <cursor />
+                    </td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = (
+    <value>
+        <document>
+            <paragraph>
+                <cursor />
+            </paragraph>
+        </document>
+    </value>
+);

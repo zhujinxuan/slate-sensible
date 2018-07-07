@@ -1,11 +1,8 @@
-import expect from 'expect';
+/** @jsx h */
+
+import h from '../h';
 
 export default function(plugin, change) {
-    const cursorBlock = change.value.document.getDescendant('_cursor_');
-    change.moveToRangeOf(cursorBlock);
-
-    const initialPosition = plugin.utils.getPosition(change.value);
-
     plugin.onKeyDown(
         {
             key: 'Tab',
@@ -14,13 +11,57 @@ export default function(plugin, change) {
         },
         change
     );
-
-    const position = plugin.utils.getPosition(change.value);
-
-    // Next row
-    expect(position.getRowIndex()).toEqual(initialPosition.getRowIndex() + 1);
-    // Moved to first column
-    expect(position.getColumnIndex()).toEqual(0);
-
     return change;
 }
+
+export const input = (
+    <value>
+        <document>
+            <table presetAlign={['left', 'left', 'left']}>
+                <tr>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td textAlign="left">Col 0, Row 2</td>
+                    <td textAlign="left">Col 1, Row 2</td>
+                    <td textAlign="left">
+                        <cursor />Col 2, Row 2
+                    </td>
+                </tr>
+                <tr>
+                    <td textAlign="left">Col 0, Row 2</td>
+                    <td textAlign="left">Col 1, Row 2</td>
+                    <td textAlign="left">Col 2, Row 2</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);
+
+export const expected = (
+    <value>
+        <document>
+            <table presetAlign={['left', 'left', 'left']}>
+                <tr>
+                    <td textAlign="left">Col 0, Row 0</td>
+                    <td textAlign="left">Col 1, Row 0</td>
+                    <td textAlign="left">Col 2, Row 0</td>
+                </tr>
+                <tr>
+                    <td textAlign="left">Col 0, Row 2</td>
+                    <td textAlign="left">Col 1, Row 2</td>
+                    <td textAlign="left">Col 2, Row 2</td>
+                </tr>
+                <tr>
+                    <td textAlign="left">
+                        <anchor />Col 0, Row 2<focus />
+                    </td>
+                    <td textAlign="left">Col 1, Row 2</td>
+                    <td textAlign="left">Col 2, Row 2</td>
+                </tr>
+            </table>
+        </document>
+    </value>
+);

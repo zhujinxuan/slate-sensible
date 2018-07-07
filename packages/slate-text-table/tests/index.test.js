@@ -1,20 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
+
 import fs from 'fs';
 import path from 'path';
-import Slate from 'slate';
+import { Schema, Value } from 'slate';
 import readMetadata from 'read-metadata';
 import EditTable from 'slate-text-table';
 
 const PLUGIN = EditTable();
-const SCHEMA = Slate.Schema.create({
+
+const SCHEMA = Schema.create({
     plugins: [PLUGIN]
 });
 
 function deserializeValue(json) {
-    return Slate.Value.fromJSON(
-        { ...json, schema: SCHEMA },
-        { normalize: false }
-    );
+    return Value.fromJSON({ ...json, schema: SCHEMA }, { normalize: false });
 }
 
 describe('slate-text-table', () => {
@@ -25,22 +26,44 @@ describe('slate-text-table', () => {
 
         it(test, () => {
             const dir = path.resolve(__dirname, test);
-            const input = readMetadata.sync(path.resolve(dir, 'input.yaml'));
-            const expectedPath = path.resolve(dir, 'expected.yaml');
-            const expected =
-                fs.existsSync(expectedPath) && readMetadata.sync(expectedPath);
+            const module = require(path.resolve(dir, 'change.js'));
+            const runChange = module.default;
 
-            // eslint-disable-next-line
-            const runChange = require(path.resolve(dir, 'change.js')).default;
+            let { input, expected } = module;
+            let opts = { preserveSelection: true, preserveData: true };
 
-            const valueInput = deserializeValue(input);
+            if (!input && !expected) {
+                opts = {};
+                const objectInput = readMetadata.sync(
+                    path.resolve(dir, 'input.yaml')
+                );
 
-            const newChange = runChange(PLUGIN, valueInput.change());
+                input = deserializeValue(objectInput);
+                const expectedPath = path.resolve(dir, 'expected.yaml');
 
-            if (expected) {
-                const newDocJSon = newChange.value.toJSON();
-                expect(newDocJSon).toEqual(deserializeValue(expected).toJSON());
+                const objectExpected =
+                    fs.existsSync(expectedPath) &&
+                    readMetadata.sync(expectedPath);
+
+                if (objectExpected) expected = deserializeValue(objectExpected);
             }
+
+            const newChange = runChange(
+                PLUGIN,
+                input.change().setValue({ schema: SCHEMA })
+            );
+
+            if (expected === newChange) return;
+
+            if (!expected) {
+                throw new Error(
+                    'Expected must have a validate value to compare'
+                );
+            }
+
+            if (expected.equals && expected.equals(newChange)) return;
+            const newDocJSon = newChange.value.toJSON(opts);
+            expect(newDocJSon).toEqual(expected.toJSON(opts));
         });
     });
 });

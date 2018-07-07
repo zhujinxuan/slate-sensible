@@ -1,6 +1,6 @@
 // @flow
 import { type Change } from 'slate';
-import type Options from '../options';
+import type { Options } from '../options';
 
 function backspace(opts: Options, change: Change): Change | void {
     const { value } = change;

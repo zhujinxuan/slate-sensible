@@ -10,4 +10,5 @@ type Option = {
         serialize: Value => string
     }
 };
+
 export type { Option };

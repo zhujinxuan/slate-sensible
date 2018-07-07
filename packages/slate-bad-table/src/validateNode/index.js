@@ -1,6 +1,6 @@
 // @flow
 import { type Change, type Node } from 'slate';
-import type Options from '../options';
+import type { Options } from '../options';
 
 import transformToNormalTable from './transformToNormalTable';
 

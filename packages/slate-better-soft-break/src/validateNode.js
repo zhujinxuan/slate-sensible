@@ -1,7 +1,7 @@
 // @flow
 import { type Change, type Node } from 'slate';
 import inlineValidation from './inlineValidation';
-import type Options from './options';
+import type { Options } from './options';
 
 function createValidateNode(opts: Options) {
     return (node: Node): void | (Change => *) => {

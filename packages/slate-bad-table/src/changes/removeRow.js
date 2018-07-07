@@ -1,6 +1,6 @@
 // @flow
 import { type Change } from 'slate';
-import type Options from '../options';
+import type { Options } from '../options';
 import removeTable from './removeTable';
 import BadTablePosition from '../utils/BadTablePosition';
 

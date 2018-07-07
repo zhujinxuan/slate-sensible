@@ -26,15 +26,6 @@ function isSelectionInTable(opts: Options, value: Value): boolean {
         .slice(-2);
     const endAncestors = value.document.getAncestors(endBlock.key).slice(-2);
 
-    // Check for same table row
-    const startRow = startAncestors.last();
-    const endRow = endAncestors.last();
-
-    if (startRow === endRow) {
-        return true;
-    }
-    // Different rows
-
     // Check for same table
     const startTable = startAncestors.first();
     const endTable = endAncestors.first();

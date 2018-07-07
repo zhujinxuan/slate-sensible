@@ -1,9 +1,9 @@
 // @flow
 import { type Change, type Node } from 'slate';
-import createSchema from './schema/index';
-import createUtils from './utils/index';
-import createChanges from './changes/index';
-import Options, { type OptionsFormat } from './options';
+import createSchema from './schema/';
+import createUtils from './utils/';
+import createChanges from './changes/';
+import defaultOptions, { type OptionsFormat } from './options';
 import createRulesPatch, { type typeRules } from './rules/index';
 import createValidateNode from './validateNode/index';
 import createOnKeyDown from './onKeyDown/index';
@@ -18,7 +18,7 @@ type typePlugins = {
 };
 
 function createBadTablePlugin(pluginOpts: OptionsFormat): typePlugins {
-    const opts = new Options(pluginOpts);
+    const opts = defaultOptions.merge(pluginOpts);
     const schema = createSchema(opts);
     const rulesPatch = createRulesPatch(opts);
     const utils = createUtils(opts);

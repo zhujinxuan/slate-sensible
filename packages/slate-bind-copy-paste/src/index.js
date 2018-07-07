@@ -1,8 +1,8 @@
 // @flow
 
-import getFragmentAtRange from './getFragmentAtRange/index';
-import insertFragmentAtRange from './insertFragmentAtRange/index';
-import deleteAtRange from './deleteAtRange/index';
+import getFragmentAtRange from './getFragmentAtRange';
+import insertFragmentAtRange from './insertFragmentAtRange';
+import deleteAtRange from './deleteAtRange';
 import isTextBlock from './utils/isTextBlock';
 import getFirstBlock from './utils/getFirstBlock';
 import getLastBlock from './utils/getLastBlock';

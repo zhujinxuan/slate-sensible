@@ -1,6 +1,6 @@
 // @flow
 import { type Node } from 'slate';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import getFirstBlock from './getFirstBlock';
 import getLastBlock from './getLastBlock';
 

@@ -1,6 +1,6 @@
 // @flow
 
-import { Record } from 'immutable';
+import { Record, type RecordOf } from 'immutable';
 
 export type OptionsFormat = {
     typeTable?: string,
@@ -13,10 +13,18 @@ export type OptionsFormat = {
     allowSoftBreak?: boolean
 };
 
-/**
- * The plugin options
- */
-class Options extends Record({
+export type Options = RecordOf<{
+    typeTable: string,
+    typeRow: string,
+    typeCell: string,
+    typeBadTable: string,
+    typeBadCell: string,
+    typeBadRow: string,
+    typeParagraph: string,
+    allowSoftBreak: boolean
+}>;
+
+const defaultOptions: Options = Record({
     typeTable: 'table',
     typeRow: 'table_row',
     typeCell: 'table_cell',
@@ -25,23 +33,6 @@ class Options extends Record({
     typeBadCell: 'bad-table-cell',
     typeParagraph: 'paragraph',
     allowSoftBreak: true
-}) {
-    // The type of table blocks
-    typeTable: string;
-    // The type of row blocks
-    typeRow: string;
-    // The type of cell blocks
-    typeCell: string;
+})();
 
-    // Bad Table
-    typeBadTable: string;
-    typeBadCell: string;
-    typeBadRow: string;
-
-    //
-    typeParagraph: string;
-    //
-    allowSoftBreak: boolean;
-}
-
-export default Options;
+export default defaultOptions;

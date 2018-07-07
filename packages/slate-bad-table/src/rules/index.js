@@ -1,6 +1,6 @@
 // @flow
 import { type Change, type Node, type Range, type Document } from 'slate';
-import type Options from '../options';
+import type { Options } from '../options';
 import createPatchGetFragmentAtRange from './getFragmentAtRange/index';
 import createPatchDeleteAtRange from './deleteAtRange/index';
 import createPatchInsertAtRange from './insertFragmentAtRange/index';

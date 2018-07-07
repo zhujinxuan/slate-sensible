@@ -1,7 +1,7 @@
 // @flow
 import { deleteAtRange as plugin } from 'slate-bind-copy-paste';
 import { type Change, type Range, type Object } from 'slate';
-import type Options from '../../options';
+import type { Options } from '../../options';
 import { type typeRule } from './type';
 import ifStartInCell from './ifStartInCell';
 import ifEndInCell from './ifEndInCell';

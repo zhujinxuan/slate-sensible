@@ -1,12 +1,13 @@
 // @flow
 import { Record } from 'immutable';
 import { Block, type Document } from 'slate';
-import Options from '../options';
+import defaultOptions, { type Options } from '../options';
 
 class BadTablePosition extends Record({
     badTable: null,
     badRow: null,
-    badCell: null
+    badCell: null,
+    opts: defaultOptions
 }) {
     badTable: Block;
     badRow: Block;

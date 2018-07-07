@@ -1,16 +1,11 @@
 // @flow
-import { Record } from 'immutable';
+import { Record, type RecordOf } from 'immutable';
 import { type Change, type Range, type Document } from 'slate';
 
-class InsertAtRangeOptions extends Record({
-    lastNodeAsText: true,
-    firstNodeAsText: true
-}) {
-    lastNodeAsText: boolean;
-    firstNodeAsText: boolean;
-    merge: Object => InsertAtRangeOptions;
-    set: (string, *) => InsertAtRangeOptions;
-}
+export type InsertAtRangeOptions = RecordOf<{
+    lastNodeAsText: boolean,
+    firstNodeAsText: boolean
+}>;
 
 export type typeRule = (
     (Change, Range, Document, InsertAtRangeOptions) => Change,
@@ -21,4 +16,9 @@ export type typeRule = (
     (InsertAtRangeOptions) => Change
 ) => Change;
 
-export { InsertAtRangeOptions };
+const defaultOptions: InsertAtRangeOptions = Record({
+    lastNodeAsText: true,
+    firstNodeAsText: true
+})();
+
+export default defaultOptions;
