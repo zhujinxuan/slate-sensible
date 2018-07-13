@@ -2,7 +2,7 @@
 
 import { type Range, type Node } from 'slate';
 import arePointsEquivalent from './are-points-equivalent';
-import type { Point } from './Point';
+import type { Point } from './Point.js.flow';
 
 function getStartPoint(range: Range): Point {
     return { key: range.startKey, offset: range.startOffset };

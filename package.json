@@ -32,6 +32,7 @@
     "coveralls": "^3.0.1",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
+    "es6-plato": "^1.0.18",
     "eslint": "^4.15.0",
     "eslint-config-gitbook": "^4.0.0",
     "eslint-import-resolver-lerna": "^1.0.0",
@@ -95,7 +96,8 @@
     "test:coverage": "jest --coverage && codecov",
     "start": "npm-run-all --parallel --print-label watch server",
     "server": "webpack-dev-server --mode development --config ./support/webpack/config.js",
-    "watch": "rollup --config ./support/rollup/config.js --watch"
+    "watch": "rollup --config support/rollup/config.js --watch",
+    "report:complexity": "node support/complexity/plato.js && open tmp/plato/index.html"
   },
   "dependencies": {
     "flow": "^0.2.3"
