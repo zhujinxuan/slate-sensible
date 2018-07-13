@@ -1,7 +1,7 @@
 // @flow
 
 import { type Node } from 'slate';
-import type { Point } from './Point';
+import type { Point } from './Point.js.flow';
 
 export default function arePointsEquivalent(
     node: Node,
