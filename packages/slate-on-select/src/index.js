@@ -50,7 +50,7 @@ export default function createPlugin(opts: ?Object): Object {
         }
 
         if (clickAndDrag && isMouseMoving) {
-            if (range.isCollapsed && selection.isCollapsed) {
+            if (range.isCollapsed) {
                 change.select(
                     range.moveAnchorTo(
                         selection.anchorKey,
