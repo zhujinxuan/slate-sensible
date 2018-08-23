@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { Node as ReactNode } from 'react';
 import getWindow from 'get-window';
 import type { Change } from 'slate';
 import { findRange } from 'slate-react';
@@ -25,7 +25,7 @@ export default function createPlugin(opts): Object {
         }
     }
 
-    function renderEditor(props) {
+    function renderEditor(props: { children: ReactNode }) {
         return <div onMouseMove={onMouseMove}>{props.children}</div>;
     }
 
