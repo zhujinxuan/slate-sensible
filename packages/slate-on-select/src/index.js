@@ -10,7 +10,7 @@ export default function createPlugin(opts): Object {
     let isMouseMoving = false;
     let mouseMovingId;
 
-    function onMouseMove(event) {
+    function onMouseMove(event: SyntheticMouseEvent<*>) {
         if (!clickAndDrag) return;
 
         const window = getWindow(event.target);
@@ -29,7 +29,7 @@ export default function createPlugin(opts): Object {
         return <div onMouseMove={onMouseMove}>{props.children}</div>;
     }
 
-    function onSelect(event, change: Change) {
+    function onSelect(event: SyntheticEvent<*>, change: Change) {
         const window = getWindow(event.target);
         const { value } = change;
         const { selection, document } = value;
