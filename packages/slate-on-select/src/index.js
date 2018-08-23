@@ -5,7 +5,7 @@ import type { Change } from 'slate';
 import { findRange } from 'slate-react';
 import areRangesEquivalent from './utils/are-ranges-equivalent';
 
-export default function createPlugin(opts): Object {
+export default function createPlugin(opts: ?Object): Object {
     const { inlineEnd = true, clickAndDrag = true } = opts || {};
     let isMouseMoving = false;
     let mouseMovingId;
