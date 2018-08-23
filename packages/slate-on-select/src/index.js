@@ -37,28 +37,20 @@ export default function createPlugin(opts: ?Object): Object {
 
         if (!native.rangeCount) return undefined;
         const range = findRange(native, value);
+        if (!range) return undefined;
+        if (!range.anchorKey || !selection.anchorKey) return undefined;
+        if (!range.focusKey || !selection.focusKey) return undefined;
+        if (!range.isFocused || !selection.isFocused) return undefined;
 
-        if (inlineEnd) {
-            if (!range) return undefined;
-            if (!range.anchorKey || !selection.anchorKey) return undefined;
-            if (!range.focusKey || !selection.focusKey) return undefined;
-            if (!range.isFocused || !selection.isFocused) return undefined;
-
-            if (areRangesEquivalent(document, selection, range)) {
-                return true;
-            }
+        if (inlineEnd && areRangesEquivalent(document, selection, range)) {
+            return true;
         }
 
-        if (clickAndDrag && isMouseMoving) {
-            if (range.isCollapsed) {
-                change.select(
-                    range.moveAnchorTo(
-                        selection.anchorKey,
-                        selection.anchorOffset
-                    )
-                );
-                return true;
-            }
+        if (clickAndDrag && isMouseMoving && range.isCollapsed) {
+            change.select(
+                range.moveAnchorTo(selection.anchorKey, selection.anchorOffset)
+            );
+            return true;
         }
 
         return undefined;
