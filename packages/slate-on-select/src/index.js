@@ -1,32 +1,63 @@
 // @flow
-
-import { findRange } from 'slate-react';
+import React, { Node as ReactNode } from 'react';
 import getWindow from 'get-window';
-import { type Change } from 'slate';
+import type { Change } from 'slate';
+import { findRange } from 'slate-react';
 import areRangesEquivalent from './utils/are-ranges-equivalent';
 
-function createPlugin(): Object {
-    return { onSelect };
-}
+export default function createPlugin(opts: ?Object): Object {
+    const { inlineEnd = true, clickAndDrag = true } = opts || {};
+    let isMouseMoving = false;
+    let mouseMovingId;
 
-function onSelect(event, change: Change): ?true {
-    const window = getWindow(event.target);
-    const { value } = change;
-    const { document } = value;
-    const native = window.getSelection();
+    function onMouseMove(event: SyntheticMouseEvent<*>) {
+        if (!clickAndDrag) return;
 
-    if (!native.rangeCount) return undefined;
-    const range = findRange(native, value);
-    if (!range || !value.selection) return undefined;
-    if (!range.anchorKey || !value.anchorKey) return undefined;
-    if (!range.focusKey || !value.focusKey) return undefined;
-    if (!range.isFocused || !value.isFocused) return undefined;
+        const window = getWindow(event.target);
+        window.clearTimeout(mouseMovingId);
+        // It means the left key of mouse is pressed
+        isMouseMoving = event.buttons % 2 === 1;
 
-    if (areRangesEquivalent(document, value.selection, range)) {
-        return true;
+        if (isMouseMoving) {
+            mouseMovingId = window.setTimeout(() => {
+                isMouseMoving = false;
+            }, 24);
+        }
     }
-    return undefined;
-}
 
-export default createPlugin;
-export { areRangesEquivalent };
+    function renderEditor(props: { children: ReactNode }) {
+        return <div onMouseMove={onMouseMove}>{props.children}</div>;
+    }
+
+    function onSelect(event: SyntheticEvent<*>, change: Change) {
+        const window = getWindow(event.target);
+        const { value } = change;
+        const { selection, document } = value;
+        const native = window.getSelection();
+
+        if (!native.rangeCount) return undefined;
+        const range = findRange(native, value);
+        if (!range) return undefined;
+        if (!range.anchorKey || !selection.anchorKey) return undefined;
+        if (!range.focusKey || !selection.focusKey) return undefined;
+        if (!range.isFocused || !selection.isFocused) return undefined;
+
+        if (inlineEnd && areRangesEquivalent(document, selection, range)) {
+            return true;
+        }
+
+        if (clickAndDrag && isMouseMoving && range.isCollapsed) {
+            change.select(
+                range.moveAnchorTo(selection.anchorKey, selection.anchorOffset)
+            );
+            return true;
+        }
+
+        return undefined;
+    }
+    return {
+        onSelect,
+        onMouseMove,
+        renderEditor
+    };
+}
