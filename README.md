@@ -5,7 +5,7 @@
 
 This repo is a collection of [my](https://github.com/zhujinxuan) slate plugins about sensible adjustment, bug fixes, and editing features.
 
-(Note: The document and compatability development will continue in Dec, 2018.  I am woring on something else right now)
+(Note: The document and compatability development will continue in Dec, 2018. I am woring on something else right now)
 
 ## Sensible Adjustment and bug fixes
 
